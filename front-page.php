@@ -496,29 +496,6 @@ get_header();
         </div>
     </section>
 
-    <!-- <section class="sec_news">
-
-        <h2 class="sec_ttl animate">
-            <span>お知らせ</span>
-        </h2>
-
-        <ul class="news_list sec_inner animate">
-            
-                    <li>
-                        <a href="<?php the_permalink(); ?>" class="arrow">
-                            <figure>
-                                <img src="<?php echo imdir(); ?>/common/dummy.jpg" alt="">
-                            </figure>
-                            <span class="time"><?php echo get_the_date('Y.n.j'); ?></span>
-                            <p><span><?php the_title(); ?></span></p>
-                        </a>
-                    </li>
-            
-        </ul>
-
-        <a href="<?= esc_url(home_url('/')) ?>news/" class="commonBtn center animate"><span>お知らせ一覧</span></a>
-    </section> -->
-
 </main>
 
 <?php get_footer(); ?>
