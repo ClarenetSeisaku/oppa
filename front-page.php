@@ -113,7 +113,7 @@ get_header();
             <div class="top_news__header">
                 <h2 class="top_news__title-en en_font">News</h2>
                 <p class="top_news__title-ja">新着情報</p>
-                <a href="#" class="top_news__btn pc commonBtn">
+                <a href="<?= esc_url(home_url('/')) ?>news" class="top_news__btn pc commonBtn">
                     <span>新着情報一覧</span>
                 </a>
             </div>
@@ -121,29 +121,37 @@ get_header();
             <!-- 右カラム（ニュースリスト） -->
             <div class="top_news__content">
                 <ul class="top_news__list">
-                    <li class="top_news__item">
-                        <a href="#" class="top_news__link">
-                            <time class="top_news__date">2026.01.06</time>
-                            <span class="top_news__category">客船入港</span>
-                            <p class="top_news__text">客船入港一覧表を更新しました</p>
-                        </a>
-                    </li>
-                    <li class="top_news__item">
-                        <a href="#" class="top_news__link">
-                            <time class="top_news__date">2026.01.05</time>
-                            <span class="top_news__category">客船入港</span>
-                            <p class="top_news__text">客船入港一覧表を更新しました</p>
-                        </a>
-                    </li>
-                    <li class="top_news__item">
-                        <a href="#" class="top_news__link">
-                            <time class="top_news__date">2025.12.16</time>
-                            <span class="top_news__category" style="background-color: #3b5672;">お知らせ</span>
-                            <p class="top_news__text">「海運論基礎講座」参加者募集開始しました</p>
-                        </a>
-                    </li>
+                    <?php
+                    $topics = new WP_Query(array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 4,
+                        'paged' => $paged,
+                    ));
+                    ?>
+                    <?php
+                    if ($topics->have_posts()) :
+                    ?>
+                        <?php
+                        while ($topics->have_posts()) :
+                            $topics->the_post();
+                        ?>
+                            <li class="top_news__item">
+                                <a href="<?php the_permalink(); ?>" class="top_news__link">
+                                    <time class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
+                                    <?php
+                                    $category = get_the_category();
+                                    if ($category) {
+                                        echo '<span class="top_news__category">' . esc_html($category[0]->name) . '</span>';
+                                    }
+                                    ?>
+                                    <p class="top_news__text"><?php the_title(); ?></p>
+                                </a>
+                            </li>
+                    <?php endwhile;
+                    endif;
+                    wp_reset_postdata(); ?>
                 </ul>
-                <a href="#" class="top_news__btn sp commonBtn">
+                <a href="<?= esc_url(home_url('/')) ?>news" class="top_news__btn sp commonBtn">
                     <span>新着情報一覧</span>
                 </a>
             </div>
@@ -495,20 +503,7 @@ get_header();
         </h2>
 
         <ul class="news_list sec_inner animate">
-            <?php
-            $topics = new WP_Query(array(
-                'post_type' => 'post',
-                'posts_per_page' => 4,
-                'paged' => $paged,
-            ));
-            ?>
-            <?php
-            if ($topics->have_posts()) :
-            ?>
-                <?php
-                while ($topics->have_posts()) :
-                    $topics->the_post();
-                ?>
+            
                     <li>
                         <a href="<?php the_permalink(); ?>" class="arrow">
                             <figure>
@@ -518,9 +513,7 @@ get_header();
                             <p><span><?php the_title(); ?></span></p>
                         </a>
                     </li>
-            <?php endwhile;
-            endif;
-            wp_reset_postdata(); ?>
+            
         </ul>
 
         <a href="<?= esc_url(home_url('/')) ?>news/" class="commonBtn center animate"><span>お知らせ一覧</span></a>
