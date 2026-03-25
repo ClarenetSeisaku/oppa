@@ -1,0 +1,82 @@
+@use "sass:math";
+
+// デバイスサイズ（単位を付けて定義）
+$sp_w: 768px;
+$pc_w: 1100px;
+
+$main-color: #333;
+$text-color: #000;
+$border-color: #dce1e5;
+$color-navy: #081f36; // 指定のアイコン・ボタン色
+$color-navy-hover: #1c4c83;
+$color-light-navy: #244668;
+$color-text: #000000;
+$color-text-light: #333;
+$color-border: #afccda;
+$color-bg-light: #f0f4f8;
+$color-white: #ffffff;
+$color-date: #5c738d;
+$color-wave: #d3e5f2;
+$color-gold: #a7913a; // クルーズ船ボタンの色
+$color-gold-hover: #8c7130;
+$color-bg-text: #f0f4f8;
+$color-badge-gold: #a7913a;
+$color-badge-green: #468492;
+$color-badge-brown: #b55538;
+$color-alert: #c22d2d;
+$color-info-bg: #dee5ed;
+$color-text-light: #444444;
+$color-bullet: #a3c1cf;
+$color-border-img: #e0e0e0;
+$color-beige: #eaeae3;
+
+// 全体のブレイクポイント
+@mixin mq($breakpoint: pc) {
+  $sp_max: $sp_w;
+  $tab_min: $sp_w + 1px;
+  $tab_max: $pc_w;
+  $pc_min: $pc_w + 1px;
+
+  @if $breakpoint == sp {
+    @media only screen and (max-width: $sp_max) {
+      @content;
+    }
+  } @else if $breakpoint == tab {
+    @media only screen and (min-width: $tab_min) and (max-width: $tab_max) {
+      @content;
+    }
+  } @else if $breakpoint == pc {
+    @media only screen and (min-width: $pc_min) {
+      @content;
+    }
+  } @else if $breakpoint == tab_pc {
+    @media print, screen and (min-width: $tab_min) {
+      @content;
+    }
+  }
+}
+
+// 中央に配置
+@mixin prefix {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+// 左右中央に配置
+@mixin prefix_l {
+  left: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+}
+
+// 上下中央に配置
+@mixin prefix_t {
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+}

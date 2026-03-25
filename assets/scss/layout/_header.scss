@@ -1,0 +1,502 @@
+@use "../import/mixin" as m;
+.change_height {
+  #header {
+  }
+}
+#header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0 0 min(1.5vw, 30px);
+  transition: 0.4s ease-in-out;
+  gap: 0 min(1.5vw, 30px);
+  background: m.$color-white;
+  @include m.mq(sp) {
+    padding: 0 0 0 min(5vw, 20px);
+  }
+  &.open {
+    .globalnav {
+      @include m.mq(sp) {
+        display: block !important;
+      }
+    }
+    .drawer {
+      display: block;
+    }
+    .bg_Blur {
+      opacity: 1;
+      z-index: -1;
+      display: block;
+      @include m.mq(sp) {
+        display: none;
+      }
+    }
+  }
+  .header_inner {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 112px);
+    gap: 0 min(1.5vw, 30px);
+    max-width: 1808px;
+    @include m.mq(sp) {
+      width: calc(100% - 60px);
+    }
+  }
+  .h_logoarea {
+    height: 60px;
+    display: flex;
+    align-items: center;
+
+    @include m.mq(tab_pc) {
+      width: 20%;
+      padding: 15.5px 0;
+      height: 112px;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0 26px;
+      position: relative;
+      z-index: 5;
+      @include m.mq(sp) {
+        gap: 0 10px;
+      }
+    }
+    img {
+      &.logo {
+        width: min(20vw, 374px);
+        @include m.mq(sp) {
+          width: 150px;
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    border: none;
+    width: 60px;
+    height: 60px;
+    background: none;
+    cursor: pointer;
+    min-width: 60px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: m.$color-navy;
+    aspect-ratio: 1 / 1;
+    @include m.mq(tab_pc) {
+      width: 112px;
+      height: 112px;
+    }
+    .hamburger__line {
+      position: relative;
+      width: 40px;
+      height: 1px;
+      background: m.$color-white;
+      display: block;
+      @include m.mq(sp) {
+        width: 30px;
+      }
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        transition: transform 0.3s;
+        background: m.$color-white;
+      }
+      &::before {
+        top: -15px;
+        @include m.mq(sp) {
+          top: -8px;
+        }
+      }
+      &::after {
+        bottom: -15px;
+        @include m.mq(sp) {
+          bottom: -8px;
+        }
+      }
+    }
+    &[aria-expanded="true"] {
+      .hamburger__line {
+        background: transparent;
+        &::before {
+          top: 0;
+          transform: rotate(45deg);
+          background: #fff;
+        }
+        &::after {
+          bottom: 0;
+          transform: rotate(-45deg);
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  .globalnav {
+    width: 70%;
+    display: block !important;
+    max-width: 967px;
+    @include m.mq(sp) {
+      display: none !important;
+      width: 100vw;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      height: 100vh;
+      padding: 30px 30px 100px;
+      background: m.$color-beige;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      z-index: 999;
+    }
+    .gnav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      @include m.mq(sp) {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+      }
+      > li {
+        position: relative;
+        @include m.mq(tab_pc) {
+          padding: 16px 0;
+          width: calc(100% / 6);
+        }
+        a {
+          display: grid;
+          @include m.mq(tab_pc) {
+            text-align: center;
+            font-size: min(1.5vw, 14px);
+            font-weight: 500;
+            line-height: normal;
+            grid-template-rows: 40px 1fr;
+            justify-content: center;
+            border-left: 1px solid m.$border-color;
+            padding: 0 5px;
+            height: 79px;
+          }
+          @include m.mq(sp) {
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+            padding: 15px 0;
+            grid-template-columns: 40px 1fr;
+            gap: 20px;
+            align-items: center;
+            border-top: 1px solid #ddddcd;
+          }
+          &.haschild {
+            position: relative;
+            &::before,
+            &::after {
+              @include m.mq(sp) {
+                position: absolute;
+                content: "";
+                background: #fff;
+              }
+            }
+            &::before {
+              width: 17px;
+              height: 1px;
+              top: 44px;
+              right: 0;
+            }
+            &::after {
+              width: 1px;
+              height: 17px;
+              top: 36px;
+              right: 8px;
+            }
+            &.open {
+              &::after {
+                display: none;
+              }
+            }
+          }
+          figure {
+            img {
+              width: 40px;
+              height: 40px;
+              @include m.mq(tab_pc) {
+                margin: 0 auto;
+              }
+            }
+          }
+
+          span {
+            display: flex;
+            align-items: center;
+          }
+
+          &:hover {
+            @include m.mq(tab_pc) {
+              span {
+              }
+            }
+          }
+        }
+        &:last-of-type {
+          a {
+            @include m.mq(tab_pc) {
+              border-right: 1px solid m.$border-color;
+            }
+            @include m.mq(sp) {
+              border-bottom: 1px solid #ddddcd;
+            }
+          }
+        }
+        > ul {
+          display: none;
+          padding: 0 0 15px;
+          @include m.mq(tab_pc) {
+            position: absolute;
+            @include m.prefix_l;
+            /*width: calc(100% + 80px);*/
+            background: #fff;
+            padding: 30px min(2vw, 40px);
+          }
+
+          li {
+            & + li {
+              margin-top: 20px;
+            }
+            a {
+              text-align: left;
+              padding: 0;
+              font-weight: 400;
+              white-space: pre;
+              &::before,
+              &::after {
+                display: none;
+              }
+              @include m.mq(sp) {
+                font-size: 16px;
+                color: #e2e2e2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* ==========================================
+   Drawer (開閉するメガメニュー・リンクエリア)
+   ========================================== */
+  .drawer {
+    // --- PCのレイアウト（初期非表示のメガメニュー） ---
+    display: none; // JSで開閉
+    position: absolute;
+    top: 112px;
+    left: 0;
+    width: 100%;
+    background: m.$color-beige;
+    z-index: 1001;
+
+    // --- SPのレイアウト（SPは親のpanelが開閉するため、ここは常に表示） ---
+    @include m.mq(sp) {
+      position: static;
+      box-shadow: none;
+    }
+
+    &__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+
+      @include m.mq(sp) {
+        flex-direction: column;
+        padding: 0 0 60px 0;
+        gap: 0;
+      }
+    }
+
+    // リンク群
+    &__links {
+      display: flex;
+      gap: min(6vw, 110px);
+      flex-grow: 1;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        margin-bottom: 24px;
+      }
+      a {
+        text-decoration: none;
+        transition: opacity 0.3s;
+        font-weight: 500;
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+      @include m.mq(sp) {
+        flex-direction: column;
+        gap: 0;
+        padding: 40px 0;
+        li {
+          margin-bottom: 32px;
+        }
+        a {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &__col--top {
+      margin-right: 20px;
+    }
+
+    // アクションエリア
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 78px;
+      width: 187px;
+      flex-shrink: 0;
+
+      @include m.mq(sp) {
+        width: 100%;
+        padding: 0;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+      border-radius: 4px;
+      position: relative;
+      @include m.mq(sp) {
+        padding: 14px;
+        text-align: center;
+      }
+      svg {
+        width: 24px;
+        height: 24px;
+        @include m.mq(sp) {
+          position: absolute;
+          display: block;
+          @include m.prefix_t;
+        }
+      }
+
+      &--outline {
+        background: #fff;
+        border: 1px solid m.$color-border;
+        svg {
+          @include m.mq(sp) {
+            right: 24px;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+      &--navy {
+        background: m.$color-navy;
+        border: 1px solid m.$color-navy;
+        color: #fff;
+        svg {
+          @include m.mq(sp) {
+            left: 24px;
+          }
+        }
+        &:hover {
+          background: lighten(m.$color-navy, 10%);
+        }
+      }
+    }
+
+    &__sns {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      a {
+        display: inline-block;
+        color: m.$color-navy;
+        svg {
+          width: 22px;
+          height: 22px;
+          fill: currentColor;
+        }
+      }
+
+      @include m.mq(sp) {
+        justify-content: center;
+        margin-top: 10px;
+      }
+    }
+  }
+  .header_btn {
+    display: flex !important;
+    align-items: center;
+    height: 112px;
+    @media only screen and (max-width: 1200px) {
+      display: none !important;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px min(1.6vw, 16px) 10px min(3vw, 25px);
+      border: 1px solid m.$color-border;
+      border-radius: 4px;
+      background-color: #ffffff;
+      color: m.$text-color;
+      font-size: min(1.5vw, 14px);
+      font-weight: 500;
+      transition: all 0.3s;
+      width: 100%;
+      max-width: 187px;
+      .icon-external {
+        width: 14px;
+        height: 14px;
+        color: m.$color-border;
+        transition: color 0.3s;
+      }
+    }
+  }
+  .bg_Blur {
+    width: 100vw !important;
+    height: calc(100vh - 112px);
+    background: rgba(0, 0, 0, 0.40);
+    opacity: 0;
+    position: absolute !important;
+    // top: 100px;
+    top: 112px;
+    bottom: 0; //add
+    left: 0;
+    right: 0; //add
+    // transition: 0.3s;
+    z-index: -1;
+    display: none;
+  }
+}

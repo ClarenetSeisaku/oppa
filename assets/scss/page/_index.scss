@@ -1,0 +1,1458 @@
+@use "../import/mixin" as m; // mixin.scssを読み込み
+
+#index {
+  main {
+    overflow: hidden;
+
+    // ==========================================
+    // Top MV Section
+    // ==========================================
+    .top_mv {
+      position: relative;
+      height: calc(100vh - 112px);
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 170px 0;
+      @include m.mq(sp) {
+        height: calc(100vh - 60px);
+      }
+      // ーー 背景画像とグラデーション ーー
+      &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          // 文字視認性向上のためのオーバーレイ
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 40%);
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      // ーー キャッチコピー ーー
+      &__inner {
+        width: 90%;
+        max-width: 1536px;
+        margin: auto auto 0;
+        z-index: 10;
+
+        @include m.mq(sp) {
+          padding-top: 0;
+        }
+      }
+
+      &__title {
+        font-size: clamp(36px, 4vw, 60px);
+        line-height: 1.5;
+        color: m.$color-white;
+        margin-bottom: min(3vw, 40px);
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        letter-spacing: 0.1em;
+
+        @include m.mq(sp) {
+          font-size: 32px;
+          line-height: 1.6;
+        }
+      }
+
+      &__subtitle {
+        font-size: clamp(20px, 1.6vw, 24px);
+        color: m.$color-white;
+        letter-spacing: 0.15em;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        margin-bottom: min(5vw, 80px);
+        @include m.mq(sp) {
+          font-size: 12px;
+        }
+      }
+      // ーー 波とボートのアニメーション ーー
+      &__decoration {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 160px;
+        pointer-events: none;
+        @include m.mq(sp) {
+          height: 100px;
+        }
+      }
+
+      &__wave-sway {
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: wave-sway 4s ease-in-out infinite alternate;
+      }
+
+      &__wave-move {
+        display: flex;
+        width: 200%;
+        height: 100%;
+        animation: wave-moveLeft 10s linear infinite;
+      }
+
+      &__wave {
+        flex: 0 0 50%;
+        height: 100%;
+        fill: m.$color-white;
+      }
+    }
+
+    // ==========================================
+    // Top About Section
+    // ==========================================
+    .top_about {
+      position: relative;
+      padding: min(13vw, 250px) 0;
+      background-color: m.$color-white;
+      width: 100%;
+      /* min-height: 80vh; */
+      margin: 0 auto;
+      @include m.mq(sp) {
+        padding: 72.821vw 0 45.641vw;
+      }
+
+      &_img01 {
+        position: absolute;
+        top: 25px;
+        right: 0;
+        width: 43vw;
+        @include m.mq(sp) {
+          top: 11.538vw;
+          width: 77vw;
+        }
+      }
+
+      &_img02 {
+        position: absolute;
+        top: max(-4vw, -100px);
+        right: min(15vw, 260px);
+        width: min(6vw, 110px);
+        @include m.mq(sp) {
+          top: -50vw;
+          right: auto;
+          left: 4vw;
+          width: 21vw;
+        }
+      }
+
+      &_img03 {
+        position: absolute;
+        @include m.prefix_t;
+        right: min(4vw, 80px);
+        width: min(12vw, 220px);
+        @include m.mq(sp) {
+          top: -40vw;
+          right: 0;
+          width: 37vw;
+        }
+      }
+
+      &_img04 {
+        position: absolute;
+        bottom: 0;
+        left: max(-180px, -9.3vw);
+        width: 47vw;
+        @include m.mq(sp) {
+          bottom: 17.949vw;
+          left: 0;
+          width: 100vw;
+        }
+      }
+
+      &_img05 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: min(14vw, 263px);
+        @include m.mq(sp) {
+          bottom: -28vw;
+          left: 5vw;
+          width: 36.923vw;
+        }
+      }
+
+      &_img06 {
+        position: absolute;
+        bottom: max(-200px, -12vw);
+        right: max(-120px, -7vw);
+        width: 31vw;
+        @include m.mq(sp) {
+          display: none;
+        }
+      }
+
+      // ーー 1. 背景の巨大な透かしテキスト ーー
+      &__bg-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: min(6vw, 128px);
+        white-space: nowrap;
+        color: m.$color-bg-text;
+        z-index: 0;
+        pointer-events: none;
+
+        @include m.mq(sp) {
+          font-size: 40px;
+        }
+      }
+
+      .sec_inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      // ーー 3. メインコンテンツ ーー
+      &__inner {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        width: 90%;
+        max-width: 800px;
+        @include m.mq(sp) {
+          width: 100%;
+        }
+        .commonBtn {
+          border: 1px solid m.$color-navy;
+        }
+      }
+
+      &__text {
+        font-size: 20px;
+        line-height: 2.6; // ゆったりとした行間
+        color: m.$color-text;
+        letter-spacing: 0.1em;
+        margin-bottom: 80px;
+
+        @include m.mq(sp) {
+          font-size: 16px;
+          line-height: 2.2;
+          margin-bottom: 40px;
+        }
+      }
+    }
+
+    // ==========================================
+    // Top Flow Animation Component
+    // ==========================================
+    .top_flow_animation {
+      width: 100%;
+      padding: 0 0 min(4vw, 80px);
+      position: relative;
+      @include m.mq(sp) {
+        padding: 0;
+      }
+
+      &_img01 {
+        position: absolute;
+        bottom: max(-10vw, -200px);
+        left: max(-4vw, -80px);
+        width: 31vw;
+        @include m.mq(sp) {
+          width: 100%;
+          left: 0;
+          bottom: -55vw;
+        }
+      }
+
+      &_img02 {
+        position: absolute;
+        bottom: max(-25vw, -500px);
+        right: 0;
+        width: 50vw;
+        @include m.mq(sp) {
+          display: none;
+        }
+      }
+
+      &__track {
+        display: flex;
+        width: fit-content;
+        animation: flow-left 40s linear infinite; // 秒数を変えると速度が変わります
+
+        // マウスホバーで一時停止
+        &:hover {
+          animation-play-state: paused;
+        }
+        img {
+          height: 350px; // PCでの高さ
+          width: auto;
+          max-width: none;
+          flex-shrink: 0;
+          margin-right: 80px;
+
+          @include m.mq(sp) {
+            height: 66.667vw; // SPでの高さ
+            margin-right: 10.256vw;
+          }
+        }
+      }
+    }
+
+    // ==========================================
+    // Top News Component
+    // ==========================================
+    .top_news {
+      position: relative;
+      padding: min(3.9vw, 75px) 0 min(12vw, 230px);
+      @include m.mq(sp) {
+        padding: 33.333vw 0 43.59vw;
+      }
+
+      &_img03 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 28vw;
+        @include m.mq(sp) {
+          width: 90.256vw;
+          bottom: -10vw;
+        }
+      }
+
+      &__inner {
+        padding: min(4.167vw,80px) min(5.208vw,100px) min(4.167vw,80px) min(7.813vw,150px);
+        display: flex;
+        gap: min(5vw, 90px);
+        justify-content: space-between;
+        background-color: m.$color-white;
+        border-radius: 6px;
+        position: relative;
+        @include m.mq(sp) {
+          width: 100%;
+          flex-direction: column;
+          gap: 32px;
+          padding: 50px 30px;
+        }
+      }
+
+      // ーー 左カラム ーー
+      &__header {
+        width: 200px;
+        flex-shrink: 0;
+
+        @include m.mq(sp) {
+          width: 100%;
+        }
+      }
+
+      &__title-en {
+        font-size: clamp(42px, 5vw, 70px);
+        color: m.$color-navy-hover;
+        line-height: 1;
+        letter-spacing: 0.05em;
+        margin-bottom: 20px;
+        @include m.mq(sp) {
+          font-size: 50px;
+          margin-bottom: 10px;
+        }
+      }
+
+      &__title-ja {
+        font-size: 18px;
+        letter-spacing: 0.3em;
+        color: m.$color-text;
+        margin-bottom: 50px;
+        font-weight: 500;
+
+        @include m.mq(sp) {
+          font-size: 16px;
+          margin-bottom: 30px;
+        }
+      }
+
+      &__btn {
+        border: 1px solid m.$color-border;
+        span {
+          font-size: 14px;
+          justify-content: flex-start;
+          color: m.$text-color;
+        }
+        &:hover {
+          span {
+            color: m.$color-white;
+          }
+        }
+        &.sp {
+          @include m.mq(sp) {
+            display: flex;
+            max-width: 100%;
+            margin: 50px auto 0;
+            text-align: center;
+          }
+        }
+      }
+
+      // ーー 右カラム ーー
+      &__content {
+        flex-grow: 1;
+        position: relative;
+        z-index: 10;
+      }
+
+      &__list {
+      }
+
+      &__item {
+        &:not(:last-of-type) {
+          border-bottom: 1px solid m.$color-border;
+        }
+      }
+
+      &__link {
+        display: flex;
+        align-items: center;
+        padding: 26px 0;
+        gap: 30px;
+        transition: background-color 0.3s;
+
+        @include m.mq(sp) {
+          flex-wrap: wrap;
+          gap: 12px 10px;
+          padding: 20px 0;
+        }
+        &:hover {
+          .top_news__text {
+            color: m.$color-navy-hover;
+          }
+        }
+      }
+
+      &__date {
+        color: m.$color-date;
+        flex-shrink: 0;
+        font-size: 16px;
+        @include m.mq(sp) {
+          font-size: 14px;
+        }
+      }
+
+      &__category {
+        background-color: #244668;
+        color: m.$color-white;
+        font-size: 14px;
+        padding: 4px 0;
+        min-width: 80px;
+        text-align: center;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+
+      &__text {
+        flex-grow: 1;
+        line-height: 1.6;
+        transition: color 0.3s;
+
+        @include m.mq(sp) {
+          width: 100%;
+          margin-top: 4px;
+        }
+      }
+
+      // ーー 波とボートのアニメーション ーー
+      &__decoration {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 160px;
+        pointer-events: none;
+        @include m.mq(sp) {
+          height: 100px;
+        }
+      }
+
+      &__wave-sway {
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: wave-sway 4s ease-in-out infinite alternate;
+      }
+
+      &__wave-move {
+        display: flex;
+        width: 200%;
+        height: 100%;
+        animation: wave-moveLeft 10s linear infinite;
+      }
+
+      &__wave {
+        flex: 0 0 50%;
+        height: 100%;
+        fill: m.$color-wave;
+      }
+
+      &__boat {
+        position: absolute;
+        bottom: 20px;
+        left: 20%;
+        width: 120px;
+      }
+    }
+
+    // ==========================================
+    // Top Seminars Section
+    // ==========================================
+    .top_seminars {
+      background-color: m.$color-wave;
+      padding-top: min(5vw, 100px);
+
+      @include m.mq(sp) {
+        padding-top: 60px;
+        position: relative;
+      }
+
+      &__inner {
+        padding: 0 40px;
+
+        @include m.mq(sp) {
+          padding: 0;
+          width: 95%;
+        }
+      }
+
+      // ーー タイトル ーー
+      &__header {
+        text-align: center;
+        margin-bottom: 60px;
+        @include m.mq(sp) {
+          margin-bottom: 50px;
+        }
+      }
+
+      &__title-en {
+        line-height: 1.2;
+        letter-spacing: 0.05em;
+        @include m.mq(sp) {
+            max-width: 330px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        .sp_text_left {
+          @include m.mq(sp) {
+            display: block;
+            text-align: left;
+          }
+        }
+        .sp_text_right {
+          @include m.mq(sp) {
+            display: block;
+            text-align: right;
+          }
+        }
+      }
+
+      &__title-ja {
+        letter-spacing: 0.2em;
+      }
+
+      // ーー カードリスト ーー
+      &__cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-bottom: 60px;
+
+        @include m.mq(tab) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include m.mq(sp) {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          margin-bottom: 30px;
+        }
+      }
+
+      &__card {
+        background-color: m.$color-white;
+        border-radius: 6px;
+        overflow: hidden;
+        &-link {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          color: inherit;
+          text-decoration: none;
+        }
+
+        &-img {
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+          }
+        }
+
+        &-body {
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          @include m.mq(sp) {
+            padding: 24px 20px;
+          }
+        }
+
+        &-badge {
+          display: inline-block;
+          align-self: flex-start;
+          padding: 2px 12px;
+          font-size: 14px;
+          font-weight: 500;
+          color: m.$color-white;
+          margin-bottom: 15px;
+          border-radius: 2px;
+          @include m.mq(sp) {
+            margin-bottom: 10px;
+          }
+
+          &--gold {
+            background-color: m.$color-badge-gold;
+          }
+          &--green {
+            background-color: m.$color-badge-green;
+          }
+          &--brown {
+            background-color: m.$color-badge-brown;
+          }
+        }
+
+        &-title {
+          font-size: 20px;
+          color: m.$color-light-navy;
+          line-height: 1.5;
+          margin-bottom: 20px;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          @include m.mq(sp) {
+            font-size: 18px;
+          }
+        }
+
+        &-status {
+          border: 1px solid m.$color-alert;
+          color: m.$color-alert;
+          font-size: 14px;
+          font-weight: 500;
+          text-align: center;
+          padding: 4px;
+          margin-bottom: 20px;
+          width: 100%;
+        }
+
+        &-info {
+          margin-bottom: 24px;
+
+          &-group {
+            margin-bottom: 12px;
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+
+          dt {
+            display: inline-block;
+            background-color: m.$color-info-bg;
+            color: m.$color-light-navy;
+            font-size: 14px;
+            padding: 2px 8px;
+            margin-bottom: 6px;
+            border-radius: 2px;
+            width: 60px;
+            text-align: center;
+            font-weight: 600;
+          }
+
+          dd {
+            font-size: 16px;
+            font-weight: 400;
+            color: m.$color-text;
+            line-height: 1.6;
+            @include m.mq(sp) {
+              font-size: 14px;
+            }
+            .seminars-date {
+              font-size: 18px;
+              font-weight: 600;
+              @include m.mq(sp) {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+
+        &-btn-wrap {
+          margin-top: auto;
+        }
+
+        &-btn {
+          border: 1px solid m.$color-border;
+          font-size: 14px;
+          transition: background-color 0.3s;
+          max-width: 304px;
+          height: 50px;
+          @include m.mq(sp) {
+            max-width: 290px;
+          }
+        }
+      }
+      // ーー 下部 ボタン群 ーー
+      &__actions {
+        grid-column: 4 / 5; // 🌟 インナーの右端位置で止める 🌟
+        grid-row: 2 / 3;
+        display: flex;
+        justify-content: flex-end; // 右揃え
+        align-items: center;
+        margin-bottom: 50px;
+
+        @include m.mq(sp) {
+          flex-direction: column-reverse;
+          align-items: stretch;
+          gap: 24px;
+          padding: 0 20px;
+          margin-top: 0;
+        }
+      }
+
+      &__controls {
+        display: flex;
+        @include m.mq(sp) {
+          justify-content: center;
+          gap: 20px;
+        }
+      }
+
+      &__control-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid m.$color-border;
+        background-color: m.$color-white;
+        color: m.$color-navy;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background-color: m.$color-navy;
+          border-color: m.$color-navy;
+          color: m.$color-white;
+          svg {
+            filter: brightness(100);
+          }
+        }
+        svg {
+          width: 22px;
+          height: 6px;
+        }
+      }
+
+      // ーー 一覧へボタン ーー
+      &__more {
+        text-align: center;
+        margin-bottom: 80px;
+        @include m.mq(sp) {
+          margin-bottom: 30px;
+        }
+
+        &-btn {
+          background-color: m.$color-white;
+          border: 1px solid m.$color-border;
+          color: m.$color-text;
+          font-size: 16px;
+          max-width: 428px;
+          position: relative;
+          transition: all 0.3s ease;
+
+          @include m.mq(sp) {
+            width: 100%;
+            min-width: auto;
+            max-width: 330px;
+          }
+        }
+      }
+
+      //  風景画像とグラデーションマスク
+      &__parallax {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+
+        @include m.mq(sp) {
+          height: 51.282vw;
+        }
+
+        // 上部のグラデーション（水色から透明へ）
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 300px;
+          background: linear-gradient(to bottom, m.$color-wave 0%, rgba(m.$color-bg-light, 0) 100%);
+          z-index: 2;
+          pointer-events: none;
+
+          @include m.mq(sp) {
+            height: 100px;
+          }
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    // ==========================================
+    // Top Topics Section
+    // ==========================================
+    .top_topics {
+      padding: min(15.6vw, 300px) 0 min(6.3vw, 120px);
+      position: relative;
+      @include m.mq(sp) {
+        padding: 25.641vw 0 33.333vw;
+      }
+      &_img01 {
+        position: absolute;
+        top: min(4vw, 80px);
+        left: max(-5vw, -100px);
+        width: 36vw;
+        @include m.mq(sp) {
+          top: 7.436vw;
+          left: 0;
+          width: 57.692vw;
+        }
+      }
+
+      &_img02 {
+        position: absolute;
+        top: min(9.6vw, 185px);
+        left: min(23vw, 450px);
+        width: min(7.5vw, 144px);
+        @include m.mq(sp) {
+          top: 10.256vw;
+          left: auto;
+          right: 24.615vw;
+          width: 21.026vw;
+        }
+      }
+      &__inner {
+        display: grid;
+        // インナー1200pxを担保しつつ、左右の余白を無限に伸ばす
+        grid-template-columns: minmax(40px, 1fr) 300px 80px minmax(0, 1120px) minmax(40px, 1fr);
+        grid-template-rows: auto auto;
+        position: relative;
+
+        @include m.mq(sp) {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+      }
+
+      // ーー 左カラム（タイトル＆タブ） ーー
+      &__sidebar {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        display: flex;
+        flex-direction: column;
+
+        @include m.mq(sp) {
+          width: 85%;
+          margin: 0 auto;
+        }
+      }
+
+      &__title-en {
+        line-height: 0.6;
+        margin-bottom: 16px;
+      }
+
+      &__title-ja {
+        letter-spacing: 0.2em;
+        margin-bottom: 40px;
+
+        @include m.mq(sp) {
+        }
+      }
+
+      &__tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include m.mq(sp) {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 40px;
+          padding-bottom: 12px;
+        }
+      }
+
+      &__tab {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: none;
+        border: none;
+        padding: 0;
+        text-align: left;
+        font-size: 18px;
+        font-weight: 500;
+        color: m.$color-text;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        @include m.mq(sp) {
+          position: relative;
+          padding-bottom: 10px;
+        }
+
+        // 線
+        &::before {
+          content: "";
+          display: block;
+          width: 12px;
+          height: 2px;
+          background-color: var(--line-color, #999);
+          transition:
+            width 0.3s ease,
+            background-color 0.3s ease;
+          @include m.mq(sp) {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            transition:
+              height 0.3s ease,
+              background-color 0.3s ease;
+          }
+        }
+
+        // ホバー時＆アクティブ時（一番上の動き）
+        &:hover {
+          color: m.$color-navy-hover;
+          &::before {
+            @include m.mq(tab_pc) {
+              width: 24px;
+              background-color: m.$color-navy-hover !important;
+            }
+            @include m.mq(sp) {
+              height: 2px;
+            }
+          }
+        }
+      }
+
+      // ーー 右カラム（スライダー） ーー
+      &__content {
+        grid-column: 4 / 6; // 右端まで突き抜ける
+        grid-row: 1 / 2;
+        min-width: 0;
+        overflow: hidden; // 🌟 左側（サイドバー側）へのスライドのはみ出しをカット 🌟
+
+        @include m.mq(sp) {
+          width: 85%;
+          margin: 0 auto;
+          overflow: visible; // SP時は右にもはみ出させるため
+        }
+      }
+
+      &__slider {
+        width: 100%;
+
+        .slick-slide {
+          margin-right: 50px;
+          @include m.mq(sp) {
+            margin-right: 0;
+            width: 85vw;
+          }
+        }
+      }
+
+      // カード
+      &__card {
+        width: 490px;
+
+        &-link {
+          display: block;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            .top_topics__card-title {
+              color: m.$color-navy-hover;
+            }
+          }
+        }
+
+        &-img {
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+          margin-bottom: 25px;
+          border-radius: 4px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+          }
+        }
+
+        &-meta {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 12px;
+        }
+        &-date {
+          color: m.$color-date;
+        }
+        &-badge {
+          font-size: 14px;
+          color: m.$color-white;
+          padding: 3px 14px;
+          border-radius: 2px;
+        }
+        &-title {
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 1.6;
+          color: m.$color-text;
+          transition: color 0.3s;
+        }
+      }
+
+      // ーー 下部 ボタン群 ーー
+      &__actions {
+        grid-column: 4 / 5; // 🌟 インナーの右端位置で止める 🌟
+        grid-row: 2 / 3;
+        display: flex;
+        justify-content: flex-end; // 右揃え
+        align-items: center;
+        gap: 30px;
+        margin-top: 70px;
+
+        @include m.mq(sp) {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 50px;
+          width: 85%;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+      }
+
+      &__controls {
+        display: flex;
+        gap: 16px;
+        @include m.mq(sp) {
+          justify-content: center;
+          gap: 20px;
+        }
+      }
+
+      &__control-btn {
+        width: 60px;
+        height: 60px;
+        border: 1px solid m.$color-border;
+        background-color: m.$color-white;
+        color: m.$color-navy;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s;
+        border-radius: 4px;
+        cursor: pointer;
+        @include m.mq(sp) {
+          width: 40px;
+          height: 40px;
+        }
+        &:hover {
+          background-color: m.$color-navy;
+          border-color: m.$color-navy;
+          color: m.$color-white;
+          svg {
+            filter: brightness(100);
+          }
+        }
+        svg {
+          width: 28px;
+          height: 8px;
+          @include m.mq(sp) {
+            width: 22px;
+            height: 6px;
+          }
+        }
+      }
+
+      &__more-btn {
+        gap: 24px;
+        border: 1px solid m.$color-border;
+        background-color: m.$color-white;
+        transition: all 0.3s ease;
+        max-width: 308px;
+        @include m.mq(sp) {
+          justify-content: space-between;
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    // ==========================================
+    // Top Magazine Section
+    // ==========================================
+    .top_magazine {
+      padding: min(24.7vw, 475px) 0 min(6.3vw, 120px);
+      position: relative;
+      @include m.mq(sp) {
+        padding: 33.333vw 0 0;
+      }
+      &_img01 {
+        position: absolute;
+        top: 0;
+        left: max(-7.5vw, -150px);
+        width: 56vw;
+        @include m.mq(sp) {
+          width: 100%;
+          top: -70vw;
+          left: 0;
+        }
+      }
+
+      &_img02 {
+        position: absolute;
+        top: max(-10vw, -200px);
+        left: min(10vw, 200px);
+        width: min(15vw, 290px);
+        @include m.mq(sp) {
+          width: 44.872vw;
+          top: -50vw;
+          left: 5vw;
+        }
+      }
+
+      &_img03 {
+        position: absolute;
+        top: min(9.6vw, 185px);
+        right: 0;
+        width: 49vw;
+        @include m.mq(sp) {
+          display: none;
+        }
+      }
+      &_img04 {
+        position: absolute;
+        bottom: max(-20vw, -400px);
+        right: 0;
+        width: 36vw;
+        @include m.mq(sp) {
+          width: 92.308vw;
+          bottom: -80vw;
+        }
+      }
+      &__inner {
+        padding: min(4.167vw,80px) min(5.208vw,100px);
+        position: relative;
+        background-color: m.$color-white;
+        border-radius: 6px;
+        @include m.mq(sp) {
+          padding: 50px 7.5%;
+          border-radius: 0;
+          width: 100%;
+        }
+      }
+
+      // ーー タイトル ーー
+      &__header {
+        margin-bottom: 60px;
+
+        @include m.mq(sp) {
+          margin-bottom: 50px;
+        }
+      }
+
+      &__title-en {
+        line-height: 1.1;
+        margin-bottom: 12px;
+      }
+
+      &__title-ja {
+        letter-spacing: 0.2em;
+      }
+
+      // ーー 2カラムコンテンツ ーー
+      &__content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        gap: 10%;
+
+        @include m.mq(tab) {
+          gap: 40px;
+        }
+        @include m.mq(sp) {
+          flex-direction: column;
+          gap: 40px;
+        }
+      }
+
+      // 左：画像
+      &__image {
+        width: 40%;
+        max-width: 400px;
+        flex-shrink: 0;
+        border: 1px solid m.$color-border-img;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); // 紙っぽい質感を演出
+
+        @include m.mq(sp) {
+          width: 100%;
+          max-width: 320px;
+          margin: 0 auto; // 中央寄せ
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      // 右：リスト
+      &__info {
+        @include m.mq(tab_pc) {
+          width: 50%;
+        }
+      }
+
+      &__issue {
+        font-size: clamp(22px, 1.82vw, 28px);
+        color: m.$color-navy-hover;
+        letter-spacing: 0.1em;
+        margin-bottom: 32px;
+        font-weight: 600;
+
+        @include m.mq(sp) {
+          font-size: 20px;
+          margin-bottom: 30px;
+        }
+      }
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        li {
+          position: relative;
+          padding-left: 1.2em;
+          line-height: 1.8;
+          color: #333;
+
+          // リスト先頭の水色の丸
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.8em; // 文字の高さに合わせて中央付近に
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: m.$color-bullet;
+            @include m.mq(sp) {
+              top: 0.7em;
+            }
+          }
+        }
+      }
+
+      // ーー 一覧へボタン ーー
+      &__more {
+        text-align: center;
+        margin-top: 70px;
+
+        @include m.mq(sp) {
+          margin-top: 50px;
+        }
+
+        &-btn {
+          transition: all 0.3s ease;
+          max-width: 428px;
+
+          @include m.mq(sp) {
+            width: 100%;
+          }
+        }
+      }
+    }
+    // ==========================================
+    // Top Goods Section
+    // ==========================================
+    .top_goods {
+      padding: min(6.3vw, 120px) 0;
+      background-color: m.$color-white;
+
+      @include m.mq(sp) {
+        padding: 47.692vw 0 23.077vw;
+      }
+      &_img01 {
+        position: absolute;
+        top: max(-7.5vw, -150px);
+        right: min(5vw, 100px);
+        width: min(7.5vw, 145px);
+        @include m.mq(sp) {
+          top: -35vw;
+          right: 10vw;
+          width: 26.41vw;
+        }
+      }
+
+      &__inner {
+        display: flex;
+        align-items: center; // 画像とテキストを縦方向で中央揃え
+        gap: 10%;
+        position: relative;
+
+        @include m.mq(tab) {
+          gap: 40px;
+        }
+        @include m.mq(sp) {
+          flex-direction: column-reverse;
+        }
+      }
+
+      // ーー 左：画像エリア ーー
+      &__image {
+        width: 50%;
+        flex-shrink: 0;
+
+        @include m.mq(sp) {
+          width: 100vw;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1 / 1; // 綺麗な正方形を維持
+          object-fit: cover;
+          background-color: #dcdcdc;
+        }
+      }
+
+      // ーー 右：コンテンツエリア ーー
+      &__content {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        margin-left: max(-5vw, -100px);
+
+        @include m.mq(sp) {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+
+      &__title-en {
+        line-height: 0.8;
+        margin-bottom: 24px;
+        text-indent: -1em;
+        padding-left: 1em;
+
+        // 🌟 テキストを模様で切り抜く（マスク）処理 🌟
+        // ※単純なネイビーにする場合は下記4行を削除し `color: $color-navy;` のみ指定してください
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231f4068' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        background-color: m.$color-navy-hover;
+        background-size: 6px 6px;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        @include m.mq(tab) {
+          font-size: 48px;
+        }
+        @include m.mq(sp) {
+          width: fit-content;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      &__title-ja {
+        letter-spacing: 0.15em;
+        margin-bottom: 40px;
+        padding-left: min(5vw, 100px);
+        @include m.mq(sp) {
+          text-align: center;
+          padding-left: 0;
+        }
+      }
+
+      &__text {
+        line-height: 2.2;
+        color: #333;
+        margin-bottom: 70px;
+        padding-left: min(5vw, 100px);
+        @include m.mq(sp) {
+          margin-bottom: 50px;
+          padding-left: 0;
+        }
+      }
+
+      &__btn {
+        margin-left: min(5vw, 100px);
+        max-width: 368px;
+
+        @include m.mq(sp) {
+          width: 100%;
+          margin: 0 auto 60px;
+        }
+        span {
+          text-align: left;
+          justify-content: flex-start;
+          color: m.$text-color;
+        }
+        &:hover {
+          span {
+            color: m.$color-white;
+          }
+        }
+      }
+    }
+  }
+}

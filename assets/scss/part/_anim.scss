@@ -1,0 +1,161 @@
+@keyframes zoomUp {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+    }
+}
+@keyframes shorter {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+@keyframes expand {
+    from {
+        width: 0;
+    }
+    to {
+        width: 110%;
+    }
+}
+@keyframes bgUpAnime {
+    from {
+        //opacity: 0;
+        transform: translateY(0);
+    }
+    to {
+        //opacity: 1;
+        transform: translateY(100%);
+    }
+}
+@keyframes fadeUpAnime {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDownAnime {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeAnime {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+//無限ループ
+@keyframes infinity-scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+//スライドイン
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+        -webkit-clip-path: inset(100% 0 0 0);
+        clip-path: inset(100% 0 0 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        webkit-clip-path: inset(0);
+        clip-path: inset(0);
+    }
+}
+//スライドアウト
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        webkit-clip-path: inset(0);
+        clip-path: inset(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+        -webkit-clip-path: inset(0 0 100% 0);
+        clip-path: inset(0 0 100% 0);
+    }
+}
+
+// 波のアニメーション
+@keyframes wave-sway {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(15px);
+    }
+}
+
+@keyframes wave-moveLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.wave_img {
+    transform-origin: bottom center;
+    animation: boat-bobbing 4s ease-in-out infinite alternate;
+}
+
+@keyframes boat-bobbing {
+    0% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    100% {
+        transform: translateY(15px) rotate(2deg);
+    }
+}
+
+.kamome_img {
+    transform-origin: bottom center;
+    animation: kamome-bobbing 2s ease-in-out infinite alternate;
+}
+
+@keyframes kamome-bobbing {
+    0% {
+        transform: translateY(15px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+}
+
+// フローアニメーション
+@keyframes flow-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
