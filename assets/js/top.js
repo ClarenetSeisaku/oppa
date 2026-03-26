@@ -1,21 +1,27 @@
 $(document).ready(function () {
-  $(".top_topics__slider").slick({
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    variableWidth: true, // カード幅(320px)を維持する
-    prevArrow: $(".js-prev"),
-    nextArrow: $(".js-next"),
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false, // スマホではスワイプ操作のみ
-          variableWidth: false,
+
+  $(".top_topics__slider")
+    .on("init afterChange", function () {
+      $(this).find(".slick-slide").removeAttr("id");
+    })
+    .slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      variableWidth: true,
+      prevArrow: $(".js-prev"),
+      nextArrow: $(".js-next"),
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            variableWidth: false,
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
+
 });
 
 // -----------------------------
@@ -28,13 +34,17 @@ function sliderToggle() {
 
   if (window.innerWidth < 769) {
     if (!$slider.hasClass("slick-initialized")) {
-      $slider.slick({
-        slidesToShow: 1,
-        arrows: true,
-        dots: false,
-        prevArrow: $(".seminars__js-prev"),
-        nextArrow: $(".seminars__js-next"),
-      });
+      $slider
+        .on("init afterChange", function () {
+          $(this).find(".slick-slide").removeAttr("id");
+        })
+        .slick({
+          slidesToShow: 1,
+          arrows: true,
+          dots: false,
+          prevArrow: $(".seminars__js-prev"),
+          nextArrow: $(".seminars__js-next"),
+        });
     }
   } else {
     if ($slider.hasClass("slick-initialized")) {

@@ -1,7 +1,7 @@
 <section class="banner_contents">
     <div class="banner_contents_img01 img_con">
         <picture>
-            <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/top/top_banner_img01@2x.png"><img src="<?php echo imdir(); ?>/common/top_banner_img01_sp@2x.png" alt="">
+            <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/top_banner_img01@2x.png"><img src="<?php echo imdir(); ?>/common/top_banner_img01_sp@2x.png" alt="">
         </picture>
     </div>
     <div class="sec_inner">
@@ -23,7 +23,7 @@
 <footer class="footer">
     <div class="footer_img01 img_con">
         <picture>
-            <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/top/footer_img01@2x.png"><img src="<?php echo imdir(); ?>/common/footer_img01_sp@2x.png" alt="">
+            <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/footer_img01@2x.png"><img src="<?php echo imdir(); ?>/common/footer_img01_sp@2x.png" alt="">
         </picture>
     </div>
     <div class="footer__inner sec_inner">

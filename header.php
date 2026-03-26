@@ -38,7 +38,7 @@
             <nav id="globalnav" class="globalnav" aria-label="メインメニュー">
                 <ul class="gnav">
                     <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon01.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon01_sp.svg" alt="" class="sp"></figure><span>セミナー・<br>イベント</span>
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon01.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon01_sp.svg" alt="" class="sp"></figure><span>セミナー・<br class="pc">イベント</span>
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon02.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon02_sp.svg" alt="" class="sp"></figure>
@@ -50,7 +50,7 @@
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon04.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon04_sp.svg" alt="" class="sp"></figure>
-                            <span>客船・<br>フェリー情報</span>
+                            <span>客船・<br class="pc">フェリー情報</span>
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon05.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon05_sp.svg" alt="" class="sp"></figure>

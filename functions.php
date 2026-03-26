@@ -33,6 +33,13 @@ function imagepassshort($arg)
 }
 add_action('the_content', 'imagepassshort');
 
+// ===========================
+// = 【管理画面】コメントを非表示 =
+// ===========================
+function remove_admin_menu() {
+  remove_menu_page('edit-comments.php'); // コメント
+}
+add_action('admin_menu', 'remove_admin_menu');
 
 // ===========================
 // = 【管理画面】投稿メニューを非表示 =

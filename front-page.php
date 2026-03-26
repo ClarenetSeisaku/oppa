@@ -137,7 +137,7 @@ get_header();
                         ?>
                             <li class="top_news__item">
                                 <a href="<?php the_permalink(); ?>" class="top_news__link">
-                                    <time class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
+                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
                                     <?php
                                     $category = get_the_category();
                                     if ($category) {
@@ -323,7 +323,7 @@ get_header();
                             <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics01.jpg" alt=""></div>
                             <div class="top_topics__card-body">
                                 <div class="top_topics__card-meta">
-                                    <time class="top_topics__card-date">2026.00.00</time>
+                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
                                     <span class="top_topics__card-badge" style="background-color: #bca15a;">客船</span>
                                 </div>
                                 <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
@@ -335,7 +335,7 @@ get_header();
                             <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics02.jpg" alt=""></div>
                             <div class="top_topics__card-body">
                                 <div class="top_topics__card-meta">
-                                    <time class="top_topics__card-date">2026.00.00</time>
+                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
                                     <span class="top_topics__card-badge" style="background-color: #478b8a;">ニュースレター</span>
                                 </div>
                                 <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
@@ -347,7 +347,7 @@ get_header();
                             <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics03.jpg" alt=""></div>
                             <div class="top_topics__card-body">
                                 <div class="top_topics__card-meta">
-                                    <time class="top_topics__card-date">2026.00.00</time>
+                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
                                     <span class="top_topics__card-badge" style="background-color: #ba6646;">大阪港の記録</span>
                                 </div>
                                 <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。タイトルが入ります。ダミーテキストです。</h3>
@@ -360,7 +360,7 @@ get_header();
                             <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics01.jpg" alt=""></div>
                             <div class="top_topics__card-body">
                                 <div class="top_topics__card-meta">
-                                    <time class="top_topics__card-date">2026.00.00</time>
+                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
                                     <span class="top_topics__card-badge" style="background-color: #478b8a;">ニュースレター</span>
                                 </div>
                                 <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
@@ -372,7 +372,7 @@ get_header();
                             <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics02.jpg" alt=""></div>
                             <div class="top_topics__card-body">
                                 <div class="top_topics__card-meta">
-                                    <time class="top_topics__card-date">2026.00.00</time>
+                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
                                     <span class="top_topics__card-badge" style="background-color: #ba6646;">大阪港の記録</span>
                                 </div>
                                 <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
