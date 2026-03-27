@@ -41,7 +41,7 @@
                 <p class="footer__name">公益社団法人 大阪港振興協会</p>
                 <p class="footer__address">
                     〒552-0021<br>
-                    大阪府大阪市港区築港2-1-2　第一大阪港ビル7階<br>
+                    大阪府大阪市港区築港2-1-2　<br class="sp">第一大阪港ビル7階<br>
                 </p>
                 <p class="footer__tell">
                     <a href="tel:0665759575">TEL: 06-6575-9575</a>

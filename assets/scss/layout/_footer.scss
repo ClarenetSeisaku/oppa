@@ -13,7 +13,7 @@
     width: 50vw;
     @include m.mq(sp) {
       top: -40vw;
-      width: 96.41vw;
+      width: 100vw;
     }
   }
   .sec_inner {
@@ -385,19 +385,19 @@
   border-radius: 6px;
   font-size: 20px;
   letter-spacing: 0.15em;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease-in-out;
 
   &:hover {
     background-color: m.$color-gold-hover;
   }
 
   &.sp_flow_btn {
-     @include m.mq(sp) {
+    @include m.mq(sp) {
       width: calc(100% - 78px);
       left: 10px;
       right: auto;
       transform: none;
-     }
+    }
   }
 
   span {

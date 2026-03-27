@@ -895,7 +895,7 @@ img[src$=".svg"] {
 @media only screen and (max-width: 768px) {
   .banner_contents_img01 {
     top: -40vw;
-    width: 96.41vw;
+    width: 100vw;
   }
 }
 .banner_contents .sec_inner {
@@ -1267,7 +1267,7 @@ img[src$=".svg"] {
   border-radius: 6px;
   font-size: 20px;
   letter-spacing: 0.15em;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease-in-out;
 }
 .fixed-btn:hover {
   background-color: #8c7130;
@@ -2596,6 +2596,11 @@ footer {
   justify-content: flex-start;
   color: #000;
 }
+@media only screen and (max-width: 768px) {
+  #index main .top_news__btn span {
+    justify-content: center;
+  }
+}
 #index main .top_news__btn:hover span {
   color: #ffffff;
 }
@@ -3612,6 +3617,11 @@ footer {
   text-align: left;
   justify-content: flex-start;
   color: #000;
+}
+@media only screen and (max-width: 768px) {
+  #index main .top_goods__btn span {
+    justify-content: center;
+  }
 }
 #index main .top_goods__btn:hover span {
   color: #ffffff;

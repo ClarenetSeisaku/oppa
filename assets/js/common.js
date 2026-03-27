@@ -89,9 +89,6 @@ $(function () {
     return false;
   });
 });
-$("#header .globalnav .gnav li a").on("click", function () {
-  $("#header .hamburger").click();
-});
 
 //pagetop
 $(document).ready(function () {
