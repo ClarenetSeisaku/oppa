@@ -3024,7 +3024,7 @@ footer {
   object-fit: cover;
 }
 #index main .top_topics {
-  padding: min(15.6vw, 300px) 0 min(6.3vw, 120px);
+  padding: min(15.6vw, 300px) 0 min(6.25vw, 120px);
   position: relative;
 }
 @media only screen and (max-width: 768px) {
@@ -3087,6 +3087,9 @@ footer {
 #index main .top_topics__title-en {
   line-height: 0.6;
   margin-bottom: 16px;
+}
+#index main .top_topics__title-en .font_big {
+  letter-spacing: -10px;
 }
 #index main .top_topics__title-ja {
   letter-spacing: 0.2em;
@@ -3308,7 +3311,7 @@ footer {
   }
 }
 #index main .top_magazine {
-  padding: min(24.7vw, 475px) 0 min(6.3vw, 120px);
+  padding: min(9.896vw, 190px) 0 min(6.3vw, 120px);
   position: relative;
 }
 @media only screen and (max-width: 768px) {
@@ -3318,7 +3321,7 @@ footer {
 }
 #index main .top_magazine_img01 {
   position: absolute;
-  top: 0;
+  top: max(-17.5vw, -350px);
   left: max(-7.5vw, -150px);
   width: 56vw;
 }
@@ -3331,7 +3334,7 @@ footer {
 }
 #index main .top_magazine_img02 {
   position: absolute;
-  top: max(-10vw, -200px);
+  top: max(-12.5vw, -250px);
   left: min(10vw, 200px);
   width: min(15vw, 290px);
 }
@@ -3344,7 +3347,7 @@ footer {
 }
 #index main .top_magazine_img03 {
   position: absolute;
-  top: min(9.6vw, 185px);
+  top: 0;
   right: 0;
   width: 49vw;
 }

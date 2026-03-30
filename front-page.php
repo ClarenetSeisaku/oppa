@@ -180,7 +180,7 @@ get_header();
         <div class="top_seminars__inner sec_inner">
             <!-- タイトル -->
             <div class="top_seminars__header">
-                <h2 class="top_seminars__title-en main_ttl"><span class="sp_text_left"><span class="font_big">S</span>eminars &</span><span class="sp_text_right"><span class="font_big">E</span>vents</span></h2>
+                <h2 class="top_seminars__title-en main_ttl"><span class="sp_text_left"><span class="font_big">S</span>eminars & </span><span class="sp_text_right"><span class="font_big">E</span>vents</span></h2>
                 <p class="top_seminars__title-ja main_ttl_ja">セミナー・イベントのご案内</p>
             </div>
 
