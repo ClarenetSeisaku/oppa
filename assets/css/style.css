@@ -1469,7 +1469,7 @@ footer {
   height: 60px;
   border: 1px solid #afccda;
   border-radius: 4px;
-  color: #244668;
+  color: #000;
   transition: all 0.3s ease;
   letter-spacing: 0.1em;
   overflow: hidden;
@@ -1489,6 +1489,8 @@ footer {
   z-index: 2;
   height: 100%;
   width: 100%;
+  color: #000;
+  font-weight: 500;
 }
 .commonBtn span:before {
   position: absolute;
@@ -2316,6 +2318,7 @@ footer {
   flex: 0 0 50%;
   height: 100%;
   fill: #ffffff;
+  margin-right: -1px;
 }
 #index main .top_about {
   position: relative;
@@ -2411,9 +2414,9 @@ footer {
 }
 #index main .top_about__bg-text {
   position: absolute;
-  top: 50%;
+  top: 26%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   font-size: min(6vw, 128px);
   white-space: nowrap;
   color: #f0f4f8;
@@ -2445,6 +2448,9 @@ footer {
 }
 #index main .top_about__inner .commonBtn {
   border: 1px solid #081f36;
+}
+#index main .top_about__inner .commonBtn span {
+  color: #244668;
 }
 #index main .top_about__text {
   font-size: 20px;
@@ -2549,7 +2555,7 @@ footer {
   #index main .top_news__inner {
     width: 100%;
     flex-direction: column;
-    gap: 32px;
+    gap: 10px;
     padding: 50px 30px;
   }
 }
@@ -2585,7 +2591,7 @@ footer {
 @media only screen and (max-width: 768px) {
   #index main .top_news__title-ja {
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 #index main .top_news__btn {
@@ -2608,7 +2614,7 @@ footer {
   #index main .top_news__btn.sp {
     display: flex;
     max-width: 100%;
-    margin: 50px auto 0;
+    margin: 20px auto 0;
     text-align: center;
   }
 }
@@ -2699,12 +2705,20 @@ footer {
   flex: 0 0 50%;
   height: 100%;
   fill: #d3e5f2;
+  margin-right: -1px;
 }
 #index main .top_news__boat {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   left: 20%;
-  width: 120px;
+  width: min(10.104vw, 194px);
+}
+@media only screen and (max-width: 768px) {
+  #index main .top_news__boat {
+    width: 33.33vw;
+    bottom: 20px;
+    left: 10%;
+  }
 }
 #index main .top_seminars {
   background-color: #d3e5f2;
@@ -2968,7 +2982,7 @@ footer {
 }
 #index main .top_seminars__more {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 0;
 }
 @media only screen and (max-width: 768px) {
   #index main .top_seminars__more {
@@ -2994,7 +3008,7 @@ footer {
 #index main .top_seminars__parallax {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 800px;
   overflow: hidden;
 }
 @media only screen and (max-width: 768px) {
@@ -3133,7 +3147,7 @@ footer {
   display: block;
   width: 12px;
   height: 2px;
-  background-color: var(--line-color, #999);
+  background-color: var(--line-color, #1c4c83);
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 @media only screen and (max-width: 768px) {
@@ -3165,6 +3179,8 @@ footer {
   grid-row: 1/2;
   min-width: 0;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 @media only screen and (max-width: 768px) {
   #index main .top_topics__content {
@@ -3219,7 +3235,7 @@ footer {
 #index main .top_topics__card-badge {
   font-size: 14px;
   color: #ffffff;
-  padding: 3px 14px;
+  padding: 0px 13px;
   border-radius: 2px;
 }
 #index main .top_topics__card-title {

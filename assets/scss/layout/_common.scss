@@ -135,10 +135,9 @@ a[href*="tel:"] {
   width: 100%;
   max-width: 428px;
   height: 60px;
-
   border: 1px solid m.$color-border;
   border-radius: 4px;
-  color: #244668;
+  color: m.$text-color;
   transition: all 0.3s ease;
   letter-spacing: 0.1em;
   overflow: hidden;
@@ -155,6 +154,8 @@ a[href*="tel:"] {
     z-index: 2;
     height: 100%;
     width: 100%;
+    color: m.$text-color;
+    font-weight: 500;
     &:before {
       position: absolute;
       background: m.$color-navy;
