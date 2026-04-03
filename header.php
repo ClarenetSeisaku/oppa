@@ -38,26 +38,26 @@
             <nav id="globalnav" class="globalnav" aria-label="メインメニュー">
                 <ul class="gnav">
                     <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon01.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon01_sp.svg" alt="" class="sp"></figure><span>セミナー・<br class="pc">イベント</span>
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon01.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon01_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon01_sp.svg" alt="" class="sp"></figure><span>セミナー・<br class="pc">イベント</span>
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon02.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon02_sp.svg" alt="" class="sp"></figure>
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon02.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon02_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon02_sp.svg" alt="" class="sp"></figure>
                             <span>情報誌「大阪港」</span>
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon03.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon03_sp.svg" alt="" class="sp"></figure>
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon03.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon03_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon03_sp.svg" alt="" class="sp"></figure>
                             <span>ニュースレター</span>
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon04.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon04_sp.svg" alt="" class="sp"></figure>
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon04.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon04_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon04_sp.svg" alt="" class="sp"></figure>
                             <span>客船・<br class="pc">フェリー情報</span>
                         </a></li>
                     <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon05.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon05_sp.svg" alt="" class="sp"></figure>
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon05.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon05_navy.svg" alt="" class="pc hover_block"><img src=" <?php echo imdir(); ?>/common/header_icon05_sp.svg" alt="" class="sp"></figure>
                             <span>大阪港の記録</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
-                            <figure><img src="<?php echo imdir(); ?>/common/header_icon06.svg" alt="" class="pc"><img src="<?php echo imdir(); ?>/common/header_icon06_sp.svg" alt="" class="sp"></figure>
+                    <li><a href=" <?= esc_url(home_url('/')) ?>">
+                            <figure><img src="<?php echo imdir(); ?>/common/header_icon06.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon06_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon06_sp.svg" alt="" class="sp"></figure>
                             <span>グッズ・刊行物</span>
                         </a></li>
                 </ul>

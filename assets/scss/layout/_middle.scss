@@ -1,14 +1,83 @@
-@use '../import/mixin' as m;
+@use "../import/mixin" as m;
 .middle {
-.middle_mv {
-    height: 496px;
-    background: #ccc;
-    display: table;
-    width: 100%;
-    @include m.mq(sp) {
-        height: auto;
-        aspect-ratio: 11 / 10;
+    .middle_mv {
+        height: 500px;
+        background: #ccc;
+        display: table;
+        width: 100%;
+        position: relative;
+        @include m.mq(sp) {
+            height: auto;
+            aspect-ratio: 11 / 10;
+        }
+        // ーー 波のアニメーション ーー
+        &__decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            pointer-events: none;
+            @include m.mq(sp) {
+                height: 100px;
+            }
+        }
+
+        &__wave-sway {
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: wave-sway 4s ease-in-out infinite alternate;
+        }
+
+        &__wave-move {
+            display: flex;
+            width: 200%;
+            height: 100%;
+            animation: wave-moveLeft 10s linear infinite;
+        }
+
+        &__wave {
+            flex: 0 0 50%;
+            height: 100%;
+            fill: m.$color-white;
+            margin-right: -1px;
+        }
     }
+    /*パンくず*/
+    .pankuzu_wrap {
+        margin: 10px 0;
+        .pankuzu {
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            li:not(:last-of-type) {
+                padding-right: 1.5em;
+                position: relative;
+                &::before {
+                    content: "";
+                    width: 1px;
+                    height: 53%;
+                    background: #dddddd;
+                    position: absolute;
+                    right: 0.75em;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
+                a {
+                    &:hover {
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+            }
+        }
+    }
+    /*ページタイトル*/
     .page_ttl {
         text-align: center;
         display: table-cell;
@@ -26,92 +95,57 @@
             }
         }
     }
-}
-/*パンくず*/
-.pankuzu_wrap {
-    margin: 10px 0;
-    .pankuzu {
-        display: flex;
-        align-items: stretch;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        li:not(:last-of-type) {
-            padding-right: 1.5em;
+
+    section:last-of-type {
+        padding-bottom: 200px;
+        @include m.mq(sp) {
+            padding-bottom: 20vw;
+        }
+    }
+
+    /*リスト*/
+    .nom_list {
+        li {
+            margin: 0 0 0.75em;
+            padding-left: 2em;
+            text-indent: -2em;
+        }
+    }
+
+    .disc_list {
+        li {
+            margin: 0.75em 0;
+            padding-left: 1em;
             position: relative;
             &::before {
                 content: "";
-                width: 1px;
-                height: 53%;
-                background: #DDDDDD;
+                width: 0.25em;
+                height: 0.25em;
+                background: #333;
+                border-radius: 50%;
                 position: absolute;
-                right: 0.75em;
-                top: 0;
-                bottom: 0;
-                margin: auto;
+                left: 0.25em;
+                top: 0.85em;
             }
-            a {
-                &:hover {
-                    text-decoration: underline;
-                    text-underline-offset: 3px;
-                }
+            span {
+                font-weight: bold;
+                font-size: 110%;
             }
         }
     }
-}
 
-section:last-of-type {
-    padding-bottom: 200px;
-    @include m.mq(sp) {
-        padding-bottom: 20vw;
-    }
-}
-
-
-/*リスト*/
-.nom_list {
-    li {
-        margin: 0 0 0.75em;
-        padding-left: 2em;
-        text-indent: -2em;
-    }
-}
-
-.disc_list {
-    li {
-        margin: 0.75em 0;
-        padding-left: 1em;
-        position: relative;
-        &::before {
-            content: "";
-            width: 0.25em;
-            height: 0.25em;
-            background: #333;
-            border-radius: 50%;
-            position: absolute;
-            left: 0.25em;
-            top: 0.85em;
+    /*コンテンツブロック*/
+    .block_contents {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        flex-wrap: wrap;
+        background: #fff;
+        margin: 50px auto 80px;
+        @include m.mq(sp) {
+            margin: 5vw auto 8vw;
         }
-        span {
-            font-weight: bold;
-            font-size: 110%;
-        }
-    }
-}
-
-
-
-/*コンテンツブロック*/
-.block_contents {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    flex-wrap: wrap;
-    background: #fff;
-    margin: 50px auto 80px;
-    @include m.mq(sp) {
-        margin: 5vw auto 8vw;
-    }
-    .textarea {
+        .textarea {
             h3 {
                 font-size: 24px;
                 font-weight: 500;
@@ -158,323 +192,324 @@ section:last-of-type {
                     width: calc(100% - 7em);
                 }
             }
-    }
-    &.type01 {
-        .textarea {
-            width: 50%;
-            display: table;
-            @include m.mq(sp) {
-                width: 100%;
-                order: 2;
+        }
+        &.type01 {
+            .textarea {
+                width: 50%;
+                display: table;
+                @include m.mq(sp) {
+                    width: 100%;
+                    order: 2;
+                }
+                .textarea_inner {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 20px 80px;
+                    @include m.mq(sp) {
+                        padding: 5vw;
+                    }
+                }
             }
-            .textarea_inner {
-                display: table-cell;
-                vertical-align: middle;
-                padding: 20px 80px;
+            .img_area {
+                width: 50%;
+                aspect-ratio: 192 / 125;
+                position: relative;
+                overflow: hidden;
+                @include m.mq(sp) {
+                    width: 100%;
+                    order: 1;
+                }
+                img {
+                    max-height: 100%;
+                    max-width: 100%;
+                    height: auto;
+                    width: auto;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
+            }
+        }
+        &.type02 {
+            .textarea {
+                padding: 80px;
                 @include m.mq(sp) {
                     padding: 5vw;
                 }
             }
         }
-        .img_area {
-            width: 50%;
-            aspect-ratio: 192 / 125;
+        > .ttl_block {
+            width: 30%;
+            display: table;
             position: relative;
-            overflow: hidden;
             @include m.mq(sp) {
                 width: 100%;
-                order: 1;
+                padding: 5vw 0;
             }
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                height: auto;
-                width: auto;
+            &::before {
+                content: "";
+                width: 1px;
+                height: calc(100% - 80px);
+                background: #ddd;
                 position: absolute;
-                left: 0;
                 right: 0;
                 top: 0;
                 bottom: 0;
                 margin: auto;
-            }
-        }
-    }
-    &.type02 {
-        .textarea {
-            padding: 80px;
-            @include m.mq(sp) {
-               padding: 5vw;
-            }
-        }
-    }
-    >.ttl_block {
-        width: 30%;
-        display: table;
-        position: relative;
-        @include m.mq(sp) {
-            width: 100%;
-            padding: 5vw 0;
-        }
-        &::before {
-            content: "";
-            width: 1px;
-            height: calc(100% - 80px);
-            background: #ddd;
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            @include m.mq(sp) {
-                width: calc(100% - 8vw);
-                height: 1px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                top: auto;
-            }
-        }
-        h2 {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-            span {
-                font-size: 30px;
-                font-weight: 500;
-                letter-spacing: 0.3em;
                 @include m.mq(sp) {
-                    font-size: 6vw;
+                    width: calc(100% - 8vw);
+                    height: 1px;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    top: auto;
                 }
-                @include m.mq(pc) {
-                    writing-mode: vertical-rl;
+            }
+            h2 {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                span {
+                    font-size: 30px;
+                    font-weight: 500;
+                    letter-spacing: 0.3em;
+                    @include m.mq(sp) {
+                        font-size: 6vw;
+                    }
+                    @include m.mq(pc) {
+                        writing-mode: vertical-rl;
+                    }
+                }
+            }
+            + .textarea {
+                width: 70%;
+                @include m.mq(sp) {
+                    width: 100%;
+                }
+                .textarea_inner {
+                    vertical-align: text-top;
+                    padding: 40px 50px;
+                    @include m.mq(sp) {
+                        padding: 4vw;
+                    }
                 }
             }
         }
-        + .textarea{
-            width: 70%;
+    }
+
+    .sec_inner.block_contents_separate {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        > div {
+            width: 48%;
+            margin: 0 0 80px;
+            @include m.mq(sp) {
+                width: 100%;
+                margin: 0 0 8vw;
+            }
+        }
+    }
+
+    .sec_inner.block_contents_separate_type03 {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+        > div {
+            width: 32%;
+            margin: 0 2% 80px 0;
+            &:nth-of-type(3n) {
+                margin-right: 0;
+            }
+            @include m.mq(sp) {
+                width: 48%;
+                margin: 0 4% 5vw 0;
+            }
+
+            @include m.mq(sp) {
+                &:nth-of-type(3n) {
+                    margin-right: 4%;
+                }
+                &:nth-of-type(2n) {
+                    margin-right: 0;
+                }
+            }
+            .textarea {
+                width: 100%;
+                padding: 20px;
+                @include m.mq(sp) {
+                    padding: 2vw;
+                }
+                h3 {
+                    font-size: 20px;
+                    margin-bottom: 0;
+                    @include m.mq(sp) {
+                        font-size: 4vw;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    /*エリア全体がボタン*/
+    .contents_btn {
+        a {
+            aspect-ratio: 960 / 203;
+            display: block;
+            width: 100%;
+            padding: 100px 0;
+            background: #ccc;
+            position: relative;
+            @include m.mq(sp) {
+                aspect-ratio: auto;
+                padding: 10px;
+            }
+            &::before {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                transition: 0.4s ease-in-out;
+                background: rgba($color: #000000, $alpha: 0.6);
+                opacity: 0.1;
+            }
+            &:hover {
+                &::before {
+                    opacity: 1;
+                }
+            }
+            > div {
+                display: table;
+                height: 100%;
+                text-align: center;
+                border: 1px solid #fff;
+                position: relative;
+                width: 92%;
+                @include m.mq(sp) {
+                    width: 100%;
+                    padding: 60px 0;
+                }
+                &::before {
+                    position: absolute;
+                    content: "";
+                    background: #fff;
+                    width: 120px;
+                    height: 1px;
+                    left: 0;
+                    top: 50%;
+                    @include m.mq(sp) {
+                        width: 1px;
+                        height: 30px;
+                        top: 0;
+                        left: 50%;
+                    }
+                }
+                .inner {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 70px 0;
+                    @include m.mq(sp) {
+                        padding: 0;
+                    }
+                    h2 {
+                        text-align: center;
+                        font-weight: 500;
+                        font-size: 24px;
+                        color: #fff;
+                        @include m.mq(sp) {
+                            font-size: 5.4vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .table01 {
+        width: 100%;
+        margin: 100px auto;
+        @include m.mq(sp) {
+            margin: 10vw auto;
+        }
+        th,
+        td {
+            padding: 0.75em 2em;
+            font-size: 18px;
+            box-sizing: border-box;
+            @include m.mq(sp) {
+                display: block;
+                padding: 0.5em 1em;
+                font-size: 3.8vw;
+            }
+        }
+        th {
+            width: 25%;
+            border-right: 1px solid;
+            @include m.mq(sp) {
+                padding-top: 1em;
+                width: 100%;
+                border-right: none;
+                text-align: left;
+                border-bottom: 1px solid;
+            }
+        }
+        td {
+            width: 75%;
             @include m.mq(sp) {
                 width: 100%;
             }
-            .textarea_inner {
-                vertical-align: text-top;
-                padding: 40px 50px;
-                @include m.mq(sp) {
-                    padding: 4vw;
-                }
-            }
         }
     }
-}
 
-.sec_inner.block_contents_separate {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    > div {
-        width: 48%;
-        margin: 0 0 80px;
-        @include m.mq(sp) {
-            width: 100%;
-            margin: 0 0 8vw;
-        }
-    }
-}
-
-
-.sec_inner.block_contents_separate_type03 {
-    display: flex;
-    align-items: stretch;
-    flex-wrap: wrap;
-    > div {
-        width: 32%;
-        margin: 0 2% 80px 0;
-        &:nth-of-type(3n) {
-            margin-right: 0;
-        }
-        @include m.mq(sp) {
-            width: 48%;
-            margin: 0 4% 5vw 0;
-        }
-        
-        @include m.mq(sp) {
-            &:nth-of-type(3n) {
-                margin-right: 4%;
-            }
-            &:nth-of-type(2n) {
-                margin-right: 0;
-            }
-        }
-        .textarea {
-            width: 100%;
-            padding: 20px;
-            @include m.mq(sp) {
-                padding: 2vw;
-            }
-            h3 {
-                font-size: 20px;
-                margin-bottom: 0;
-                @include m.mq(sp) {
-                    font-size: 4vw;
-                    margin-bottom: 0;
-                }
-            }
-        }
-    }
-}
-
-/*エリア全体がボタン*/
-.contents_btn {
-    a {
-      aspect-ratio: 960 / 203;
-      display: block;
-      width: 100%;
-      padding: 100px 0;
-      background: #ccc;
-      position: relative;
-      @include m.mq(sp) {
-        aspect-ratio: auto;
-        padding: 10px ;
-     }
-      &::before {
-        position: absolute;
-        content: '';
+    .table02 {
         width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transition: 0.4s ease-in-out;
-        background: rgba($color: #000000, $alpha: 0.6);
-        opacity: 0.1;
-      }
-      &:hover {
-        &::before {
-          opacity: 1;
-        }
-      }
-      > div {
-        display: table;
-        height: 100%;
         text-align: center;
-        border: 1px solid #fff;
-        position: relative;
-        width: 92%;
+        margin: 50px auto 20px;
         @include m.mq(sp) {
-            width: 100%;
-            padding: 60px 0;
+            margin: 5vw auto 2vw;
         }
-        &::before {
-            position: absolute;
-            content: '';
-            background: #fff;
-            width: 120px;
-            height: 1px;
-            left: 0;
-            top: 50%;
-            @include m.mq(sp) {
-              width: 1px;
-              height: 30px;
-              top: 0;
-              left: 50%;
-            }
-          }
-        .inner {
-            display: table-cell;
-            vertical-align: middle;
-            padding: 70px 0;
-            @include m.mq(sp) {
-                padding: 0;
-            }
-            h2 {
-                text-align: center;
-                font-weight: 500;
-                font-size: 24px;
-                color: #fff;
-                @include m.mq(sp) {
-                    font-size: 5.4vw;
-                 }
-            }
-        }
-    }
-    }
-}
-
-.table01 {
-    width: 100%;
-    margin: 100px auto;
-    @include m.mq(sp) {
-        margin: 10vw auto;
-    }
-    th,td {
-        padding: 0.75em 2em;
-        font-size: 18px;
-        box-sizing: border-box;
-        @include m.mq(sp) {
-            display: block;
-            padding: 0.5em 1em;
-            font-size: 3.8vw;
-        }
-    }
-    th {
-        width: 25%;
-        border-right: 1px solid;
-        @include m.mq(sp) {
-            padding-top: 1em;
-            width: 100%;
-            border-right: none;
-            text-align: left;
+        th,
+        td {
+            padding: 0.75em 1em;
             border-bottom: 1px solid;
         }
-    }
-    td {
-        width: 75%;
-        @include m.mq(sp) {
-            width: 100%;
+        td {
+            background: #fff;
+            &:last-of-type {
+                border-right: 1px solid;
+            }
         }
     }
-}
 
-.table02 {
-    width: 100%;
-    text-align: center;
-    margin: 50px auto 20px;
-    @include m.mq(sp) {
-        margin: 5vw auto 2vw;
-    }
-    th,td {
-        padding: 0.75em 1em;
-        border-bottom: 1px solid;
-    }
-    td {
+    .table03 {
         background: #fff;
-        &:last-of-type {
-            border-right: 1px solid;
+        width: 100%;
+        th,
+        td {
+            padding: 0.75em 1em;
+            border: 1px solid #333;
+            font-weight: bold;
+            letter-spacing: 0.15em;
         }
-    }
-}
-
-.table03 {
-    background: #fff;
-    width: 100%;
-    th,td {
-        padding: 0.75em 1em;
-        border: 1px solid #333;
-        font-weight: bold;
-        letter-spacing: 0.15em;
-    }
-    th {
-        border-bottom: 1px solid #fff;
-        background: #333;
-        color: #fff;
-    }
-    tr {
-        &:nth-of-type(2n) td {
-            background: #f5f5f5;
+        th {
+            border-bottom: 1px solid #fff;
+            background: #333;
+            color: #fff;
         }
-        &:last-of-type th {
+        tr {
+            &:nth-of-type(2n) td {
+                background: #f5f5f5;
+            }
+            &:last-of-type th {
                 border-bottom: 1px solid #333;
+            }
         }
     }
-}
-
 }

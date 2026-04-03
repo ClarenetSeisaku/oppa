@@ -198,6 +198,23 @@
             align-items: center;
             border-top: 1px solid #ddddcd;
           }
+          &:hover {
+            span {
+              @include m.mq(tab_pc) {
+                color: m.$color-navy-hover;
+              }
+            }
+            .hover_none {
+              @include m.mq(tab_pc) {
+                display: none !important;
+              }
+            }
+            .hover_block {
+              @include m.mq(tab_pc) {
+                display: block !important;
+              }
+            }
+          }
           &.haschild {
             position: relative;
             &::before,
@@ -232,6 +249,11 @@
               height: 40px;
               @include m.mq(tab_pc) {
                 margin: 0 auto;
+              }
+              &.hover_block {
+                @include m.mq(tab_pc) {
+                  display: none !important;
+                }
               }
             }
           }
@@ -487,7 +509,7 @@
   .bg_Blur {
     width: 100vw !important;
     height: calc(100vh - 112px);
-    background: rgba(0, 0, 0, 0.40);
+    background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     position: absolute !important;
     // top: 100px;
