@@ -1360,6 +1360,16 @@
           width: 26.41vw;
         }
       }
+      &_img02 {
+        position: absolute;
+        bottom: max(-12.5vw, -250px);
+        left: 0;
+        width: 43vw;
+        @include m.mq(sp) {
+          bottom: -22vw;
+          width: 96.41vw;
+        }
+      }
 
       &__inner {
         display: flex;

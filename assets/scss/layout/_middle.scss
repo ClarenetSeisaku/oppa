@@ -1,5 +1,6 @@
 @use "../import/mixin" as m;
 .middle {
+    overflow: hidden;
     .middle_mv {
         height: 500px;
         background: #ccc;
@@ -7,8 +8,7 @@
         width: 100%;
         position: relative;
         @include m.mq(sp) {
-            height: auto;
-            aspect-ratio: 11 / 10;
+            height: 300px;
         }
         // ーー 波のアニメーション ーー
         &__decoration {
@@ -49,6 +49,7 @@
     /*パンくず*/
     .pankuzu_wrap {
         margin: 10px 0;
+        position: relative;
         .pankuzu {
             display: flex;
             align-items: stretch;
@@ -61,7 +62,7 @@
                     content: "";
                     width: 1px;
                     height: 53%;
-                    background: #dddddd;
+                    background: m.$border-color;
                     position: absolute;
                     right: 0.75em;
                     top: 0;
@@ -69,6 +70,8 @@
                     margin: auto;
                 }
                 a {
+                    font-size: 14px;
+                    color: m.$main-color;
                     &:hover {
                         text-decoration: underline;
                         text-underline-offset: 3px;
@@ -77,29 +80,37 @@
             }
         }
     }
-    /*ページタイトル*/
-    .page_ttl {
-        text-align: center;
-        display: table-cell;
-        vertical-align: middle;
-        padding: 50px 0;
-        @include m.mq(sp) {
-            padding: 5vw 0;
-        }
-        span {
-            font-size: 38px;
-            font-weight: 500;
-            letter-spacing: 0.125em;
-            @include m.mq(sp) {
-                font-size: 6vw;
-            }
-        }
-    }
 
     section:last-of-type {
         padding-bottom: 200px;
         @include m.mq(sp) {
             padding-bottom: 20vw;
+        }
+    }
+
+    /*ページタイトル*/
+    .page_ttl {
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 600;
+        letter-spacing: 0.125em;
+        margin-bottom: 30px;
+        line-height: 1;
+        @include m.mq(sp) {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+    }
+    .page_sub_ttl {
+        font-size: clamp(24px, 2.667vw, 32px);
+        font-family: "Cormorant", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        color: m.$color-navy-hover;
+        margin-bottom: clamp(100px, 10vw, 200px);
+        line-height: 1;
+        @include m.mq(sp) {
+            font-size: 18px;
         }
     }
 

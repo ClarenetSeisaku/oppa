@@ -41,7 +41,12 @@ get_header();
             <li><?php the_title(); ?></li>
         </ul>
     </div>
-    <h2 class="page_ttl"><span><?php the_field('middle_ttl'); ?></span></h2>
+    <section class="middle_ttl_sec">
+        <div class="sec_inner">
+            <h2 class="page_ttl"><?php the_field('middle_ttl'); ?></h2>
+            <p class="page_sub_ttl"><?php the_field('middle_sub_ttl'); ?></p>
+        </div>
+    </section>
 
     <?php the_content(); ?>
 

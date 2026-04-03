@@ -1,4 +1,300 @@
 @use "../import/mixin" as m; // mixin.scssを読み込み
 
 #about {
+    .middle_mv {
+        background: url("../img/about/about_bg@2x.jpg") no-repeat center center/cover;
+    }
+    .about_box {
+        @include m.mq(tab_pc) {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .about_box_con {
+            @include m.mq(tab_pc) {
+                width: 78%;
+                max-width: 1200px;
+            }
+        }
+    }
+    .sec_sub_ttl {
+        margin-bottom: 0;
+    }
+    .about_section01 {
+        width: 100%;
+        .about__list {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            @include m.mq(sp) {
+                flex-direction: column;
+            }
+            .about__item {
+                flex: 1; /* 各項目を均等な幅にする */
+                border-right: 1px solid #dce1e5; /* 項目間の区切り線 */
+                @include m.mq(sp) {
+                    border-right: none;
+                    border-bottom: 1px solid #dce1e5;
+                }
+                &:first-child {
+                    border-left: 1px solid #dce1e5;
+                    @include m.mq(sp) {
+                        border-left: none;
+                        border-top: 1px solid #dce1e5;
+                    }
+                }
+                .about__link {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px; /* 上下の余白（高さ） */
+                    font-size: 20px; /* 文字サイズ */
+                    letter-spacing: 0.1em; /* 少し文字間隔を空ける */
+                    transition: background-color 0.2s ease;
+                    @include m.mq(sp) {
+                        padding: 16px 10px;
+                    }
+                    &:hover {
+                        background-color: #f5f5f5;
+                    }
+                }
+            }
+        }
+    }
+    .about_section02 {
+        position: relative;
+        padding: min(13vw, 250px) 0 min(7.5vw, 150px);
+        background-color: m.$color-white;
+        width: 100%;
+        /* min-height: 80vh; */
+        margin: 0 auto;
+        @include m.mq(sp) {
+            padding: 72.821vw 0 45.641vw;
+        }
+
+        &_img01 {
+            position: absolute;
+            top: 25px;
+            right: 0;
+            width: 43vw;
+            @include m.mq(sp) {
+                top: 11.538vw;
+                width: 77vw;
+            }
+        }
+
+        &_img02 {
+            position: absolute;
+            top: max(-4vw, -100px);
+            right: min(15vw, 260px);
+            width: min(6vw, 110px);
+            @include m.mq(sp) {
+                top: -50vw;
+                right: auto;
+                left: 4vw;
+                width: 21vw;
+            }
+        }
+
+        &_img03 {
+            position: absolute;
+            @include m.prefix_t;
+            right: min(4vw, 80px);
+            width: min(12vw, 220px);
+            @include m.mq(sp) {
+                top: -40vw;
+                right: 0;
+                width: 37vw;
+            }
+        }
+
+        &_img04 {
+            position: absolute;
+            bottom: 0;
+            left: max(-180px, -9.3vw);
+            width: 47vw;
+            @include m.mq(sp) {
+                bottom: 17.949vw;
+                left: 0;
+                width: 100vw;
+            }
+        }
+
+        .sec_inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        // ーー 3. メインコンテンツ ーー
+        &__inner {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            @include m.mq(sp) {
+                width: 100%;
+            }
+        }
+
+        &__text {
+            font-size: 20px;
+            line-height: 2.6; // ゆったりとした行間
+            color: m.$color-text;
+            letter-spacing: 0.1em;
+            margin-bottom: 80px;
+
+            @include m.mq(sp) {
+                font-size: 16px;
+                line-height: 2.2;
+                margin-bottom: 40px;
+            }
+        }
+    }
+    .about_section03 {
+        width: 100%;
+        padding: 0 0 min(4vw, 80px);
+        position: relative;
+        @include m.mq(sp) {
+            padding: 0;
+        }
+
+        &_img01 {
+            position: absolute;
+            bottom: max(-10vw, -200px);
+            left: max(-4vw, -80px);
+            width: 31vw;
+            @include m.mq(sp) {
+                width: 100%;
+                left: 0;
+                bottom: -55vw;
+            }
+        }
+
+        &_img02 {
+            position: absolute;
+            bottom: max(-25vw, -500px);
+            right: 0;
+            width: 50vw;
+            @include m.mq(sp) {
+                display: none;
+            }
+        }
+
+        &__track {
+            display: flex;
+            width: fit-content;
+            animation: flow-left 40s linear infinite; // 秒数を変えると速度が変わります
+
+            // マウスホバーで一時停止
+            &:hover {
+                animation-play-state: paused;
+            }
+            img {
+                height: 350px; // PCでの高さ
+                width: auto;
+                max-width: none;
+                flex-shrink: 0;
+                margin-right: 80px;
+
+                @include m.mq(sp) {
+                    height: 66.667vw; // SPでの高さ
+                    margin-right: 10.256vw;
+                }
+            }
+        }
+    }
+
+    .about_section04 {
+        position: relative;
+        padding: 80px 20px;
+        color: m.$main-color;
+        line-height: 1.8;
+        .message-block {
+            margin-bottom: 100px;
+            @include m.mq(sp) {
+                margin-bottom: 50px;
+            }
+            .message-content {
+                flex: 1;
+                .text-body {
+                    letter-spacing: 0.08em;
+                    p {
+                        margin: 0 0 1.5em;
+                    }
+                    .signature {
+                        margin-top: 40px;
+                        text-align: right;
+                        .date {
+                            margin: 0 0 10px;
+                        }
+                        .name-info {
+                            margin: 0;
+                            .name-large {
+                                font-size: 24px;
+                                margin-left: 15px;
+                                letter-spacing: 0.1em;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .profile-wrap {
+            display: flex;
+            gap: 5%;
+            justify-content: space-between;
+            @include m.mq(sp) {
+                flex-direction: column-reverse;
+                gap: 30px;
+            }
+            .profile-info {
+                flex: 1;
+                width: 49%;
+                .person-name {
+                    font-size: 30px;
+                    margin: 0 0 20px;
+                    font-weight: 600;
+                    letter-spacing: 0.1em;
+                    .person-kana {
+                        font-size: 16px;
+                        font-weight: 400;
+                        margin-left: 10px;
+                    }
+                }
+                .birth-date {
+                    margin: 0 0 20px;
+                }
+
+                /* 経歴リスト（CSS Gridで年と内容をきれいに揃える） */
+                .history-list {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    column-gap: 24px;
+                    row-gap: 12px;
+                    margin: 0;
+                    dt {
+                        color: m.$color-date; /* 年の文字色を少し変える */
+                    }
+                    dd {
+                        margin: 0;
+                    }
+                }
+            }
+
+            .profile-image {
+                background-color: #e0e0e0; /* 画像が入るまでのプレースホルダー */
+                border-radius: 6px;
+                width: 100%;
+                height: auto;
+                @include m.mq(tab_pc) {
+                    width: 56%;
+                    height: 490px;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
 }

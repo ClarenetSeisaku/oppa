@@ -85,34 +85,54 @@ footer {
   }
 }
 
+/*セクションタイトル*/
+
 .sec_ttl {
-  text-align: center;
-  position: relative;
-  span {
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: 5px;
-    @include m.mq(sp) {
-      font-size: 5.4vw;
-    }
+  font-size: clamp(30px, 4.167vw, 50px);
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  margin-bottom: 30px;
+  line-height: 1;
+  color: m.$color-light-navy;
+  @include m.mq(sp) {
+    font-size: 28px;
+    margin-bottom: 20px;
   }
 }
-
-.sec_ttl02 {
-  font-size: 24px;
+.sec_sub_ttl {
+  font-size: clamp(18px, 2.167vw, 26px);
+  font-family: "Cormorant", serif;
+  font-optical-sizing: auto;
   font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.125em;
   margin-bottom: 30px;
-  text-align: center;
-  letter-spacing: 5px;
+  line-height: 1;
+  color: #7a94a4;
+}
+.sec_ttl02 {
+  font-size: clamp(20px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  margin-bottom: 40px;
   @include m.mq(sp) {
-    font-size: 5.4vw;
-    margin-bottom: 3vw;
+    margin-bottom: 30px;
   }
   &.text_left {
     text-align: left;
   }
   &.border_bottom {
     border-bottom: 1px solid;
+  }
+}
+.sec_ttl03 {
+  font-size: clamp(18px, 2.8vw, 32px);
+  color: m.$color-navy-hover;
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  margin-bottom: 30px;
+  @include m.mq(sp) {
+    margin-bottom: 20px;
   }
 }
 
@@ -173,24 +193,30 @@ a[href*="tel:"] {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 29px; /* 直線の右端の位置（三角形の幅に合わせてピッタリくっつける） */
+    right: 7%; /* 直線の右端の位置（三角形の幅に合わせてピッタリくっつける） */
     width: 20px; /* 直線の長さ */
     height: 1px; /* 直線の太さ */
     background-color: #244668; /* 直線の色 */
     transition: all 0.3s ease;
+    @media screen and (max-width: 1100px) and (min-width: 769px) {
+      right: 4%;
+    }
   }
   &::after {
     content: "";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 24px; /* ボタン右端からの位置 */
+    right: 7%; /* ボタン右端からの位置 */
 
     /* CSSのborder機能を使って三角形を作るテクニック */
     border-style: solid;
     border-width: 4px 0 4px 5px; /* 上4px、右0、下4px、左5px */
     border-color: transparent transparent transparent #244668; /* 左側だけ色をつけて右向き三角に */
     transition: all 0.3s ease;
+    @media screen and (max-width: 1100px) and (min-width: 769px) {
+      right: 4%;
+    }
   }
   &:hover {
     &::before {

@@ -8,11 +8,11 @@
   }
   &_img01 {
     position: absolute;
-    top: max(-15vw, -300px);
+    top: max(-4vw, -80px);
     left: 0;
     width: 50vw;
     @include m.mq(sp) {
-      top: -40vw;
+      top: -15vw;
       width: 100vw;
     }
   }

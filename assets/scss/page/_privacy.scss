@@ -1,0 +1,38 @@
+@use "../import/mixin" as m; // mixin.scssを読み込み
+
+#privacy {
+    .middle_mv {
+        background: url("../img/privacy/privacy_bg@2x.jpg") no-repeat center center/cover;
+    }
+    .privacy_box {
+        color: m.$main-color;
+        margin-bottom: 100px;
+        @include m.mq(sp) {
+            margin-bottom: 50px;
+        }
+        ol {
+            > li {
+                list-style: inherit;
+                margin-left: 1em;
+                margin-bottom: 20px;
+                ul {
+                    li {
+                        position: relative;
+                        padding-left: 0.8em;
+                        line-height: 1.8;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            top: 0.9em;
+                            width: 3px;
+                            height: 3px;
+                            border-radius: 50%;
+                            background-color: m.$main-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

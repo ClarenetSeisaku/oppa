@@ -1,0 +1,103 @@
+@use "../import/mixin" as m; // mixin.scssを読み込み
+
+#access {
+    .middle_mv {
+        background: url("../img/access/access_bg@2x.jpg") no-repeat center center/cover;
+    }
+    .access_box {
+        @include m.mq(tab_pc) {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .access_box_con {
+            @include m.mq(tab_pc) {
+                width: 78%;
+                max-width: 1200px;
+            }
+        }
+    }
+    .access_section01 {
+        padding-bottom: min(15vw, 300px);
+        @include m.mq(sp) {
+            padding-bottom: 50vw;
+        }
+        .about_table {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 2px;
+            @include m.mq(sp) {
+                flex-direction: column;
+            }
+            dt {
+                background: m.$color-light-navy;
+                padding: 10px;
+                color: #fff;
+                text-align: center;
+                @include m.mq(tab_pc) {
+                    width: 21%;
+                    max-width: 250px;
+                    padding: 20px;
+                }
+            }
+            dd {
+                background: #f4f4f4;
+                padding: 10px 20px;
+                @include m.mq(tab_pc) {
+                    width: 79%;
+                    max-width: 948px;
+                    padding: 20px 30px;
+                }
+            }
+        }
+    }
+    .access_section02 {
+        padding-bottom: min(15.2vw, 265px);
+        position: relative;
+        .sec_inner {
+            position: relative;
+        }
+        &_img01 {
+            position: absolute;
+            top: -370px;
+            right: 0;
+            width: 43vw;
+            z-index: -1;
+            @include m.mq(sp) {
+                top: -55vw;
+                width: 77vw;
+            }
+        }
+
+        &_img02 {
+            position: absolute;
+            top: max(-10vw, -200px);
+            right: min(15vw, 300px);
+            width: min(6vw, 110px);
+            @include m.mq(sp) {
+                top: -40vw;
+                right: auto;
+                left: 4vw;
+                width: 21vw;
+            }
+        }
+
+        &_img03 {
+            position: absolute;
+            top: max(-2.5vw, -50px);
+            right: min(2.5vw, 50px);
+            width: min(12vw, 220px);
+            @include m.mq(sp) {
+                top: -30vw;
+                right: 0;
+                width: 37vw;
+            }
+        }
+        iframe {
+            width: 100%;
+            height: 550px;
+            @include m.mq(sp) {
+                height: 300px;
+            }
+        }
+    }
+}

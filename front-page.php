@@ -58,7 +58,7 @@ get_header();
         <div class="top_about__bg-text">Osaka Port Promotion Association</div>
         <div class="top_about_img01 img_con">
             <picture>
-                <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/top/top_about_img01.png"><img src="<?php echo imdir(); ?>/top/top_about_img01_sp@2x.png" alt="">
+                <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/top_about_img01.png"><img src="<?php echo imdir(); ?>/common/top_about_img01_sp@2x.png" alt="">
             </picture>
         </div>
         <div class="top_about_img04 img_con">
@@ -67,8 +67,8 @@ get_header();
             </picture>
         </div>
         <div class="sec_inner">
-            <div class="top_about_img02 img_con kamome_img"><img src="<?php echo imdir(); ?>/top/top_about_img02.svg" alt="かもめ"></div>
-            <div class="top_about_img03 img_con wave_img"><img src="<?php echo imdir(); ?>/top/top_about_img03.svg" alt="船"></div>
+            <div class="top_about_img02 img_con kamome_img"><img src="<?php echo imdir(); ?>/common/top_about_img02.svg" alt="かもめ"></div>
+            <div class="top_about_img03 img_con wave_img"><img src="<?php echo imdir(); ?>/common/top_about_img03.svg" alt="船"></div>
             <div class="top_about__inner">
 
                 <p class="top_about__text">
@@ -493,6 +493,11 @@ get_header();
                 </a>
             </div>
 
+        </div>
+        <div class="top_goods_img02 img_con">
+            <picture>
+                <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/top_goods_img02@2x.png"><img src="<?php echo imdir(); ?>/common/top_goods_img02_sp@2x.png" alt="">
+            </picture>
         </div>
     </section>
 
