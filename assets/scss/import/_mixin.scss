@@ -41,6 +41,10 @@ $color-beige: #eaeae3;
     @media only screen and (max-width: $sp_max) {
       @content;
     }
+  } @else if $breakpoint == tab_sp {
+    @media only screen and (max-width: $tab_max) {
+      @content;
+    }
   } @else if $breakpoint == tab {
     @media only screen and (min-width: $tab_min) and (max-width: $tab_max) {
       @content;
