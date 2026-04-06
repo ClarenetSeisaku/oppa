@@ -6100,6 +6100,287 @@ footer {
   /*  詳細ページここまで */
 }
 
+#seminar .middle {
+  background-color: #F4F7F9;
+}
+#seminar .middle section:last-of-type {
+  margin-bottom: 0;
+}
+#seminar .section-wrap {
+  max-width: 1200px;
+  margin: auto;
+}
+#seminar .section-wrap__subtitle {
+  font-size: 26px;
+  line-height: 1.7;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__subtitle {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+#seminar .section-wrap__title {
+  font-size: 38px;
+  line-height: 1.45;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
+#seminar .section-wrap__card {
+  background: white;
+  border-radius: 4px;
+  padding: 48px 38px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__card {
+    padding: 28px 20px;
+  }
+}
+#seminar .section-wrap__card:not(:last-child) {
+  margin-bottom: 40px;
+}
+#seminar .section-wrap__heading {
+  font-size: 32px;
+  line-height: 1.35;
+  letter-spacing: 0.1em;
+  color: #1f4068;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__heading {
+    font-size: 30px;
+    margin-bottom: 18px;
+  }
+}
+#seminar .section-wrap__content {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+}
+#seminar .section-wrap__content p + p {
+  margin-top: 14px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__content {
+    font-size: 14px;
+    line-height: 1.95;
+  }
+}
+#seminar .section-wrap__card--detail {
+  margin-top: 88px;
+}
+#seminar .section-wrap__card--speaker {
+  display: flex;
+  justify-content: space-between;
+  gap: 86px;
+  padding-right: 90px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__card--speaker {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+#seminar .section-wrap__card--speaker .section-wrap__heading {
+  margin-bottom: 22px;
+}
+#seminar .section-wrap__speaker-main {
+  flex: 1;
+  min-width: 0;
+}
+#seminar .section-wrap__speaker-role {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__speaker-role {
+    font-size: 13px;
+  }
+}
+#seminar .section-wrap__speaker-name {
+  font-size: 24px;
+  line-height: 1.4;
+  color: #111;
+  letter-spacing: 0.1em;
+  margin-bottom: 22px;
+  font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__speaker-name {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+}
+#seminar .section-wrap__speaker-bio {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+  color: #333;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__speaker-bio {
+    font-size: 14px;
+  }
+}
+#seminar .section-wrap__speaker-image {
+  width: 250px;
+  height: 310px;
+  border-radius: 4px;
+  background: #c6c8cc;
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__speaker-image {
+    width: 100%;
+    max-width: 240px;
+    height: 240px;
+    margin: 0 auto;
+  }
+}
+#seminar .section-wrap__card--summary {
+  margin-top: 30px;
+}
+#seminar .section-wrap__summary-status {
+  border: 1px solid #df9d97;
+  color: #a94738;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.6;
+  padding: 10px;
+  margin-bottom: 28px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__summary-status {
+    font-size: 15px;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+  }
+}
+#seminar .section-wrap__summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+#seminar .section-wrap__summary-table th,
+#seminar .section-wrap__summary-table td {
+  border-top: 1px solid #d8dde3;
+  padding: 14px 10px;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  color: #333;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__summary-table th,
+  #seminar .section-wrap__summary-table td {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 10px 0;
+  }
+}
+#seminar .section-wrap__summary-table tr:last-child th,
+#seminar .section-wrap__summary-table tr:last-child td {
+  border-bottom: 1px solid #d8dde3;
+}
+#seminar .section-wrap__summary-table th {
+  width: 170px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding-left: 8px;
+  padding-right: 26px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__summary-table th {
+    padding-bottom: 2px;
+    border-bottom: 0;
+  }
+}
+#seminar .section-wrap__summary-table td a {
+  color: #2e5d96;
+  text-decoration: underline;
+}
+#seminar .section-wrap__summary-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 490px;
+  border: 1px solid #bdd2e4;
+  border-radius: 3px;
+  padding: 6px 29px;
+  color: #2a2a2a;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  transition: opacity 0.2s ease;
+}
+#seminar .section-wrap__summary-link::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-right: 2px solid #5a7696;
+  border-bottom: 2px solid #5a7696;
+  transform: rotate(-45deg);
+  flex-shrink: 0;
+}
+#seminar .section-wrap__summary-link:hover {
+  opacity: 0.75;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .section-wrap__summary-link {
+    max-width: 100%;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+}
+#seminar .seminar-entry {
+  padding-top: 100px;
+  background-color: white;
+}
+#seminar .seminar-entry__title {
+  font-size: 32px;
+  line-height: 1.45;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .seminar-entry__title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
+#seminar .seminar-entry__subtitle {
+  font-size: 38px;
+  line-height: 1.7;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 70px;
+}
+@media only screen and (max-width: 768px) {
+  #seminar .seminar-entry__subtitle {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+
 @keyframes zoomUp {
   0% {
     transform: scale(1);

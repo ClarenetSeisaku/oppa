@@ -19,15 +19,15 @@ function works_post_type()
     )
   );
   register_taxonomy(
-     'works-category', // カスタム分類名
-     'works', // カスタム分類を使用する投稿タイプ名
-     array(
-        'hierarchical' => true,
-        'label' => 'カテゴリー',
-        'singular_label' => 'カテゴリー',
-        'public' => true,
-        'show_ui' => true,
-     )
+    'works-category', // カスタム分類名
+    'works', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => 'カテゴリー',
+      'singular_label' => 'カテゴリー',
+      'public' => true,
+      'show_ui' => true,
+    )
   );
   register_taxonomy(
     'works-tag',
@@ -49,28 +49,79 @@ function works_post_type()
 function my_dashboard_menu_styles()
 {
 ?>
-<style>
-#dashboard_right_now .president_blog-count:before {
-    content: "\f331";
-}
-#adminmenu #menu-posts-president_blog div.wp-menu-image:before {
-    content: "\f331";
-}
-#dashboard_right_now .hospital_blog-count:before {
-    content: "\f328";
-}
-#adminmenu #menu-posts-hospital_blog div.wp-menu-image:before {
-    content: "\f328";
-}
-#dashboard_right_now .days_blog-count:before {
-    content: "\f186";
-}
-#adminmenu #menu-posts-days_blog div.wp-menu-image:before {
-    content: "\f186";
-}
-</style>
+  <style>
+    #dashboard_right_now .president_blog-count:before {
+      content: "\f331";
+    }
+
+    #adminmenu #menu-posts-president_blog div.wp-menu-image:before {
+      content: "\f331";
+    }
+
+    #dashboard_right_now .hospital_blog-count:before {
+      content: "\f328";
+    }
+
+    #adminmenu #menu-posts-hospital_blog div.wp-menu-image:before {
+      content: "\f328";
+    }
+
+    #dashboard_right_now .days_blog-count:before {
+      content: "\f186";
+    }
+
+    #adminmenu #menu-posts-days_blog div.wp-menu-image:before {
+      content: "\f186";
+    }
+  </style>
 <?php
 }
 add_action('admin_print_styles', 'my_dashboard_menu_styles');
 
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('after_setup_theme', function () {
+  add_theme_support('title-tag');
+  add_theme_support('post-thumbnails');
+});
+
+add_action('wp_enqueue_scripts', function () {
+  wp_enqueue_style(
+    'seminar-minimal-style',
+    get_stylesheet_uri(),
+    [],
+    wp_get_theme()->get('Version')
+  );
+});
+
+add_action('init', function () {
+  register_post_type('seminar', [
+    'labels' => [
+      'name' => 'Seminars',
+      'singular_name' => 'Seminar',
+      'add_new_item' => 'Add New Seminar',
+      'edit_item' => 'Edit Seminar',
+      'new_item' => 'New Seminar',
+      'view_item' => 'View Seminar',
+      'search_items' => 'Search Seminars',
+    ],
+    'public' => true,
+    'has_archive' => true,
+    'menu_position' => 20,
+    'menu_icon' => 'dashicons-welcome-learn-more',
+    'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+    'show_in_rest' => true,
+    'rewrite' => ['slug' => 'seminar'],
+  ]);
+});
 ?>

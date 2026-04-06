@@ -1,0 +1,303 @@
+@use "../import/mixin" as m;
+
+#seminar {
+    .middle {
+        background-color: #F4F7F9;
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .section-wrap {
+
+        max-width: 1200px;
+        margin: auto;
+
+        &__subtitle {
+            font-size: 26px;
+            line-height: 1.7;
+            letter-spacing: 0.10em;
+            margin-bottom: 2px;
+
+            @include m.mq(sp) {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+        }
+
+        &__title {
+            font-size: 38px;
+            line-height: 1.45;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+
+            @include m.mq(sp) {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+        }
+
+        &__card {
+            background: white;
+            border-radius: 4px;
+            padding: 48px 38px;
+
+            @include m.mq(sp) {
+                padding: 28px 20px;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 40px;
+            }
+        }
+
+        &__heading {
+            font-size: 32px;
+            line-height: 1.35;
+            letter-spacing: 0.1em;
+            color: #1f4068;
+            margin-bottom: 28px;
+            font-weight: 600;
+
+            @include m.mq(sp) {
+                font-size: 30px;
+                margin-bottom: 18px;
+            }
+        }
+
+        &__content {
+            font-size: 16px;
+            line-height: 1.8;
+            letter-spacing: 0.08em;
+
+            p+p {
+                margin-top: 14px;
+            }
+
+            @include m.mq(sp) {
+                font-size: 14px;
+                line-height: 1.95;
+            }
+        }
+
+        &__card--detail {
+            margin-top: 88px;
+        }
+
+        &__card--speaker {
+            display: flex;
+            justify-content: space-between;
+            gap: 86px;
+            padding-right: 90px;
+
+            @include m.mq(sp) {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .section-wrap__heading {
+                margin-bottom: 22px;
+            }
+        }
+
+        &__speaker-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        &__speaker-role {
+            font-size: 16px;
+            line-height: 1.8;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+
+            @include m.mq(sp) {
+                font-size: 13px;
+            }
+        }
+
+        &__speaker-name {
+            font-size: 24px;
+            line-height: 1.4;
+            color: #111;
+            letter-spacing: 0.1em;
+            margin-bottom: 22px;
+            font-weight: 600;
+
+            @include m.mq(sp) {
+                font-size: 26px;
+                margin-bottom: 16px;
+            }
+        }
+
+        &__speaker-bio {
+            font-size: 16px;
+            line-height: 1.8;
+            letter-spacing: 0.08em;
+            color: #333;
+
+            @include m.mq(sp) {
+                font-size: 14px;
+            }
+        }
+
+        &__speaker-image {
+            width: 250px;
+            height: 310px;
+            border-radius: 4px;
+            background: #c6c8cc;
+            flex-shrink: 0;
+            margin-top: 10px;
+
+            @include m.mq(sp) {
+                width: 100%;
+                max-width: 240px;
+                height: 240px;
+                margin: 0 auto;
+            }
+        }
+
+        &__card--summary {
+            margin-top: 30px;
+        }
+
+        &__summary-status {
+            border: 1px solid #df9d97;
+            color: #a94738;
+            text-align: center;
+            font-size: 22px;
+            line-height: 1.6;
+            padding: 10px;
+            margin-bottom: 28px;
+
+            @include m.mq(sp) {
+                font-size: 15px;
+                padding: 10px 12px;
+                margin-bottom: 18px;
+            }
+        }
+
+        &__summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+
+            th,
+            td {
+                border-top: 1px solid #d8dde3;
+                padding: 14px 10px;
+                vertical-align: top;
+                font-size: 16px;
+                line-height: 1.9;
+                letter-spacing: 0.06em;
+                color: #333;
+
+                @include m.mq(sp) {
+                    display: block;
+                    width: 100%;
+                    font-size: 14px;
+                    line-height: 1.7;
+                    padding: 10px 0;
+                }
+            }
+
+            tr:last-child th,
+            tr:last-child td {
+                border-bottom: 1px solid #d8dde3;
+            }
+
+            th {
+                width: 170px;
+                font-weight: 600;
+                white-space: nowrap;
+
+                padding-left: 8px;
+                padding-right: 26px;
+
+                @include m.mq(sp) {
+                    padding-bottom: 2px;
+                    border-bottom: 0;
+                }
+            }
+
+            td {
+                a {
+                    color: #2e5d96;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        &__summary-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 490px;
+            border: 1px solid #bdd2e4;
+            border-radius: 3px;
+            padding: 6px 29px;
+            color: #2a2a2a;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 1.6;
+            letter-spacing: 0.06em;
+            transition: opacity 0.2s ease;
+
+            &::after {
+                content: "";
+                width: 16px;
+                height: 16px;
+                border-right: 2px solid #5a7696;
+                border-bottom: 2px solid #5a7696;
+                transform: rotate(-45deg);
+                flex-shrink: 0;
+            }
+
+            &:hover {
+                opacity: 0.75;
+            }
+
+            @include m.mq(sp) {
+                max-width: 100%;
+                font-size: 14px;
+                padding: 12px 14px;
+            }
+        }
+    }
+
+    .seminar-entry {
+        padding-top: 100px;
+        background-color: white;
+
+        &__title {
+            font-size: 32px;
+            line-height: 1.45;
+            letter-spacing: 0.1em;
+            text-align: center;
+
+            @include m.mq(sp) {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+        }
+
+        &__subtitle {
+            font-size: 38px;
+            line-height: 1.7;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 6px;
+            margin-bottom: 70px;
+
+            @include m.mq(sp) {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+        }
+
+
+    }
+}
