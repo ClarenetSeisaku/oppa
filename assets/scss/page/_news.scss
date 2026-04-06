@@ -20,6 +20,9 @@
         font-weight: 500;
         position: relative;
         padding-bottom: 10px;
+        @include m.mq(sp) {
+          font-size: 16px;
+        }
         &:before {
           content: "";
           display: block;
@@ -63,10 +66,23 @@
         padding: 26px 0;
         gap: 30px;
         transition: background-color 0.3s;
+        @include m.mq(sp) {
+          flex-wrap: wrap;
+          gap: 12px 10px;
+          padding: 20px 0;
+        }
+        &:hover {
+          .top_news__text {
+            color: m.$color-navy-hover;
+          }
+        }
         time {
           color: m.$color-date;
           flex-shrink: 0;
           font-size: 16px;
+          @include m.mq(sp) {
+            font-size: 14px;
+          }
         }
         .news_category {
           display: flex;
@@ -88,6 +104,10 @@
           flex-grow: 1;
           line-height: 1.6;
           transition: color 0.3s;
+          @include m.mq(sp) {
+            width: 100%;
+            margin-top: 4px;
+          }
         }
       }
     }

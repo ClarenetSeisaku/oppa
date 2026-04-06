@@ -50,6 +50,9 @@
     .pankuzu_wrap {
         margin: 10px 0;
         position: relative;
+        @include m.mq(sp) {
+            margin-bottom: 30px;
+        }
         .pankuzu {
             display: flex;
             align-items: stretch;

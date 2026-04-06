@@ -2781,6 +2781,11 @@ footer {
   margin: 10px 0;
   position: relative;
 }
+@media only screen and (max-width: 768px) {
+  .middle .pankuzu_wrap {
+    margin-bottom: 30px;
+  }
+}
 .middle .pankuzu_wrap .pankuzu {
   display: flex;
   align-items: stretch;
@@ -5939,6 +5944,11 @@ footer {
   position: relative;
   padding-bottom: 10px;
 }
+@media only screen and (max-width: 768px) {
+  #news .category-list li a {
+    font-size: 16px;
+  }
+}
 #news .category-list li a:before {
   content: "";
   display: block;
@@ -5976,10 +5986,25 @@ footer {
   gap: 30px;
   transition: background-color 0.3s;
 }
+@media only screen and (max-width: 768px) {
+  #news .news_list li a {
+    flex-wrap: wrap;
+    gap: 12px 10px;
+    padding: 20px 0;
+  }
+}
+#news .news_list li a:hover .top_news__text {
+  color: #1c4c83;
+}
 #news .news_list li a time {
   color: #5c738d;
   flex-shrink: 0;
   font-size: 16px;
+}
+@media only screen and (max-width: 768px) {
+  #news .news_list li a time {
+    font-size: 14px;
+  }
 }
 #news .news_list li a .news_category {
   display: flex;
@@ -6001,6 +6026,12 @@ footer {
   flex-grow: 1;
   line-height: 1.6;
   transition: color 0.3s;
+}
+@media only screen and (max-width: 768px) {
+  #news .news_list li a p {
+    width: 100%;
+    margin-top: 4px;
+  }
 }
 #news {
   /* 一覧・カテゴリーページここまで */
