@@ -206,3 +206,8 @@ require(__DIR__ . "/function/function_other.php");
 // = css/jsの読み込み =
 // ===========================
 require(__DIR__ . "/function/function_dev.php");
+
+// ===========================
+// = ブロックエディタの読み込み =
+// ===========================
+require(__DIR__ . "/function/function_blocks.php");

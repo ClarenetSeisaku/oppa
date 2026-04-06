@@ -11,6 +11,7 @@
 // ==================================
 // これらの中でも mixin を使う場合は、各ファイル内で @use 'mixin' する必要があります
 @use "layout/common";
+@use "layout/blocks";
 @use "layout/header";
 @use "layout/footer";
 @use "layout/middle";
@@ -22,6 +23,7 @@
 @use "page/about";
 @use "page/access";
 @use "page/privacy";
+@use "page/news";
 
 @use "page/_seminar";
 
