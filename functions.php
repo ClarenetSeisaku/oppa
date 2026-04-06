@@ -10,14 +10,11 @@ add_theme_support('post-thumbnails');
 // ===========================
 function imdir($file_name = NULL)
 {
-  if ($file_name)
-  {
+  if ($file_name) {
     $url = esc_url(get_template_directory_uri() . '/assets/img/' . slug() . '/' . $file_name);
     $path = get_template_directory() . '/assets/img/' . slug() . '/' . $file_name;
     return $url . '?v=' . date("YmdHis", filemtime($path));
-  }
-  else
-  {
+  } else {
     return esc_url(get_template_directory_uri() . '/assets/img');
   }
 }
@@ -36,7 +33,8 @@ add_action('the_content', 'imagepassshort');
 // ===========================
 // = 【管理画面】コメントを非表示 =
 // ===========================
-function remove_admin_menu() {
+function remove_admin_menu()
+{
   remove_menu_page('edit-comments.php'); // コメント
 }
 add_action('admin_menu', 'remove_admin_menu');
@@ -69,7 +67,7 @@ function Change_objectlabel()
 {
   global $wp_post_types;
   $name = 'お知らせ';
-  $labels = & $wp_post_types['post']->labels;
+  $labels = &$wp_post_types['post']->labels;
   $labels->name = $name;
   $labels->singular_name = $name;
   $labels->add_new = _x('追加', $name);
@@ -82,21 +80,21 @@ function Change_objectlabel()
   $labels->not_found_in_trash = 'ゴミ箱に' . $name . 'は見つかりませんでした';
 }
 add_action('init', 'Change_objectlabel');
-add_action('admin_menu', 'Change_menulabel'); 
+add_action('admin_menu', 'Change_menulabel');
 
 
 // ===========================
 // = 既存の『投稿』のアーカイブ任意のURLにする  =
 // ===========================
-function post_has_archive($args, $post_type){
-  if ('post' == $post_type)
-  {
+function post_has_archive($args, $post_type)
+{
+  if ('post' == $post_type) {
     $args['rewrite'] = true;
     $args['has_archive'] = 'news'; // 任意のURL
   }
   return $args;
 }
-add_filter('register_post_type_args', 'post_has_archive', 10, 2); 
+add_filter('register_post_type_args', 'post_has_archive', 10, 2);
 
 
 // ===========================
@@ -112,24 +110,19 @@ function body_id()
 {
   $body_id = "";
   global $post;
-  if (is_home() || is_front_page())
-  {
+  if (is_home() || is_front_page()) {
     $body_id = "index";
   }
   /*  elseif (is_post_type_archive("experience") || is_singular("experience") || is_tax("experience-cat"))
    {
    $body_id = "experience";
-   } */
-  elseif (is_archive() || is_category() || is_single())
-  {
+   } */ elseif (is_post_type_archive("seminar") || is_singular("seminar") || is_tax("seminar-cat")) {
+    $body_id = "seminar";
+  } elseif (is_archive() || is_category() || is_single()) {
     $body_id = "news";
-  }
-  elseif (is_page(array('contact', 'confirm', 'thanks')))
-  {
+  } elseif (is_page(array('contact', 'confirm', 'thanks'))) {
     $body_id = "contact";
-  }
-  elseif (isset($post->post_name))
-  {
+  } elseif (isset($post->post_name)) {
     $body_id = $post->post_name;
   }
   return $body_id;
@@ -139,7 +132,7 @@ function body_id()
 // ===========================
 // = カスタム投稿 =
 // ===========================
-require(__DIR__."/function/function_cms.php");
+require(__DIR__ . "/function/function_cms.php");
 
 
 // ===========================
@@ -158,8 +151,7 @@ add_action('login_enqueue_scripts', 'my_login_stylesheet');
 function disable_visual_editor_in_page()
 {
   global $typenow;
-  if ($typenow == 'page')
-  {
+  if ($typenow == 'page') {
     add_filter('user_can_richedit', 'disable_visual_editor_filter');
   }
 }
@@ -198,20 +190,19 @@ add_shortcode('myphp', 'my_php_Include');
 
 
 
-function my_theme_enqueue_styles() {
-    wp_enqueue_style( 'my-main-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0.0' );
+function my_theme_enqueue_styles()
+{
+  wp_enqueue_style('my-main-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0.0');
 }
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 
 // ===========================
 // =  その他function  =
 // ===========================
-require(__DIR__."/function/function_other.php");
+require(__DIR__ . "/function/function_other.php");
 
 
 // ===========================
 // = css/jsの読み込み =
 // ===========================
-require(__DIR__."/function/function_dev.php");
-
-?>
+require(__DIR__ . "/function/function_dev.php");
