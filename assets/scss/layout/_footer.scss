@@ -7,13 +7,17 @@
     padding: 23.077vw 0 15.385vw;
   }
   &_img01 {
-    position: absolute;
-    top: max(-4vw, -80px);
-    left: 0;
-    width: 50vw;
-    @include m.mq(sp) {
-      top: -15vw;
-      width: 100vw;
+    img {
+      position: absolute;
+      top: max(-4vw, -80px);
+      left: 0;
+      width: 50vw;
+      height: min(31.719vw, 609px);
+      @include m.mq(sp) {
+        top: -15vw;
+        width: 100vw;
+        height: 71.026vw;
+      }
     }
   }
   .sec_inner {
@@ -42,12 +46,16 @@
     padding: 58.974vw 0 110px;
   }
   &_img01 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 56vw;
-    @include m.mq(sp) {
-      width: 100%;
+    img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 56vw;
+      height: min(33.438vw, 642px);
+      @include m.mq(sp) {
+        width: 100%;
+        height: 59.231vw;
+      }
     }
   }
   &_img02 {

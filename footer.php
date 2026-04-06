@@ -1,4 +1,11 @@
 <section class="banner_contents">
+    <?php if (is_home() || is_front_page()) : ?>
+        <div class="banner_contents_img02 img_con">
+            <picture>
+                <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/top_goods_img02@2x.png"><img src="<?php echo imdir(); ?>/common/top_goods_img02_sp@2x.png" alt="">
+            </picture>
+        </div>
+    <?php endif; ?>
     <div class="banner_contents_img01 img_con">
         <picture>
             <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/top_banner_img01@2x.png"><img src="<?php echo imdir(); ?>/common/top_banner_img01_sp@2x.png" alt="">

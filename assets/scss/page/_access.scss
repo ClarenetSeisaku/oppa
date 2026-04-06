@@ -57,14 +57,18 @@
             position: relative;
         }
         &_img01 {
-            position: absolute;
-            top: -370px;
-            right: 0;
-            width: 43vw;
-            z-index: -1;
-            @include m.mq(sp) {
-                top: -55vw;
-                width: 77vw;
+            img {
+                position: absolute;
+                top: -370px;
+                right: 0;
+                width: 43vw;
+                z-index: -1;
+                height: min(28vw, 538px);
+                @include m.mq(sp) {
+                    top: -55vw;
+                    width: 77vw;
+                    height: 76vw;
+                }
             }
         }
 

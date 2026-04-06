@@ -133,13 +133,17 @@
       }
 
       &_img01 {
-        position: absolute;
-        top: 25px;
-        right: 0;
-        width: 43vw;
-        @include m.mq(sp) {
-          top: 11.538vw;
-          width: 77vw;
+        img {
+          position: absolute;
+          top: 25px;
+          right: 0;
+          width: 43vw;
+          height: min(28vw, 538px);
+          @include m.mq(sp) {
+            top: 11.538vw;
+            width: 77vw;
+            height: 76vw;
+          }
         }
       }
 
@@ -169,14 +173,18 @@
       }
 
       &_img04 {
-        position: absolute;
-        bottom: 0;
-        left: max(-180px, -9.3vw);
-        width: 47vw;
-        @include m.mq(sp) {
-          bottom: 17.949vw;
-          left: 0;
-          width: 100vw;
+        img {
+          position: absolute;
+          bottom: 0;
+          left: max(-180px, -9.3vw);
+          width: 47vw;
+          height: min(28vw, 539px);
+          @include m.mq(sp) {
+            bottom: 17.949vw;
+            left: 0;
+            width: 100vw;
+            height: 59vw;
+          }
         }
       }
 
@@ -197,6 +205,7 @@
         bottom: max(-200px, -12vw);
         right: max(-120px, -7vw);
         width: 31vw;
+        height: min(23.021vw, 442px);
         @include m.mq(sp) {
           display: none;
         }
@@ -216,6 +225,7 @@
 
         @include m.mq(sp) {
           font-size: 40px;
+          top: 50%;
         }
       }
 
@@ -271,24 +281,31 @@
       }
 
       &_img01 {
-        position: absolute;
-        bottom: max(-10vw, -200px);
-        left: max(-4vw, -80px);
-        width: 31vw;
-        @include m.mq(sp) {
-          width: 100%;
-          left: 0;
-          bottom: -55vw;
+        img {
+          position: absolute;
+          bottom: max(-10vw, -200px);
+          left: max(-4vw, -80px);
+          width: 31vw;
+          height: min(23.021vw, 442px);
+          @include m.mq(sp) {
+            width: 100%;
+            left: 0;
+            bottom: -55vw;
+            height: 81.026vw;
+          }
         }
       }
 
       &_img02 {
-        position: absolute;
-        bottom: max(-25vw, -500px);
-        right: 0;
-        width: 50vw;
-        @include m.mq(sp) {
-          display: none;
+        img {
+          position: absolute;
+          bottom: max(-25vw, -500px);
+          right: 0;
+          width: 50vw;
+          height: min(29.167vw, 560px);
+          @include m.mq(sp) {
+            display: none;
+          }
         }
       }
 
@@ -327,13 +344,17 @@
       }
 
       &_img03 {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 28vw;
-        @include m.mq(sp) {
-          width: 90.256vw;
-          bottom: -10vw;
+        img {
+          position: absolute;
+          bottom: max(-5vw, -100px);
+          left: 0;
+          width: 43.073vw;
+          height: min(28vw, 536px);
+          @include m.mq(sp) {
+            width: 90.256vw;
+            bottom: -10vw;
+            height: 58.462vw;
+          }
         }
       }
 
@@ -534,7 +555,7 @@
     .top_seminars {
       background-color: m.$color-wave;
       padding-top: min(5vw, 100px);
-
+      position: relative;
       @include m.mq(sp) {
         padding-top: 60px;
         position: relative;
@@ -862,14 +883,18 @@
         padding: 25.641vw 0 33.333vw;
       }
       &_img01 {
-        position: absolute;
-        top: min(4vw, 80px);
-        left: max(-5vw, -100px);
-        width: 36vw;
-        @include m.mq(sp) {
-          top: 7.436vw;
-          left: 0;
-          width: 57.692vw;
+        img {
+          position: absolute;
+          top: min(4vw, 80px);
+          left: max(-5vw, -100px);
+          width: 36vw;
+          height: min(26.198vw, 503px);
+          @include m.mq(sp) {
+            top: 7.436vw;
+            left: 0;
+            width: 57.692vw;
+            height: 68.974vw;
+          }
         }
       }
 
@@ -1164,14 +1189,18 @@
         padding: 33.333vw 0 0;
       }
       &_img01 {
-        position: absolute;
-        top: max(-17.5vw, -350px);
-        left: max(-7.5vw, -150px);
-        width: 56vw;
-        @include m.mq(sp) {
-          width: 100%;
-          top: -70vw;
-          left: 0;
+        img {
+          position: absolute;
+          top: max(-17.5vw, -350px);
+          left: max(-7.5vw, -150px);
+          width: 56vw;
+          height: min(33.438vw, 642px);
+          @include m.mq(sp) {
+            width: 100%;
+            top: -70vw;
+            left: 0;
+            height: 129.744vw;
+          }
         }
       }
 
@@ -1188,22 +1217,29 @@
       }
 
       &_img03 {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 49vw;
-        @include m.mq(sp) {
-          display: none;
+        img {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 49vw;
+          height: min(29.167vw, 560px);
+          @include m.mq(sp) {
+            display: none;
+          }
         }
       }
       &_img04 {
-        position: absolute;
-        bottom: max(-20vw, -400px);
-        right: 0;
-        width: 36vw;
-        @include m.mq(sp) {
-          width: 92.308vw;
-          bottom: -80vw;
+        img {
+          position: absolute;
+          bottom: max(-20vw, -400px);
+          right: 0;
+          width: 36vw;
+          height: min(34.375vw, 660px);
+          @include m.mq(sp) {
+            width: 92.308vw;
+            bottom: -80vw;
+            height: 88.974vw;
+          }
         }
       }
       &__inner {
@@ -1360,16 +1396,6 @@
           width: 26.41vw;
         }
       }
-      &_img02 {
-        position: absolute;
-        bottom: max(-12.5vw, -250px);
-        left: 0;
-        width: 43vw;
-        @include m.mq(sp) {
-          bottom: -22vw;
-          width: 96.41vw;
-        }
-      }
 
       &__inner {
         display: flex;
@@ -1481,6 +1507,22 @@
           span {
             color: m.$color-white;
           }
+        }
+      }
+    }
+  }
+  .banner_contents {
+    &_img02 {
+      img {
+        position: absolute;
+        top: max(-15vw, -300px);
+        left: 0;
+        width: 43vw;
+        height: min(27.917vw, 536px);
+        @include m.mq(sp) {
+          top: -22vw;
+          width: 96.41vw;
+          height: 62.564vw;
         }
       }
     }

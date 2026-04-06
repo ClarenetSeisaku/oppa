@@ -10,9 +10,9 @@
 // layout
 // ==================================
 // これらの中でも mixin を使う場合は、各ファイル内で @use 'mixin' する必要があります
+@use "layout/common";
 @use "layout/header";
 @use "layout/footer";
-@use "layout/common";
 @use "layout/middle";
 
 // ==================================

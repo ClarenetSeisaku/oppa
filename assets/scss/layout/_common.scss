@@ -60,6 +60,38 @@ footer {
     height: auto;
   }
 }
+
+.grid_box_list {
+  display: grid;
+  gap: 20px;
+  &.grid_4_2_1 {
+    grid-template-columns: repeat(4, 1fr);
+    @include m.mq(tab) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include m.mq(sp) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &.grid_3_2_1 {
+    grid-template-columns: repeat(3, 1fr);
+    @include m.mq(tab) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include m.mq(sp) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &.grid_2_1 {
+    grid-template-columns: repeat(2, 1fr);
+    @include m.mq(sp) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &.grid_2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 /***********************
 　　　タイトル
 *************************/
@@ -126,13 +158,32 @@ footer {
   }
 }
 .sec_ttl03 {
-  font-size: clamp(18px, 2.8vw, 32px);
+  font-size: clamp(20px, 2.8vw, 32px);
   color: m.$color-navy-hover;
   font-weight: 600;
   letter-spacing: 0.125em;
   margin-bottom: 30px;
   @include m.mq(sp) {
     margin-bottom: 20px;
+  }
+}
+.sec_ttl04 {
+  font-size: clamp(18px, 2.167vw, 26px);
+  color: m.$color-navy-hover;
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  margin-bottom: 30px;
+  @include m.mq(sp) {
+    margin-bottom: 20px;
+  }
+}
+.sec_ttl05 {
+  font-size: clamp(16px, 1.667vw, 20px);
+  color: m.$color-navy-hover;
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  margin-bottom: 10px;
+  @include m.mq(sp) {
   }
 }
 
@@ -237,6 +288,26 @@ a[href*="tel:"] {
 
   &.center {
     margin: 0 auto;
+  }
+  &.pdf {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 7%;
+      width: 30px;
+      height: 30px;
+      background: transparent url("../img/common/btn_pdf.svg") no-repeat center center/contain;
+    }
+    &:after {
+      display: none;
+    }
+    &:hover {
+      &:before {
+        filter: brightness(0) invert(1);
+      }
+    }
   }
 }
 /***********************
