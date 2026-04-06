@@ -1,0 +1,160 @@
+@use "../import/mixin" as m;
+
+.wp-pagenavi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 40px auto;
+    width: 100%;
+    gap: 10px;
+    @include m.mq(tab_pc) {
+        margin: 60px 0 140px;
+    }
+
+    .pages {
+        display: none;
+    }
+
+    > * {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 !important;
+        text-align: center;
+        line-height: 1;
+        box-sizing: border-box;
+        border: 1px solid m.$color-navy-hover !important;
+        background: #fff;
+        color: m.$text-color;
+        font-size: 18px;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        font-weight: 400;
+        &.current {
+            padding: 0;
+            color: #fff;
+            background: m.$color-navy-hover;
+            font-weight: 400 !important;
+            border: 1px solid m.$color-navy-hover;
+        }
+        &:hover {
+            opacity: 0.8;
+        }
+        &.extend {
+            background: none;
+            border: none !important;
+        }
+
+        &.previouspostslink {
+            position: relative;
+            color: transparent;
+            background: #fff;
+            border: 1px solid m.$color-navy-hover !important;
+            margin-right: 10px !important;
+            &::after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                margin: auto;
+                inset: 0 auto 0 42%;
+                border-top: 1px solid m.$text-color;
+                border-left: 1px solid m.$text-color;
+                transform: rotate(-45deg);
+            }
+        }
+
+        &.nextpostslink {
+            position: relative;
+            color: transparent;
+            background: #fff;
+            border: 1px solid m.$color-navy-hover !important;
+            margin-left: 10px !important;
+            &::after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                margin: auto;
+                inset: 0 42% 0 auto;
+                border-top: 1px solid m.$text-color;
+                border-left: 1px solid m.$text-color;
+                transform: rotate(135deg);
+            }
+        }
+    }
+}
+
+.single_pagenav {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 100px;
+    align-items: center;
+    @include m.mq(sp) {
+        margin-top: 50px;
+        gap: 10px;
+    }
+
+    li {
+        &.all {
+            width: calc(100% - 160px);
+            @include m.mq(sp) {
+                width: calc(100% - 100px);
+            }
+            a {
+                display: block;
+                text-align: center;
+                font-weight: bold;
+                position: relative;
+                padding: 11px;
+                width: 100%;
+                max-width: 380px;
+                transition: 0.3s;
+                border: 2px solid m.$main-color;
+                background: #fff;
+                border-radius: 6px;
+                overflow: hidden;
+                margin: 0 auto;
+                &:hover {
+                    color: #fff;
+                    background: m.$main-color;
+                }
+            }
+        }
+        &.tip {
+            a {
+                display: block;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid m.$color-navy-hover;
+                background: #fff;
+                position: relative;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    width: 10px;
+                    height: 10px;
+                    display: block;
+                    margin: auto;
+                    border-top: 1px solid m.$text-color;
+                    border-left: 1px solid m.$text-color;
+                    transform: rotate(135deg);
+                    inset: 0 42% 0 auto;
+                }
+            }
+            &.prev {
+                a::before {
+                    transform: rotate(-45deg);
+                    inset: 0 auto 0 42%;
+                }
+            }
+        }
+    }
+}
