@@ -116,8 +116,10 @@ function body_id()
   /*  elseif (is_post_type_archive("experience") || is_singular("experience") || is_tax("experience-cat"))
    {
    $body_id = "experience";
-   } */ elseif (is_post_type_archive("seminar") || is_singular("seminar") || is_tax("seminar-cat")) {
+   } */ elseif (is_singular("seminar")) {
     $body_id = "seminar";
+  } elseif (is_post_type_archive("seminar") || is_tax("seminar-cat")) {
+    $body_id = "archive-seminar";
   } elseif (is_archive() || is_category() || is_single()) {
     $body_id = "news";
   } elseif (is_page(array('contact', 'confirm', 'thanks'))) {

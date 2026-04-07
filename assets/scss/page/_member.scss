@@ -1,0 +1,7 @@
+@use "../import/mixin" as m;
+
+#member-list {
+    .middle_mv {
+        background: url(../img/member/member_bg.png) center center / cover no-repeat;
+    }
+}

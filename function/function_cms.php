@@ -120,8 +120,29 @@ add_action('init', function () {
     'menu_position' => 20,
     'menu_icon' => 'dashicons-welcome-learn-more',
     'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+    'taxonomies' => ['seminar_category'],
     'show_in_rest' => true,
     'rewrite' => ['slug' => 'seminar'],
+  ]);
+
+  register_taxonomy('seminar_category', 'seminar', [
+    'labels' => [
+      'name' => 'Seminar Categories',
+      'singular_name' => 'Seminar Category',
+      'search_items' => 'Search Seminar Categories',
+      'all_items' => 'All Seminar Categories',
+      'edit_item' => 'Edit Seminar Category',
+      'update_item' => 'Update Seminar Category',
+      'add_new_item' => 'Add New Seminar Category',
+      'new_item_name' => 'New Seminar Category Name',
+      'menu_name' => 'Seminar Categories',
+    ],
+    'public' => true,
+    'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'show_in_rest' => true,
+    'rewrite' => ['slug' => 'seminar-category'],
   ]);
 });
 ?>

@@ -1,6 +1,14 @@
 @use "../import/mixin" as m;
 
 #seminar {
+    .pankuzu_wrap {
+        margin-top: 34px;
+
+        .sec_inner {
+            width: 100%;
+        }
+    }
+
     .middle {
         background-color: #F4F7F9;
 
@@ -8,11 +16,380 @@
             margin-bottom: 0;
         }
     }
+}
 
-    .section-wrap {
+#archive-seminar {
+    .middle_mv {
+        background: url(../img/seminar/seminar_bg.png) center center / cover no-repeat;
+    }
+}
 
-        max-width: 1200px;
-        margin: auto;
+#seminar,
+#archive-seminar {
+    .seminar-archive {
+        &__section {
+            padding-bottom: 90px;
+        }
+
+        &__terms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 80px;
+
+            a {
+                position: relative;
+                display: inline-block;
+                font-size: 18px;
+                line-height: 1.4;
+                color: #2b3d56;
+                letter-spacing: 0.18em;
+                --seminar-tab-color: #1C4C83;
+                padding-bottom: 14px;
+                text-decoration: none;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: var(--seminar-tab-color);
+                    opacity: 0.5;
+                }
+
+                &.is-active,
+                &:hover {
+                    color: var(--seminar-tab-color);
+
+                    &::after {
+                        opacity: 1;
+                        background: var(--seminar-tab-color);
+                    }
+                }
+            }
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 34px;
+
+            @include m.mq(sp) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        &__empty {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #2a2a2a;
+        }
+
+        &__pager {
+            margin-top: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 34px;
+
+            @include m.mq(sp) {
+                gap: 14px;
+                margin-top: 36px;
+            }
+        }
+
+        &__pager-arrow {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #AFCCDA;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #004386;
+            text-decoration: none;
+            font-size: 46px;
+            line-height: 1;
+            transition: opacity 0.2s ease;
+
+            span {
+                font-size: 24px;
+            }
+
+            &:hover {
+                opacity: 0.8;
+                background-color: #004386;
+                color: white;
+            }
+
+            &.is-disabled {
+                opacity: 0.35;
+                pointer-events: none;
+            }
+
+            @include m.mq(sp) {
+                width: 54px;
+                height: 54px;
+                font-size: 28px;
+            }
+        }
+
+        &__pager-numbers {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 20px;
+            line-height: 1;
+
+            .page-numbers {
+                color: #333;
+                text-decoration: none;
+                position: relative;
+                padding-bottom: 8px;
+
+                &.current {
+                    color: #004386;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        height: 1px;
+                        background: #004386;
+                    }
+                }
+            }
+
+            .dots {
+                color: #6f6f6f;
+                padding-bottom: 8px;
+            }
+
+            @include m.mq(sp) {
+                gap: 14px;
+                font-size: 26px;
+            }
+        }
+    }
+
+    .seminar-card {
+        background: #F4F7F9;
+        border-radius: 6px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &__thumb-link {
+            display: block;
+        }
+
+        &__thumb {
+            aspect-ratio: 16 / 11.7;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        &__body {
+            padding: 30px 28px;
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+            height: 100%;
+        }
+
+        &__term {
+            display: inline-block;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1;
+            padding: 5px 13px;
+            border-radius: 2px;
+
+            width: fit-content;
+        }
+
+        &__title {
+            font-size: 20px;
+            line-height: 1.55;
+            letter-spacing: 0.03em;
+            margin-top: 5px;
+
+
+            a {
+                color: #1f3555;
+                text-decoration: none;
+            }
+        }
+
+        &__status {
+            background-color: white;
+            border: 1px solid #d98f86;
+            color: #b04d40;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+            padding: 5px 6px;
+            margin-top: 12px;
+
+
+            &+.seminar-card__meta {
+                margin-top: 20px;
+            }
+        }
+
+        &__meta {
+            margin-top: 12px;
+            margin-bottom: 16px;
+
+            >div+div {
+                margin-top: 8px;
+            }
+
+            dt {
+                background: #dce5ee;
+                color: #375b81;
+                font-size: 14px;
+                line-height: 1;
+                width: fit-content;
+                padding: 4px 16px;
+                margin-bottom: 6px;
+                border-radius: 2px;
+            }
+
+            dd {
+                font-size: 16px;
+                line-height: 1.7;
+                color: #2f2f2f;
+                word-break: break-word;
+
+                .is-strong {
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .commonBtn {
+            max-width: 304px;
+            height: 50px;
+            font-size: 14px;
+            margin: auto auto 0;
+        }
+
+        &__link {
+            margin-top: auto;
+            border: 1px solid #adc0d4;
+            border-radius: 2px;
+            text-align: center;
+            padding: 10px 12px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #1f3555;
+            text-decoration: none;
+            position: relative;
+            transition: opacity 0.2s ease;
+
+            &::after {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-top: 2px solid #456d98;
+                border-right: 2px solid #456d98;
+                transform: rotate(45deg);
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                margin-top: -4px;
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .seminar-wrap {
+        position: relative;
+        margin: 114px auto 0;
+        padding-bottom: 356px;
+
+        .cloud1 {
+            position: absolute;
+            top: -4%;
+            right: 0;
+            width: 56vw;
+        }
+
+        .cloud2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 56vw;
+        }
+
+        .kamome_img {
+            position: absolute;
+            top: max(-3vw, -100px);
+            right: min(32vw, 585px);
+            width: min(6vw, 110px);
+        }
+
+        .wave_img {
+            position: absolute;
+            bottom: 7.5%;
+            left: 10%;
+            width: min(14vw, 263px);
+
+            img {
+                transform: scaleX(-1);
+            }
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        &__container {
+            max-width: 1280px;
+            margin: auto;
+            padding: 0 40px;
+        }
+
+        &__terms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        &__term {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 13px;
+            line-height: 1;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+
+            @include m.mq(sp) {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
 
         &__subtitle {
             font-size: 26px;
@@ -55,7 +432,7 @@
         &__heading {
             font-size: 32px;
             line-height: 1.35;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.14em;
             color: #1f4068;
             margin-bottom: 28px;
             font-weight: 600;
@@ -147,8 +524,16 @@
             height: 310px;
             border-radius: 4px;
             background: #c6c8cc;
+            overflow: hidden;
             flex-shrink: 0;
             margin-top: 10px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
 
             @include m.mq(sp) {
                 width: 100%;
@@ -169,7 +554,7 @@
             font-size: 22px;
             line-height: 1.6;
             padding: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 42px;
 
             @include m.mq(sp) {
                 font-size: 15px;
@@ -186,7 +571,7 @@
             th,
             td {
                 border-top: 1px solid #d8dde3;
-                padding: 14px 10px;
+                padding: 15px 13px;
                 vertical-align: top;
                 font-size: 16px;
                 line-height: 1.9;
@@ -297,7 +682,5 @@
                 margin-bottom: 10px;
             }
         }
-
-
     }
 }
