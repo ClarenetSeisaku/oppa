@@ -632,11 +632,9 @@
 
             &::after {
                 content: "";
-                width: 16px;
-                height: 16px;
-                border-right: 2px solid #5a7696;
-                border-bottom: 2px solid #5a7696;
-                transform: rotate(-45deg);
+                width: 30px;
+                height: 30px;
+                background: url(../img/common/btn_pdf.svg) no-repeat;
                 flex-shrink: 0;
             }
 
