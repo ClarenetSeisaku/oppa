@@ -27,6 +27,15 @@
         height: 100%;
         z-index: -1;
 
+        /* 動画をカバーさせる */
+        .hero__video {
+          position: absolute;
+          inset: 0; /* top:0 right:0 bottom:0 left:0 */
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* 中央トリミングでカバー */
+        }
+
         &::after {
           content: "";
           position: absolute;
@@ -55,8 +64,24 @@
         @include m.mq(sp) {
           padding-top: 0;
         }
+        /* ビデオボタンの挙動 */
+        .video-stop-btn {
+          width: 34px;
+          height: 34px;
+          svg {
+            width: 100%;
+          }
+        }
+        .icon-play {
+          display: none;
+        }
+        .video-stop-btn.is-play .icon-play {
+          display: block;
+        }
+        .video-stop-btn.is-play .icon-pause {
+          display: none;
+        }
       }
-
       &__title {
         font-size: clamp(36px, 4vw, 60px);
         line-height: 1.5;

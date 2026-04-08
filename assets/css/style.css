@@ -3332,6 +3332,14 @@ footer {
   width: 100%;
   height: 100%;
   z-index: -1;
+  /* 動画をカバーさせる */
+}
+#index main .top_mv__bg .hero__video {
+  position: absolute;
+  inset: 0; /* top:0 right:0 bottom:0 left:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 中央トリミングでカバー */
 }
 #index main .top_mv__bg::after {
   content: "";
@@ -3357,6 +3365,25 @@ footer {
   #index main .top_mv__inner {
     padding-top: 0;
   }
+}
+#index main .top_mv__inner {
+  /* ビデオボタンの挙動 */
+}
+#index main .top_mv__inner .video-stop-btn {
+  width: 34px;
+  height: 34px;
+}
+#index main .top_mv__inner .video-stop-btn svg {
+  width: 100%;
+}
+#index main .top_mv__inner .icon-play {
+  display: none;
+}
+#index main .top_mv__inner .video-stop-btn.is-play .icon-play {
+  display: block;
+}
+#index main .top_mv__inner .video-stop-btn.is-play .icon-pause {
+  display: none;
 }
 #index main .top_mv__title {
   font-size: clamp(36px, 4vw, 60px);

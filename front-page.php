@@ -15,10 +15,18 @@ get_header();
 
         <!-- 背景画像 -->
         <div class="top_mv__bg">
-            <picture>
-                <!-- <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/top/mv.jpg"> -->
-                <img src="<?php echo imdir(); ?>/top/top_mv@2x.jpg" alt="">
-            </picture>
+            <video id="heroVideo"
+                class="hero__video"
+                playsinline
+                autoplay
+                muted
+                loop
+                loading="eager"
+                poster="<?php echo imdir(); ?>/top/top_mv.jpg">
+                <source src="<?php echo imdir(); ?>/top/oppa_mv.mp4" type="video/mp4">
+                <!-- fallback text -->
+                このブラウザは動画をサポートしていません。
+            </video>
         </div>
 
         <!-- キャッチコピー -->
@@ -29,11 +37,15 @@ get_header();
             </h2>
             <p class="top_mv__subtitle">Osaka Port Promotion Association</p>
             <!-- 左下のストップボタン -->
-            <button id="stopBtn" class="video-stop-btn" aria-label="動画停止">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <button id="stopBtn" class="video-stop-btn is-pause">
+                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none" class="icon-pause">
                     <rect x="0.5" y="0.5" width="33" height="33" rx="3.5" stroke="#DCE1E5" />
                     <path d="M14 11V23" stroke="#DCE1E5" />
                     <path d="M20 11V23" stroke="#DCE1E5" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none" class="icon-play">
+                    <rect x="0.5" y="0.5" width="33" height="33" rx="3.5" stroke="#DCE1E5" />
+                    <path d="M12.5 22.1914L12.5 11.8086L22.8818 17L12.5 22.1914Z" stroke="#DCE1E5" />
                 </svg>
             </button>
         </div>
