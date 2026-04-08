@@ -28,7 +28,7 @@
 #archive-seminar {
     .seminar-archive {
         &__section {
-            padding-bottom: 90px;
+            padding-bottom: 160px;
         }
 
         &__terms {
@@ -37,10 +37,14 @@
             gap: 40px;
             margin-bottom: 80px;
 
+            @include m.mq(sp) {
+                margin-bottom: 30px;
+            }
+
             a {
                 position: relative;
                 display: inline-block;
-                font-size: 18px;
+                font-size: clamp(14px, 2vw, 18px);
                 line-height: 1.4;
                 color: #2b3d56;
                 letter-spacing: 0.18em;
@@ -76,13 +80,17 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 34px;
 
+            @include m.mq(tab) {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
             @include m.mq(sp) {
                 grid-template-columns: 1fr;
             }
         }
 
         &__empty {
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             line-height: 1.8;
             color: #2a2a2a;
         }
@@ -115,7 +123,7 @@
             transition: opacity 0.2s ease;
 
             span {
-                font-size: 24px;
+                font-size: clamp(18px, 3vw, 24px);
             }
 
             &:hover {
@@ -130,9 +138,8 @@
             }
 
             @include m.mq(sp) {
-                width: 54px;
-                height: 54px;
-                font-size: 28px;
+                width: 40px;
+                height: 40px;
             }
         }
 
@@ -140,7 +147,7 @@
             display: inline-flex;
             align-items: center;
             gap: 24px;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             line-height: 1;
 
             .page-numbers {
@@ -171,7 +178,7 @@
 
             @include m.mq(sp) {
                 gap: 14px;
-                font-size: 26px;
+                // font-size: 26px;
             }
         }
     }
@@ -220,7 +227,7 @@
         }
 
         &__title {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             line-height: 1.55;
             letter-spacing: 0.03em;
             margin-top: 5px;
@@ -268,14 +275,19 @@
             }
 
             dd {
-                font-size: 16px;
+                font-size: clamp(14px, 3vw, 16px);
                 line-height: 1.7;
                 color: #2f2f2f;
                 word-break: break-word;
 
                 .is-strong {
-                    font-size: 18px;
+                    // font-size: clamp(14px, 2vw, 18px);
+                    font-size: 112.5%;
                     font-weight: 700;
+                }
+
+                p {
+                    font-size: clamp(14px, 3vw, 16px);
                 }
             }
         }
@@ -322,7 +334,12 @@
     .seminar-wrap {
         position: relative;
         margin: 114px auto 0;
-        padding-bottom: 356px;
+        padding-bottom: 168px;
+
+        @include m.mq(sp) {
+            margin-top: 70px;
+            padding-bottom: 108px;
+        }
 
         .cloud1 {
             position: absolute;
@@ -347,9 +364,13 @@
 
         .wave_img {
             position: absolute;
-            bottom: 7.5%;
+            bottom: -30px;
             left: 10%;
             width: min(14vw, 263px);
+
+            @include m.mq(sp) {
+                bottom: 1%;
+            }
 
             img {
                 transform: scaleX(-1);
@@ -365,6 +386,10 @@
             max-width: 1280px;
             margin: auto;
             padding: 0 40px;
+
+            @include m.mq(sp) {
+                padding: 0 4vw;
+            }
         }
 
         &__terms {
@@ -392,6 +417,8 @@
         }
 
         &__subtitle {
+            position: relative;
+            z-index: 10;
             font-size: 26px;
             line-height: 1.7;
             letter-spacing: 0.10em;
@@ -404,13 +431,15 @@
         }
 
         &__title {
-            font-size: 38px;
+            position: relative;
+            z-index: 10;
+            font-size: clamp(26px, 3vw, 38px);
             line-height: 1.45;
             letter-spacing: 0.1em;
             font-weight: 600;
 
             @include m.mq(sp) {
-                font-size: 28px;
+                //font-size: clamp(22px, 3vw, 28px);
                 margin-bottom: 32px;
             }
         }
@@ -430,21 +459,21 @@
         }
 
         &__heading {
-            font-size: 32px;
+            font-size: clamp(24px, 3vw, 32px);
             line-height: 1.35;
             letter-spacing: 0.14em;
             color: #1f4068;
-            margin-bottom: 28px;
+            margin-bottom: 25px;
             font-weight: 600;
 
             @include m.mq(sp) {
-                font-size: 30px;
+                //font-size: 30px;
                 margin-bottom: 18px;
             }
         }
 
         &__content {
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             line-height: 1.8;
             letter-spacing: 0.08em;
 
@@ -460,17 +489,25 @@
 
         &__card--detail {
             margin-top: 88px;
+
+            @include m.mq(sp) {
+                margin-top: 40px;
+            }
         }
 
         &__card--speaker {
             display: flex;
             justify-content: space-between;
             gap: 86px;
-            padding-right: 90px;
+
+            @include m.mq(pc) {
+                padding-right: 90px;
+            }
 
             @include m.mq(sp) {
                 flex-direction: column;
                 gap: 20px;
+
             }
 
             .section-wrap__heading {
@@ -484,7 +521,7 @@
         }
 
         &__speaker-role {
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             line-height: 1.8;
             letter-spacing: 0.08em;
             margin-bottom: 8px;
@@ -495,7 +532,7 @@
         }
 
         &__speaker-name {
-            font-size: 24px;
+            font-size: clamp(18px, 5vw, 24px);
             line-height: 1.4;
             color: #111;
             letter-spacing: 0.1em;
@@ -503,13 +540,12 @@
             font-weight: 600;
 
             @include m.mq(sp) {
-                font-size: 26px;
                 margin-bottom: 16px;
             }
         }
 
         &__speaker-bio {
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             line-height: 1.8;
             letter-spacing: 0.08em;
             color: #333;
@@ -573,7 +609,7 @@
                 border-top: 1px solid #d8dde3;
                 padding: 15px 13px;
                 vertical-align: top;
-                font-size: 16px;
+                font-size: clamp(14px, 3vw, 16px);
                 line-height: 1.9;
                 letter-spacing: 0.06em;
                 color: #333;
@@ -622,10 +658,10 @@
             max-width: 490px;
             border: 1px solid #bdd2e4;
             border-radius: 3px;
-            padding: 6px 29px;
+            padding: 6px 20px 6px 28px;
             color: #2a2a2a;
             text-decoration: none;
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             line-height: 1.6;
             letter-spacing: 0.06em;
             transition: opacity 0.2s ease;
@@ -651,34 +687,43 @@
     }
 
     .seminar-entry {
-        padding-top: 100px;
+        padding-top: 52px;
         background-color: white;
 
+        >* {
+            padding: 0 40px;
+
+            @include m.mq(sp) {
+                padding: 0 4vw;
+            }
+        }
+
         &__title {
-            font-size: 32px;
+            font-size: clamp(24px, 3vw, 32px);
             line-height: 1.45;
             letter-spacing: 0.1em;
             text-align: center;
 
             @include m.mq(sp) {
-                font-size: 28px;
                 margin-bottom: 32px;
+                text-align: left;
             }
         }
 
         &__subtitle {
-            font-size: 38px;
+            font-size: clamp(26px, 3vw, 38px);
             line-height: 1.7;
             letter-spacing: 0.1em;
             font-weight: 600;
             text-align: center;
             margin-top: 6px;
-            margin-bottom: 70px;
+            margin-bottom: 66px;
 
             @include m.mq(sp) {
-                font-size: 14px;
                 margin-bottom: 10px;
             }
         }
+
+        &__form {}
     }
 }
