@@ -40,6 +40,29 @@ function my_theme_enqueue_assets()
             true
         );
     }
+    // =========================
+    // shipページだけ読み込む
+    // =========================
+    if (is_page('ship')) {
+        wp_enqueue_style(
+            'scroll-hint-css',
+            'https://unpkg.com/scroll-hint@1.1.10/css/scroll-hint.css'
+        );
+        wp_enqueue_script(
+            'ship-script',
+            get_template_directory_uri() . '/assets/js/ship.js',
+            array('jquery'),
+            filemtime(get_template_directory() . '/assets/js/ship.js'),
+            true
+        );
+        wp_enqueue_script(
+            'scroll-hint',
+            'https://unpkg.com/scroll-hint@1.1.10/js/scroll-hint.min.js',
+            [],
+            null,
+            true
+        );
+    }
     // 1. CSS（SCSSからコンパイルされたやつ）の読み込み
     wp_enqueue_style(
         'my-main-style',                                // 識別名（ハンドル名）

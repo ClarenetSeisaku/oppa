@@ -7,38 +7,48 @@
     flex-wrap: wrap;
     margin: 40px auto;
     width: 100%;
-    gap: 10px;
+    gap: 30px;
     @include m.mq(tab_pc) {
-        margin: 60px 0 140px;
+        margin: 80px 0 200px;
     }
-
+    @include m.mq(sp) {
+        gap: 20px;
+    }
     .pages {
         display: none;
     }
 
     > * {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 !important;
         text-align: center;
         line-height: 1;
-        box-sizing: border-box;
-        border: 1px solid m.$color-navy-hover !important;
-        background: #fff;
-        color: m.$text-color;
-        font-size: 18px;
-        font-family: "Zen Kaku Gothic New", sans-serif;
+        color: m.$main-color;
+        font-size: 20px;
+        font-family: "Shippori Mincho B1", serif;
         font-weight: 400;
+        font-style: normal;
+        border: none !important;
+        padding: 0 !important;
+        @include m.mq(sp) {
+            font-size: 18px;
+        }
         &.current {
-            padding: 0;
-            color: #fff;
-            background: m.$color-navy-hover;
+            color: m.$color-light-navy;
             font-weight: 400 !important;
-            border: 1px solid m.$color-navy-hover;
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%; /* 直線の長さ */
+                height: 1px; /* 直線の太さ */
+                background-color: m.$color-light-navy;
+            }
         }
         &:hover {
             opacity: 0.8;
@@ -47,42 +57,95 @@
             background: none;
             border: none !important;
         }
-
-        &.previouspostslink {
+        &.previouspostslink,
+        &.nextpostslink {
             position: relative;
+            border: 1px solid m.$color-border !important;
+            width: 60px;
+            height: 60px;
+            background-color: #ffffff;
             color: transparent;
-            background: #fff;
-            border: 1px solid m.$color-navy-hover !important;
-            margin-right: 10px !important;
+            transition: all 0.3s;
+            border-radius: 4px;
+            cursor: pointer;
+            @include m.mq(sp) {
+                width: 40px;
+                height: 40px;
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 28px; /* 直線の長さ */
+                height: 1px; /* 直線の太さ */
+                background-color: m.$color-light-navy; /* 直線の色 */
+                transition: all 0.3s ease;
+                @include m.mq(sp) {
+                    top: 20px;
+                    width: 22px;
+                }
+            }
             &::after {
                 content: "";
-                width: 10px;
-                height: 10px;
                 position: absolute;
-                margin: auto;
-                inset: 0 auto 0 42%;
-                border-top: 1px solid m.$text-color;
-                border-left: 1px solid m.$text-color;
-                transform: rotate(-45deg);
+                top: 26px;
+                transition: all 0.3s ease;
+                @include m.mq(sp) {
+                    top: 16px;
+                }
+            }
+            &:hover {
+                opacity: 1;
+                background-color: m.$color-light-navy;
+                border: 1px solid m.$color-light-navy !important;
+                &:before {
+                    background-color: #fff; /* 直線の色 */
+                }
+            }
+        }
+        &.previouspostslink {
+            margin-right: 20px !important;
+            @include m.mq(sp) {
+                margin-right: 10px !important;
+            }
+            &::after {
+                left: 16px; /* ボタン右端からの位置 */
+                /* CSSのborder機能を使って三角形を作るテクニック */
+                border-style: solid;
+                border-width: 4px 5px 4px 0px; /* 上4px、右0、下4px、左5px */
+                border-color: transparent m.$color-light-navy transparent transparent; /* 左側だけ色をつけて右向き三角に */
+                @include m.mq(sp) {
+                    left: 9px;
+                }
+            }
+            &:hover {
+                &:after {
+                    border-color: transparent #fff transparent transparent;
+                }
             }
         }
 
         &.nextpostslink {
-            position: relative;
-            color: transparent;
-            background: #fff;
-            border: 1px solid m.$color-navy-hover !important;
-            margin-left: 10px !important;
+            margin-left: 20px !important;
+            @include m.mq(sp) {
+                margin-left: 10px !important;
+            }
             &::after {
-                content: "";
-                width: 10px;
-                height: 10px;
-                position: absolute;
-                margin: auto;
-                inset: 0 42% 0 auto;
-                border-top: 1px solid m.$text-color;
-                border-left: 1px solid m.$text-color;
-                transform: rotate(135deg);
+                right: 16px; /* ボタン右端からの位置 */
+                /* CSSのborder機能を使って三角形を作るテクニック */
+                border-style: solid;
+                border-width: 4px 0 4px 5px; /* 上4px、右0、下4px、左5px */
+                border-color: transparent transparent transparent m.$color-light-navy; /* 左側だけ色をつけて右向き三角に */
+                @include m.mq(sp) {
+                    right: 9px;
+                }
+            }
+            &:hover {
+                &:after {
+                    border-color: transparent transparent transparent #fff;
+                }
             }
         }
     }

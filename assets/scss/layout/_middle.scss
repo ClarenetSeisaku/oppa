@@ -100,9 +100,9 @@
         font-weight: 600;
         letter-spacing: 0.125em;
         margin-bottom: 30px;
-        line-height: 1;
+        line-height: 1.2;
         @include m.mq(sp) {
-            font-size: 32px;
+            font-size: 30px;
             margin-bottom: 20px;
         }
     }
