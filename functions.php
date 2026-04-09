@@ -114,6 +114,8 @@ function body_id()
     $body_id = "index";
   } elseif (is_post_type_archive("topics") || is_singular("topics") || is_tax("topics-category")) {
     $body_id = "topics";
+  } elseif (is_post_type_archive("press") || is_singular("press") || is_tax("press-category")) {
+    $body_id = "press";
   } elseif (is_singular("seminar")) {
     $body_id = "seminar";
   } elseif (is_post_type_archive("seminar") || is_tax("seminar-cat")) {

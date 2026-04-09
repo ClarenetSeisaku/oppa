@@ -208,11 +208,6 @@
             display: flex;
             width: fit-content;
             animation: flow-left 40s linear infinite; // 秒数を変えると速度が変わります
-
-            // マウスホバーで一時停止
-            &:hover {
-                animation-play-state: paused;
-            }
             img {
                 height: 350px; // PCでの高さ
                 width: auto;

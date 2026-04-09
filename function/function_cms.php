@@ -30,6 +30,34 @@ function new_post_type()
       'show_in_rest' => true,
     )
   );
+  register_post_type(
+    'press',
+    array(
+      'label' => 'グッズ・刊行物',
+      'public' => true,
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'menu_position' => 4,
+      'supports' => array(
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+      ),
+    )
+  );
+  register_taxonomy(
+    'press-category', // カスタム分類名
+    'press', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => 'カテゴリー',
+      'singular_label' => 'カテゴリー',
+      'public' => true,
+      'show_ui' => true,
+      'show_in_rest' => true,
+    )
+  );
 }
 
 
