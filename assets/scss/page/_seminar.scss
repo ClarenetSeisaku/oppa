@@ -666,6 +666,10 @@
             letter-spacing: 0.06em;
             transition: opacity 0.2s ease;
 
+            & + .seminar-wrap__summary-link {
+                margin-top: 10px;
+            }
+
             &::after {
                 content: "";
                 width: 30px;

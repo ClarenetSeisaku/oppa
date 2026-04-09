@@ -611,7 +611,6 @@ footer {
 }
 @media only screen and (max-width: 768px) {
   .commonBtn {
-    width: 84vw;
     height: 50px;
   }
 }
@@ -6827,6 +6826,10 @@ footer {
   line-height: 1.6;
   letter-spacing: 0.06em;
   transition: opacity 0.2s ease;
+}
+#seminar .seminar-wrap__summary-link + .seminar-wrap__summary-link,
+#archive-seminar .seminar-wrap__summary-link + .seminar-wrap__summary-link {
+  margin-top: 10px;
 }
 #seminar .seminar-wrap__summary-link::after,
 #archive-seminar .seminar-wrap__summary-link::after {

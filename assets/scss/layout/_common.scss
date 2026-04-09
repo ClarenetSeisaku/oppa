@@ -213,7 +213,7 @@ a[href*="tel:"] {
   letter-spacing: 0.1em;
   overflow: hidden;
   @include m.mq(sp) {
-    width: 84vw;
+    // width: 84vw;
     height: 50px;
   }
   span {
