@@ -318,7 +318,9 @@ get_header();
         <section class="seminar-entry">
             <h2 class="seminar-entry__title">タイトルが入ります。ダミーです。タイトルが入ります。</h2>
             <h3 class="seminar-entry__subtitle">お申込みフォーム</h3>
-            <?php echo do_shortcode('[seminar_entry_form]'); ?>
+            <div id="form" class="seminar-entry__form">
+                <?php echo do_shortcode('[seminar_entry_form]'); ?>
+            </div>
         </section>
     <?php endwhile; ?>
 
