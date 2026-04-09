@@ -25,6 +25,16 @@
   text-align: center;
 }
 
+.kome {
+  position: relative;
+  padding-left: 1em;
+  &:before {
+    content: "※";
+    position: absolute;
+    left: 0;
+  }
+}
+
 main {
   display: block;
   width: 100%;
@@ -198,6 +208,21 @@ a[href*="tel:"] {
   }
 }
 
+.link_text {
+  text-decoration: underline;
+  padding-right: 26px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    right: 0;
+    bottom: 0;
+    background: url("../img/common/link_mark.svg") no-repeat center center/contain;
+  }
+}
+
 .commonBtn {
   background: m.$color-white;
   position: relative;
@@ -299,6 +324,9 @@ a[href*="tel:"] {
       width: 30px;
       height: 30px;
       background: transparent url("../img/common/btn_pdf.svg") no-repeat center center/contain;
+      @media only screen and (max-width: 1100px) {
+        right: 1%;
+      }
     }
     &:after {
       display: none;
@@ -308,6 +336,38 @@ a[href*="tel:"] {
         filter: brightness(0) invert(1);
       }
     }
+  }
+}
+/***********************
+　　　横スクロール
+*************************/
+
+.js-scrollable {
+  > * {
+    min-width: 1300px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.scroll_design {
+  scrollbar-color: m.$color-navy-hover #fff;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    /* スクロールバー全体の幅 */
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    /* スクロールバーの背景 (トラック) */
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    /* スクロールバーのつまみ (thumb) */
+    border-radius: 5px;
+    background-color: m.$color-navy-hover;
   }
 }
 /***********************

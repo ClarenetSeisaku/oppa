@@ -58,6 +58,7 @@
                     letter-spacing: 0.1em; /* 少し文字間隔を空ける */
                     transition: background-color 0.2s ease;
                     @include m.mq(sp) {
+                        font-size: 16px;
                         padding: 16px 10px;
                     }
                     &:hover {
