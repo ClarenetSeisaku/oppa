@@ -593,6 +593,11 @@ footer {
   letter-spacing: 0.125em;
   margin-bottom: 10px;
 }
+.sec_ttl05.border_bottom {
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
 /***********************
 　　　リンク
 *************************/
@@ -636,6 +641,7 @@ footer {
 }
 @media only screen and (max-width: 768px) {
   .commonBtn {
+    width: 84vw;
     height: 50px;
   }
 }
@@ -7037,6 +7043,12 @@ footer {
   transition: height 0.3s ease, background-color 0.3s ease;
   background-color: #1c4c83;
 }
+#press .category-list li a.cat-goods:before {
+  background-color: rgba(167, 145, 58, 0.5);
+}
+#press .category-list li a.cat-publications:before {
+  background-color: rgba(70, 132, 146, 0.5);
+}
 #press .category-list li a:hover {
   color: #1c4c83;
 }
@@ -7059,16 +7071,31 @@ footer {
   max-width: 490px;
   margin-bottom: 20px;
 }
+@media only screen and (max-width: 768px) {
+  #press .press_list li a figure {
+    margin-bottom: 10px;
+  }
+}
 #press .press_list li a figure img {
   width: 100%;
   height: 480px;
   object-fit: cover;
   border-radius: 6px;
 }
+@media only screen and (max-width: 768px) {
+  #press .press_list li a figure img {
+    height: 300px;
+  }
+}
 #press .press_list li a .press_ttl {
   font-size: 20px;
   font-weight: 600;
   color: #244668;
+}
+@media only screen and (max-width: 768px) {
+  #press .press_list li a .press_ttl {
+    font-size: 16px;
+  }
 }
 #press {
   /* 一覧・カテゴリーページここまで */
@@ -7076,10 +7103,12 @@ footer {
 }
 #press #press_single {
   margin-top: 120px;
+  padding-bottom: 300px;
 }
 @media only screen and (max-width: 768px) {
   #press #press_single {
     margin-top: 50px;
+    padding-bottom: 100px;
   }
 }
 #press #press_single p {
@@ -7126,12 +7155,18 @@ footer {
   text-align: center;
   background: #dee5ed;
 }
+#press #press_single .grid_box_list .press_flex .press_price_box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 #press #press_single .grid_box_list .press_flex .press_price_box dl {
   display: flex;
   gap: 20px;
   width: 175px;
   justify-content: space-between;
   align-items: center;
+  line-height: 1.2;
 }
 @media only screen and (max-width: 768px) {
   #press #press_single .grid_box_list .press_flex .press_price_box dl {
@@ -7174,15 +7209,15 @@ footer {
   position: absolute;
   left: 0;
 }
-#press #press_single .grid_box_list .img_box {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-}
 @media only screen and (max-width: 768px) {
   #press #press_single .grid_box_list .img_box {
     order: -1;
   }
+}
+#press #press_single .grid_box_list .img_box img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
 }
 #press #press_single .press_contents .light_blue_box {
   background-color: #f4f7f9;

@@ -36,6 +36,16 @@
             background-color 0.3s ease;
           background-color: m.$color-navy-hover;
         }
+        &.cat-goods {
+          &:before {
+            background-color: rgba(167, 145, 58, 0.5);
+          }
+        }
+        &.cat-publications {
+          &:before {
+            background-color: rgba(70, 132, 146, 0.5);
+          }
+        }
         &:hover {
           color: m.$color-navy-hover;
           &:before {
@@ -63,17 +73,26 @@
           width: 100%;
           max-width: 490px;
           margin-bottom: 20px;
+          @include m.mq(sp) {
+            margin-bottom: 10px;
+          }
           img {
             width: 100%;
             height: 480px;
             object-fit: cover;
             border-radius: 6px;
+            @include m.mq(sp) {
+              height: 300px;
+            }
           }
         }
         .press_ttl {
           font-size: 20px;
           font-weight: 600;
           color: m.$color-light-navy;
+          @include m.mq(sp) {
+            font-size: 16px;
+          }
         }
       }
     }
@@ -83,8 +102,13 @@
   /*  詳細ページここから */
   #press_single {
     margin-top: 120px;
+    padding-bottom: 300px;
     @include m.mq(sp) {
       margin-top: 50px;
+      padding-bottom: 100px;
+    }
+
+    @include m.mq(sp) {
     }
     p {
       color: m.$main-color;
@@ -123,12 +147,16 @@
           background: m.$color-info-bg;
         }
         .press_price_box {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
           dl {
             display: flex;
             gap: 20px;
             width: 175px;
             justify-content: space-between;
             align-items: center;
+            line-height: 1.2;
             @include m.mq(sp) {
               width: auto;
             }
@@ -168,11 +196,13 @@
         }
       }
       .img_box {
-        width: 100%;
-        height: auto;
-        border-radius: 6px;
         @include m.mq(sp) {
           order: -1;
+        }
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 6px;
         }
       }
     }

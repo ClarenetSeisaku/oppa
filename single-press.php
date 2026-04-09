@@ -26,23 +26,38 @@ get_header();
           <div class="press_flex">
             <p class="press_tag">販売価格</p>
             <div class="press_price_box">
-              <dl>
-                <dt>会員価格</dt>
-                <dd><span>700</span>円</dd>
-              </dl>
-              <dl>
-                <dt>一般価格</dt>
-                <dd><span>1,500</span>円</dd>
-              </dl>
+              <?php if (get_field('memberprice_text')): ?>
+                <dl>
+                  <dt>会員価格</dt>
+                  <dd><span><?php the_field('memberprice_text'); ?></span>円</dd>
+                </dl>
+              <?php endif; ?>
+              <?php if (get_field('generalprice')): ?>
+                <dl>
+                  <dt>一般価格</dt>
+                  <dd><span><?php the_field('generalprice'); ?></span>円</dd>
+                </dl>
+              <?php endif; ?>
             </div>
           </div>
           <div class="light_blue_box">
-            <p class="mb20">サイズ：B４横、型式：壁掛けタイプ、<br>
-              ページ数：16 ページ、カラー版 （仕様は昨年と同じ）<br>2か月で１ページ、6 枚の写真（クルーズ客船、フェリーの入出港、コンテナターミナル等）で構成</p>
-            <p class="asterisk"></p>
+            <p class="mb20"><?php the_field('press_explanation'); ?></p>
+            <?php if (have_rows('asterisk_repeat')): ?>
+              <?php while (have_rows('asterisk_repeat')): the_row(); ?>
+                <?php
+                $asterisk = get_sub_field('asterisk_text');
+                ?>
+                <p class="asterisk"><?= esc_html($asterisk); ?></p>
+              <?php endwhile; ?>
+            <?php endif; ?>
           </div>
         </div>
-        <div class="box img_box"><img src="<?php echo imdir(); ?>/press/good_dummy.png" alt="グッズ・刊行物の写真"></div>
+        <div class="box img_box"><?php if (has_post_thumbnail()) : ?>
+            <?php the_post_thumbnail('medium'); ?>
+          <?php else: ?>
+            <img src="<?php echo imdir(); ?>/press/good_dummy.png" alt="ダミー画像">
+          <?php endif; ?>
+        </div>
       </div>
       <div class="press_contents">
         <div class="light_blue_box">

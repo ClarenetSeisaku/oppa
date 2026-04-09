@@ -23,8 +23,8 @@ function new_post_type()
     'topics', // カスタム分類を使用する投稿タイプ名
     array(
       'hierarchical' => true,
-      'label' => 'カテゴリー',
-      'singular_label' => 'カテゴリー',
+      'label' => 'トピックスカテゴリー',
+      'singular_label' => 'トピックスカテゴリー',
       'public' => true,
       'show_ui' => true,
       'show_in_rest' => true,
@@ -43,6 +43,7 @@ function new_post_type()
         'editor',
         'thumbnail',
         'revisions',
+        'custom-fields',
       ),
     )
   );
@@ -51,14 +52,29 @@ function new_post_type()
     'press', // カスタム分類を使用する投稿タイプ名
     array(
       'hierarchical' => true,
-      'label' => 'カテゴリー',
-      'singular_label' => 'カテゴリー',
+      'label' => 'グッズ・刊行物カテゴリー',
+      'singular_label' => 'グッズ・刊行物カテゴリー',
       'public' => true,
       'show_ui' => true,
       'show_in_rest' => true,
     )
   );
 }
+
+// ===========================
+// グッズ・刊行物は12件表示
+// ===========================
+
+function change_press_posts_per_page($query)
+{
+  if (!is_admin() && $query->is_main_query()) {
+
+    if (is_post_type_archive('press') || is_tax('press-category')) {
+      $query->set('posts_per_page', 12);
+    }
+  }
+}
+add_action('pre_get_posts', 'change_press_posts_per_page');
 
 
 // ===========================

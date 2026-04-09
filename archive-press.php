@@ -85,7 +85,7 @@ get_header();
                                     <?php if (has_post_thumbnail()) : ?>
                                         <?php the_post_thumbnail('medium'); ?>
                                     <?php else: ?>
-                                        <img src="<?php echo imdir(); ?>/common/oppa_press_dummy.png" alt="ダミー画像">
+                                        <img src="<?php echo imdir(); ?>/press/good_dummy.png" alt="ダミー画像">
                                     <?php endif; ?>
                                 </figure>
                                 <p class="press_ttl"><?php the_title(); ?></p>
