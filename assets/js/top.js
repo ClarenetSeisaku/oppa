@@ -83,3 +83,20 @@ $(window).on("resize", function () {
 $(function () {
   $(".top_seminars__card-title").matchHeight();
 });
+
+// -----------------------------
+// topics タブ切り替え
+// -----------------------------
+document.querySelectorAll(".top_topics__tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const slug = tab.dataset.slug;
+
+    document.querySelectorAll(".top_topics__card").forEach((card) => {
+      if (slug === "all" || card.classList.contains("cat-" + slug)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+});

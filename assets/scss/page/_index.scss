@@ -403,7 +403,6 @@
       &__header {
         width: 200px;
         flex-shrink: 0;
-
         @include m.mq(sp) {
           width: 100%;
         }
@@ -1075,7 +1074,7 @@
 
       // カード
       &__card {
-        width: 490px;
+        width: min(25.521vw, 490px);
 
         &-link {
           display: block;
@@ -1116,6 +1115,16 @@
           color: m.$color-white;
           padding: 0px 13px;
           border-radius: 2px;
+          background-color: m.$color-light-navy;
+          &.cat-kyakusen {
+            background-color: m.$color-gold;
+          }
+          &.cat-records {
+            background-color: m.$color-badge-brown;
+          }
+          &.cat-newsletter {
+            background-color: m.$color-badge-green;
+          }
         }
         &-title {
           font-size: 18px;

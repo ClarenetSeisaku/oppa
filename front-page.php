@@ -318,79 +318,79 @@ get_header();
 
                 <ul class="top_topics__tabs">
                     <!-- 一番上は最初から is-active でホバー状態 -->
-                    <li><button class="top_topics__tab">すべて</button></li>
-                    <li><button class="top_topics__tab" style="--line-color: #A7913A;">客船</button></li>
-                    <li><button class="top_topics__tab" style="--line-color: #468492;">ニュースレター</button></li>
-                    <li><button class="top_topics__tab" style="--line-color: #B55538;">大阪港の記録</button></li>
+                    <li><button class="top_topics__tab" data-slug="all">すべて</button></li>
+                    <li><button class="top_topics__tab" style="--line-color: #A7913A;" data-slug="kyakusen">客船</button></li>
+                    <li><button class="top_topics__tab" style="--line-color: #468492;" data-slug="newsletter">ニュースレター</button></li>
+                    <li><button class="top_topics__tab" style="--line-color: #B55538;" data-slug="records">大阪港の記録</button></li>
                 </ul>
             </div>
 
             <!-- 右カラム（スライダー） -->
             <div class="top_topics__content">
                 <div class="top_topics__slider">
+                    <?php
+                    $topics = new WP_Query(array(
+                        'post_type' => 'topics',
+                        'posts_per_page' => 6,
+                    ));
 
-                    <!-- 無限ループが綺麗に回るよう、カードを6枚用意 -->
-                    <article class="top_topics__card">
-                        <a href="#" class="top_topics__card-link">
-                            <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics01.jpg" alt=""></div>
-                            <div class="top_topics__card-body">
-                                <div class="top_topics__card-meta">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
-                                    <span class="top_topics__card-badge" style="background-color: #bca15a;">客船</span>
-                                </div>
-                                <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="top_topics__card">
-                        <a href="#" class="top_topics__card-link">
-                            <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics02.jpg" alt=""></div>
-                            <div class="top_topics__card-body">
-                                <div class="top_topics__card-meta">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
-                                    <span class="top_topics__card-badge" style="background-color: #478b8a;">ニュースレター</span>
-                                </div>
-                                <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="top_topics__card">
-                        <a href="#" class="top_topics__card-link">
-                            <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics03.jpg" alt=""></div>
-                            <div class="top_topics__card-body">
-                                <div class="top_topics__card-meta">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
-                                    <span class="top_topics__card-badge" style="background-color: #ba6646;">大阪港の記録</span>
-                                </div>
-                                <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。タイトルが入ります。ダミーテキストです。</h3>
-                            </div>
-                        </a>
-                    </article>
-                    <!-- ループ用追加カード -->
-                    <article class="top_topics__card">
-                        <a href="#" class="top_topics__card-link">
-                            <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics01.jpg" alt=""></div>
-                            <div class="top_topics__card-body">
-                                <div class="top_topics__card-meta">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
-                                    <span class="top_topics__card-badge" style="background-color: #478b8a;">ニュースレター</span>
-                                </div>
-                                <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="top_topics__card">
-                        <a href="#" class="top_topics__card-link">
-                            <div class="top_topics__card-img"><img src="<?php echo imdir(); ?>/top/topics02.jpg" alt=""></div>
-                            <div class="top_topics__card-body">
-                                <div class="top_topics__card-meta">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">2026.00.00</time>
-                                    <span class="top_topics__card-badge" style="background-color: #ba6646;">大阪港の記録</span>
-                                </div>
-                                <h3 class="top_topics__card-title">タイトルが入ります。ダミーテキストです。</h3>
-                            </div>
-                        </a>
-                    </article>
+                    if ($topics->have_posts()) :
+                        while ($topics->have_posts()) : $topics->the_post();
+
+                            // 1回だけ取得
+                            $terms = get_the_terms(get_the_ID(), 'topics-category');
+
+                            // クラス用配列
+                            $term_classes = [];
+
+                            if (!empty($terms) && !is_wp_error($terms)) {
+                                foreach ($terms as $term) {
+                                    $term_classes[] = 'cat-' . $term->slug;
+                                }
+                            }
+                    ?>
+
+                            <article class="top_topics__card <?php echo implode(' ', $term_classes); ?>">
+                                <a href="<?php the_permalink(); ?>" class="top_topics__card-link">
+
+                                    <div class="top_topics__card-img">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        <?php else: ?>
+                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <div class="top_topics__card-body">
+                                        <div class="top_topics__card-meta">
+
+                                            <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">
+                                                <?php echo get_the_date('Y.m.d'); ?>
+                                            </time>
+
+                                            <?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+                                                <?php foreach ($terms as $term) : ?>
+                                                    <span class="top_topics__card-badge cat-<?php echo esc_attr($term->slug); ?>">
+                                                        <?php echo esc_html($term->name); ?>
+                                                    </span>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                        <h3 class="top_topics__card-title">
+                                            <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
+                                        </h3>
+                                    </div>
+
+                                </a>
+                            </article>
+
+                    <?php
+                        endwhile;
+                    endif;
+                    wp_reset_postdata();
+                    ?>
 
                 </div>
             </div>
@@ -413,7 +413,7 @@ get_header();
                     </button>
                 </div>
                 <!-- 一覧へボタン -->
-                <a href="#" class="top_topics__more-btn commonBtn">
+                <a href="<?php echo get_post_type_archive_link('topics'); ?>" class="top_topics__more-btn commonBtn">
                     <span>トピックス一覧へ</span>
                 </a>
             </div>

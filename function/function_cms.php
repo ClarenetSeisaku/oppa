@@ -1,11 +1,11 @@
 <?php
-add_action('init', 'works_post_type');
-function works_post_type()
+add_action('init', 'new_post_type');
+function new_post_type()
 {
   register_post_type(
-    'works',
+    'topics',
     array(
-      'label' => '実績',
+      'label' => 'トピックス',
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
@@ -19,25 +19,15 @@ function works_post_type()
     )
   );
   register_taxonomy(
-    'works-category', // カスタム分類名
-    'works', // カスタム分類を使用する投稿タイプ名
+    'topics-category', // カスタム分類名
+    'topics', // カスタム分類を使用する投稿タイプ名
     array(
       'hierarchical' => true,
       'label' => 'カテゴリー',
       'singular_label' => 'カテゴリー',
       'public' => true,
       'show_ui' => true,
-    )
-  );
-  register_taxonomy(
-    'works-tag',
-    'works',
-    array(
-      'label' => 'タグ',
-      'hierarchical' => false,
-      'public' => true,
       'show_in_rest' => true,
-      'update_count_callback' => '_update_post_term_count',
     )
   );
 }
