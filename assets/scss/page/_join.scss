@@ -1,0 +1,68 @@
+@use "../import/mixin" as m; // mixin.scssを読み込み
+
+#join {
+  /* 一覧・カテゴリーページここから */
+  main {
+    background: #f4f7f9;
+  }
+  .middle_mv {
+    background: url("../img/join/join_bg@2x.jpg") no-repeat center center/cover;
+  }
+  p {
+    color: m.$main-color;
+  }
+  .join_section01 {
+    position: relative;
+    .join_box {
+      padding-bottom: 100px;
+      @include m.mq(sp) {
+        padding-bottom: 50px;
+      }
+      .join_big_text {
+        font-size: 24px;
+        font-weight: 600;
+        @include m.mq(sp) {
+          font-size: 20px;
+        }
+      }
+    }
+    // ーー 波のアニメーション ーー
+    &__decoration {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 160px;
+      pointer-events: none;
+      @include m.mq(sp) {
+        height: 100px;
+      }
+    }
+
+    &__wave-sway {
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: wave-sway 4s ease-in-out infinite alternate;
+    }
+
+    &__wave-move {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      animation: wave-moveLeft 10s linear infinite;
+      svg {
+        color: #f4f7f9;
+      }
+    }
+
+    &__wave {
+      flex: 0 0 50%;
+      height: 100%;
+      fill: m.$color-white;
+      margin-right: -1px;
+    }
+  }
+}

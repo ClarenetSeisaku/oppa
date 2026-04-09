@@ -342,6 +342,36 @@ a[href*="tel:"] {
       }
     }
   }
+  &.blue_btn {
+    background: m.$color-navy;
+    border: 1px solid m.$color-navy;
+    color: #fff;
+    span {
+      color: #fff;
+      &:before {
+        background: #fff;
+      }
+    }
+    &::before {
+      background-color: #fff; /* 直線の色 */
+      transition: all 0.3s ease;
+    }
+    &::after {
+      border-color: transparent transparent transparent #fff; /* 左側だけ色をつけて右向き三角に */
+    }
+    &:hover {
+      &::before {
+        background-color: m.$color-navy;
+      }
+      &::after {
+        border-color: transparent transparent transparent m.$color-navy;
+        z-index: 2;
+      }
+      span {
+        color: m.$color-navy;
+      }
+    }
+  }
 }
 /***********************
 　　　横スクロール

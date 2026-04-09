@@ -59,6 +59,46 @@ function new_post_type()
       'show_in_rest' => true,
     )
   );
+  register_post_type(
+    'magazine',
+    array(
+      'label' => '情報誌「大阪港」',
+      'public' => true,
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'menu_position' => 4,
+      'supports' => array(
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+      ),
+    )
+  );
+  register_taxonomy(
+    'year', // カスタム分類名
+    'magazine', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => '年度別',
+      'singular_label' => '年度別',
+      'public' => true,
+      'show_ui' => true,
+      'show_in_rest' => true,
+    )
+  );
+  register_taxonomy(
+    'authorindex', // カスタム分類名
+    'magazine', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => '著者別索引',
+      'singular_label' => '著者別索引',
+      'public' => true,
+      'show_ui' => true,
+      'show_in_rest' => true,
+    )
+  );
 }
 
 // ===========================
@@ -75,6 +115,49 @@ function change_press_posts_per_page($query)
   }
 }
 add_action('pre_get_posts', 'change_press_posts_per_page');
+
+// ===========================
+// 情報誌「大阪港」の検索
+// ===========================
+
+function custom_search_filter($query)
+{
+  if (is_admin() || !$query->is_main_query()) {
+    return;
+  }
+
+  // 検索 or アーカイブページ
+  if ($query->is_search() || is_post_type_archive('magazine')) {
+
+    // 投稿タイプ固定
+    $query->set('post_type', 'magazine');
+
+    $tax_query = [];
+
+    // 年度
+    if (!empty($_GET['year'])) {
+      $tax_query[] = [
+        'taxonomy' => 'year',
+        'field' => 'slug',
+        'terms' => sanitize_text_field($_GET['year']),
+      ];
+    }
+
+    // 著者
+    if (!empty($_GET['authorindex'])) {
+      $tax_query[] = [
+        'taxonomy' => 'authorindex',
+        'field' => 'slug',
+        'terms' => sanitize_text_field($_GET['authorindex']),
+      ];
+    }
+
+    if (!empty($tax_query)) {
+      $query->set('tax_query', $tax_query);
+    }
+  }
+}
+add_action('pre_get_posts', 'custom_search_filter');
 
 
 // ===========================

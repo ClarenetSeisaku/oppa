@@ -739,6 +739,34 @@ footer {
 .commonBtn.pdf:hover:before {
   filter: brightness(0) invert(1);
 }
+.commonBtn.blue_btn {
+  background: #081f36;
+  border: 1px solid #081f36;
+  color: #fff;
+}
+.commonBtn.blue_btn span {
+  color: #fff;
+}
+.commonBtn.blue_btn span:before {
+  background: #fff;
+}
+.commonBtn.blue_btn::before {
+  background-color: #fff; /* 直線の色 */
+  transition: all 0.3s ease;
+}
+.commonBtn.blue_btn::after {
+  border-color: transparent transparent transparent #fff; /* 左側だけ色をつけて右向き三角に */
+}
+.commonBtn.blue_btn:hover::before {
+  background-color: #081f36;
+}
+.commonBtn.blue_btn:hover::after {
+  border-color: transparent transparent transparent #081f36;
+  z-index: 2;
+}
+.commonBtn.blue_btn:hover span {
+  color: #081f36;
+}
 
 /***********************
 　　　横スクロール
@@ -7342,6 +7370,75 @@ footer {
 }
 #press {
   /*  詳細ページここまで */
+}
+
+#join {
+  /* 一覧・カテゴリーページここから */
+}
+#join main {
+  background: #f4f7f9;
+}
+#join .middle_mv {
+  background: url("../img/join/join_bg@2x.jpg") no-repeat center center/cover;
+}
+#join p {
+  color: #333;
+}
+#join .join_section01 {
+  position: relative;
+}
+#join .join_section01 .join_box {
+  padding-bottom: 100px;
+}
+@media only screen and (max-width: 768px) {
+  #join .join_section01 .join_box {
+    padding-bottom: 50px;
+  }
+}
+#join .join_section01 .join_box .join_big_text {
+  font-size: 24px;
+  font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+  #join .join_section01 .join_box .join_big_text {
+    font-size: 20px;
+  }
+}
+#join .join_section01__decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  pointer-events: none;
+}
+@media only screen and (max-width: 768px) {
+  #join .join_section01__decoration {
+    height: 100px;
+  }
+}
+#join .join_section01__wave-sway {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: wave-sway 4s ease-in-out infinite alternate;
+}
+#join .join_section01__wave-move {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  animation: wave-moveLeft 10s linear infinite;
+}
+#join .join_section01__wave-move svg {
+  color: #f4f7f9;
+}
+#join .join_section01__wave {
+  flex: 0 0 50%;
+  height: 100%;
+  fill: #ffffff;
+  margin-right: -1px;
 }
 
 #seminar .pankuzu_wrap {
