@@ -4,6 +4,9 @@ if (!defined('ABSPATH')) {
 }
 
 get_header();
+
+$breadcrumb_terms = get_the_terms(get_queried_object_id(), 'seminar_category');
+$breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)) ? $breadcrumb_terms[0] : null;
 ?>
 <main class="middle">
     <div class="seminar-wrap__container">
@@ -11,6 +14,14 @@ get_header();
             <ul class="pankuzu sec_inner">
                 <li><a href="<?= esc_url(home_url()) ?>">TOP</a></li>
                 <li><a href="<?= esc_url(home_url('seminar')) ?>">Seminars / Events</a></li>
+                <?php if ($breadcrumb_term instanceof WP_Term) : ?>
+                    <?php $breadcrumb_term_url = add_query_arg('seminar_category', $breadcrumb_term->slug, get_post_type_archive_link('seminar')); ?>
+                    <li>
+                        <a href="<?= esc_url($breadcrumb_term_url) ?>">
+                            <?= esc_html($breadcrumb_term->name) ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 <li><?php the_title(); ?></li>
             </ul>
         </div>
@@ -20,22 +31,22 @@ get_header();
         <div class="seminar-wrap">
             <div class="cloud1 img_con">
                 <picture>
-                    <source media="(min-width: 769px)" srcset="http://localhost:8000/wp-content/themes/oppa/assets/img/common/top_about_img01.png"><img src="http://localhost:8000/wp-content/themes/oppa/assets/img/common/top_about_img01_sp@2x.png" alt="">
+                    <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/common/footer_img01@2x.png"><img src="<?php echo imdir(); ?>/common/footer_img01_sp@2x.png" alt="">
                 </picture>
             </div>
 
             <div class="cloud2 img_con">
                 <picture>
-                    <source media="(min-width: 769px)" srcset="http://localhost:8000/wp-content/themes/oppa/assets/img/top/top_about_img04.png"><img src="http://localhost:8000/wp-content/themes/oppa/assets/img/top/top_about_img04_sp@2x.png" alt="">
+                    <source media="(min-width: 769px)" srcset="<?php echo imdir(); ?>/top/top_about_img04.png"><img src="<?php echo imdir(); ?>/top/top_about_img04_sp@2x.png" alt="">
                 </picture>
             </div>
 
             <div class="top_about_img02 img_con kamome_img">
-                <img src="http://localhost:8000/wp-content/themes/oppa/assets/img/common/top_about_img02.svg" alt="かもめ">
+                <img src="<?php echo imdir(); ?>/common/top_about_img02.svg" alt="かもめ">
             </div>
 
             <div class="top_about_img05 img_con wave_img">
-                <img src="http://localhost:8000/wp-content/themes/oppa/assets/img/common/top_about_img03.svg" alt="船">
+                <img src="<?php echo imdir(); ?>/common/top_about_img03.svg" alt="船">
             </div>
 
             <div class="seminar-wrap__container">
@@ -129,7 +140,7 @@ get_header();
                         $event_rows = [];
                     }
 
-                    $pdf_rows = get_field('pdf-repeat') ?? [];
+                    $pdf_rows = is_array($rows = get_field('pdf-repeat')) ? $rows : [];
 
                     $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
                     if (!is_array($event_rows)) {
