@@ -25,6 +25,16 @@
   text-align: center;
 }
 
+.kome {
+  position: relative;
+  padding-left: 1em;
+  &:before {
+    content: "※";
+    position: absolute;
+    left: 0;
+  }
+}
+
 main {
   display: block;
   width: 100%;
@@ -183,6 +193,11 @@ footer {
   font-weight: 600;
   letter-spacing: 0.125em;
   margin-bottom: 10px;
+  &.border_bottom {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
   @include m.mq(sp) {
   }
 }
@@ -195,6 +210,21 @@ a[href*="tel:"] {
     pointer-events: none;
     cursor: default;
     text-decoration: none;
+  }
+}
+
+.link_text {
+  text-decoration: underline;
+  padding-right: 26px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    right: 0;
+    bottom: 0;
+    background: url("../img/common/link_mark.svg") no-repeat center center/contain;
   }
 }
 
@@ -299,6 +329,9 @@ a[href*="tel:"] {
       width: 30px;
       height: 30px;
       background: transparent url("../img/common/btn_pdf.svg") no-repeat center center/contain;
+      @media only screen and (max-width: 1100px) {
+        right: 1%;
+      }
     }
     &:after {
       display: none;
@@ -308,6 +341,68 @@ a[href*="tel:"] {
         filter: brightness(0) invert(1);
       }
     }
+  }
+  &.blue_btn {
+    background: m.$color-navy;
+    border: 1px solid m.$color-navy;
+    color: #fff;
+    span {
+      color: #fff;
+      &:before {
+        background: #fff;
+      }
+    }
+    &::before {
+      background-color: #fff; /* 直線の色 */
+      transition: all 0.3s ease;
+    }
+    &::after {
+      border-color: transparent transparent transparent #fff; /* 左側だけ色をつけて右向き三角に */
+    }
+    &:hover {
+      &::before {
+        background-color: m.$color-navy;
+      }
+      &::after {
+        border-color: transparent transparent transparent m.$color-navy;
+        z-index: 2;
+      }
+      span {
+        color: m.$color-navy;
+      }
+    }
+  }
+}
+/***********************
+　　　横スクロール
+*************************/
+
+.js-scrollable {
+  > * {
+    min-width: 1300px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.scroll_design {
+  scrollbar-color: m.$color-navy-hover #fff;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    /* スクロールバー全体の幅 */
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    /* スクロールバーの背景 (トラック) */
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    /* スクロールバーのつまみ (thumb) */
+    border-radius: 5px;
+    background-color: m.$color-navy-hover;
   }
 }
 /***********************

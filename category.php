@@ -23,7 +23,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <section class="pankuzu_wrap">
         <ul class="pankuzu sec_inner">
@@ -40,7 +39,12 @@
     </section>
     <section class="middle_ttl_sec">
         <div class="sec_inner">
-            <h2 class="page_ttl">新着情報</h2>
+            <h2 class="page_ttl"><?php
+                                    $cat = get_queried_object();
+                                    if ($cat) {
+                                        echo esc_html($cat->name);
+                                    }
+                                    ?></h2>
             <p class="page_sub_ttl">News</p>
         </div>
     </section>

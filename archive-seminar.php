@@ -13,7 +13,7 @@ $paged = max(1, get_query_var('paged'), get_query_var('page'));
 $query_args = [
     'post_type' => 'seminar',
     'post_status' => 'publish',
-    'posts_per_page' => 9,
+    'posts_per_page' => 2,
     'paged' => $paged,
 ];
 if ($selected_term_slug !== '') {
@@ -246,7 +246,7 @@ $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $
                                         <?php endif; ?>
                                     </dl>
 
-                                    <a href="<?php the_permalink(); ?>" class="top_news__btn pc commonBtn ">
+                                    <a href="<?php the_permalink(); ?>" class="top_news__btn commonBtn ">
                                         <span>詳細・申し込みはこちら</span>
                                     </a>
                                 </div>

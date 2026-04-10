@@ -104,14 +104,15 @@
   }
   ol {
     li {
+      display: flex;
       .num {
-        display: inline-block;
+        display: block;
         margin-right: 6px;
-        font-weight: 500;
+        font-weight: 400;
       }
       p {
-        display: inline;
-        font-weight: 500;
+        font-weight: 400;
+        flex: 1;
       }
     }
   }
@@ -134,16 +135,51 @@
   }
   a {
     font-weight: 500;
-    color: #0f478c;
-    text-decoration: underline #0f478c;
-    text-underline-offset: 8px;
+    color: #244668;
+    text-decoration: underline #244668;
+    text-underline-offset: 2px;
     text-decoration-thickness: 7%;
   }
   .mark {
     display: inline-block;
-    width: 14px;
+    width: 28px;
     height: 11px;
-    background: url("../../blocks/assets/img/simple_blue_arrow.png") no-repeat center / cover;
+    margin-left: 10px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0; /* 直線の右端の位置（三角形の幅に合わせてピッタリくっつける） */
+      width: 28px; /* 直線の長さ */
+      height: 1px; /* 直線の太さ */
+      background-color: #244668; /* 直線の色 */
+      transition: all 0.3s ease;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0; /* ボタン右端からの位置 */
+
+      /* CSSのborder機能を使って三角形を作るテクニック */
+      border-style: solid;
+      border-width: 4px 0 4px 5px; /* 上4px、右0、下4px、左5px */
+      border-color: transparent transparent transparent #244668; /* 左側だけ色をつけて右向き三角に */
+      transition: all 0.3s ease;
+    }
+  }
+  &:hover {
+    .mark {
+      &:before {
+        right: -10px;
+      }
+      &:after {
+        right: -10px;
+      }
+    }
   }
 }
 
@@ -746,27 +782,35 @@
 .original_table_01 {
   width: 100%;
   border-collapse: collapse;
+  margin: 50px 0;
+  @include m.mq(sp) {
+    margin: 30px 0;
+  }
   th {
     text-align: left;
-    border-top: 1px solid #244c9c;
-    border-bottom: 1px solid #244c9c;
-    padding: 10px;
-    background-color: #f6f8fb;
-    width: 31.25%;
-    font-weight: 700;
-    color: #000;
+    border-top: 1px solid #dce1e5;
+    border-bottom: 1px solid #dce1e5;
+    padding: 20px 10px;
+    background-color: #fff;
+    width: 20%;
+    font-weight: 600;
+    cowidth: 20%;
+    lor: #000;
     @include m.mq(sp) {
-      padding: 5px;
+      width: 30%;
+      padding: 10px;
       font-size: 14px;
     }
   }
   td {
-    border-top: 1px solid #d5dde6;
-    border-bottom: 1px solid #d5dde6;
-    padding: 10px;
-    font-weight: 500;
+    border-top: 1px solid #dce1e5;
+    border-bottom: 1px solid #dce1e5;
+    padding: 20px;
+    font-weight: 400;
+    width: 80%;
     @include m.mq(sp) {
-      padding: 5px;
+      width: 70%;
+      padding: 10px;
       font-size: 14px;
     }
   }
@@ -814,5 +858,22 @@
         }
       }
     }
+  }
+}
+
+.alert_box {
+  background-color: #fff;
+  border: 1px solid #b55538;
+  padding: 20px 30px;
+  width: 100%;
+  margin-bottom: 50px;
+  @include m.mq(sp) {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  p {
+    color: #b55538 !important;
+    letter-spacing: 0.05em;
+    margin-bottom: 0 !important;
   }
 }

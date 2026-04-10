@@ -1,11 +1,11 @@
 <?php
-add_action('init', 'works_post_type');
-function works_post_type()
+add_action('init', 'new_post_type');
+function new_post_type()
 {
   register_post_type(
-    'works',
+    'topics',
     array(
-      'label' => '実績',
+      'label' => 'トピックス',
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
@@ -19,28 +19,145 @@ function works_post_type()
     )
   );
   register_taxonomy(
-    'works-category', // カスタム分類名
-    'works', // カスタム分類を使用する投稿タイプ名
+    'topics-category', // カスタム分類名
+    'topics', // カスタム分類を使用する投稿タイプ名
     array(
       'hierarchical' => true,
-      'label' => 'カテゴリー',
-      'singular_label' => 'カテゴリー',
+      'label' => 'トピックスカテゴリー',
+      'singular_label' => 'トピックスカテゴリー',
       'public' => true,
       'show_ui' => true,
+      'show_in_rest' => true,
+    )
+  );
+  register_post_type(
+    'press',
+    array(
+      'label' => 'グッズ・刊行物',
+      'public' => true,
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'menu_position' => 4,
+      'supports' => array(
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+        'custom-fields',
+      ),
     )
   );
   register_taxonomy(
-    'works-tag',
-    'works',
+    'press-category', // カスタム分類名
+    'press', // カスタム分類を使用する投稿タイプ名
     array(
-      'label' => 'タグ',
-      'hierarchical' => false,
+      'hierarchical' => true,
+      'label' => 'グッズ・刊行物カテゴリー',
+      'singular_label' => 'グッズ・刊行物カテゴリー',
       'public' => true,
+      'show_ui' => true,
       'show_in_rest' => true,
-      'update_count_callback' => '_update_post_term_count',
+    )
+  );
+  register_post_type(
+    'magazine',
+    array(
+      'label' => '情報誌「大阪港」',
+      'public' => true,
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'menu_position' => 4,
+      'supports' => array(
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+      ),
+    )
+  );
+  register_taxonomy(
+    'year', // カスタム分類名
+    'magazine', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => '年度別',
+      'singular_label' => '年度別',
+      'public' => true,
+      'show_ui' => true,
+      'show_in_rest' => true,
+    )
+  );
+  register_taxonomy(
+    'authorindex', // カスタム分類名
+    'magazine', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => '著者別索引',
+      'singular_label' => '著者別索引',
+      'public' => true,
+      'show_ui' => true,
+      'show_in_rest' => true,
     )
   );
 }
+
+// ===========================
+// グッズ・刊行物は12件表示
+// ===========================
+
+function change_press_posts_per_page($query)
+{
+  if (!is_admin() && $query->is_main_query()) {
+
+    if (is_post_type_archive('press') || is_tax('press-category')) {
+      $query->set('posts_per_page', 12);
+    }
+  }
+}
+add_action('pre_get_posts', 'change_press_posts_per_page');
+
+// ===========================
+// 情報誌「大阪港」の検索
+// ===========================
+
+function custom_search_filter($query)
+{
+  if (is_admin() || !$query->is_main_query()) {
+    return;
+  }
+
+  // 検索 or アーカイブページ
+  if ($query->is_search() || is_post_type_archive('magazine')) {
+
+    // 投稿タイプ固定
+    $query->set('post_type', 'magazine');
+
+    $tax_query = [];
+
+    // 年度
+    if (!empty($_GET['year'])) {
+      $tax_query[] = [
+        'taxonomy' => 'year',
+        'field' => 'slug',
+        'terms' => sanitize_text_field($_GET['year']),
+      ];
+    }
+
+    // 著者
+    if (!empty($_GET['authorindex'])) {
+      $tax_query[] = [
+        'taxonomy' => 'authorindex',
+        'field' => 'slug',
+        'terms' => sanitize_text_field($_GET['authorindex']),
+      ];
+    }
+
+    if (!empty($tax_query)) {
+      $query->set('tax_query', $tax_query);
+    }
+  }
+}
+add_action('pre_get_posts', 'custom_search_filter');
 
 
 // ===========================
@@ -107,13 +224,13 @@ add_action('wp_enqueue_scripts', function () {
 add_action('init', function () {
   register_post_type('seminar', [
     'labels' => [
-      'name' => 'Seminars',
-      'singular_name' => 'Seminar',
-      'add_new_item' => 'Add New Seminar',
-      'edit_item' => 'Edit Seminar',
-      'new_item' => 'New Seminar',
-      'view_item' => 'View Seminar',
-      'search_items' => 'Search Seminars',
+      'name' => 'セミナー・イベント',
+      'singular_name' => 'セミナー・イベント',
+      'add_new_item' => '新規セミナー・イベントを追加',
+      'edit_item' => 'セミナー・イベントを編集',
+      'new_item' => '新規セミナー・イベント',
+      'view_item' => 'セミナー・イベントを表示',
+      'search_items' => 'セミナー・イベントを検索',
     ],
     'public' => true,
     'has_archive' => true,
@@ -127,15 +244,15 @@ add_action('init', function () {
 
   register_taxonomy('seminar_category', 'seminar', [
     'labels' => [
-      'name' => 'Seminar Categories',
-      'singular_name' => 'Seminar Category',
-      'search_items' => 'Search Seminar Categories',
-      'all_items' => 'All Seminar Categories',
-      'edit_item' => 'Edit Seminar Category',
-      'update_item' => 'Update Seminar Category',
-      'add_new_item' => 'Add New Seminar Category',
-      'new_item_name' => 'New Seminar Category Name',
-      'menu_name' => 'Seminar Categories',
+      'name' => 'セミナー・イベントカテゴリー',
+      'singular_name' => 'セミナー・イベントカテゴリー',
+      'search_items' => 'セミナー・イベントカテゴリーを検索',
+      'all_items' => 'すべてのセミナー・イベントカテゴリー',
+      'edit_item' => 'セミナー・イベントカテゴリーを編集',
+      'update_item' => 'セミナー・イベントカテゴリーを更新',
+      'add_new_item' => '新規セミナー・イベントカテゴリーを追加',
+      'new_item_name' => '新しいセミナー・イベントカテゴリー名',
+      'menu_name' => 'セミナー・イベントカテゴリー',
     ],
     'public' => true,
     'hierarchical' => true,
