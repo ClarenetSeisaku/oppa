@@ -33,25 +33,19 @@
         }
 
         &__wave-move {
-            display: flex;
             width: 200%;
             height: 100%;
+            background: url("../img/common/white_wave@2x.png") repeat-x;
+            background-size: 50% 100%;
             animation: wave-moveLeft 10s linear infinite;
-        }
-
-        &__wave {
-            flex: 0 0 50%;
-            height: 100%;
-            fill: m.$color-white;
-            margin-right: -1px;
         }
     }
     /*パンくず*/
     .pankuzu_wrap {
-        margin: 10px 0;
+        padding: 10px 0;
         position: relative;
         @include m.mq(sp) {
-            margin-bottom: 30px;
+            padding-bottom: 30px;
         }
         .pankuzu {
             display: flex;
@@ -99,11 +93,11 @@
         font-size: clamp(36px, 5vw, 60px);
         font-weight: 600;
         letter-spacing: 0.125em;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
         line-height: 1.2;
         @include m.mq(sp) {
             font-size: 30px;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
         }
     }
     .page_sub_ttl {
@@ -113,7 +107,7 @@
         font-weight: 500;
         font-style: normal;
         color: m.$color-navy-hover;
-        margin-bottom: clamp(100px, 10vw, 200px);
+        padding-bottom: clamp(100px, 10vw, 200px);
         line-height: 1;
         @include m.mq(sp) {
             font-size: 18px;

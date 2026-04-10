@@ -246,7 +246,7 @@ a[href*="tel:"] {
     width: 84vw;
     height: 50px;
   }
-  span {
+  > span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -308,7 +308,7 @@ a[href*="tel:"] {
       border-color: transparent transparent transparent m.$color-white;
       z-index: 2;
     }
-    span {
+    > span {
       color: m.$color-white;
       &:before {
         width: 100%;
@@ -346,7 +346,7 @@ a[href*="tel:"] {
     background: m.$color-navy;
     border: 1px solid m.$color-navy;
     color: #fff;
-    span {
+    > span {
       color: #fff;
       &:before {
         background: #fff;
@@ -367,7 +367,7 @@ a[href*="tel:"] {
         border-color: transparent transparent transparent m.$color-navy;
         z-index: 2;
       }
-      span {
+      > span {
         color: m.$color-navy;
       }
     }

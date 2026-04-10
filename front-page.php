@@ -55,12 +55,6 @@ get_header();
             <!-- 波 -->
             <div class="top_mv__wave-sway">
                 <div class="top_mv__wave-move">
-                    <svg class="top_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
-                    <svg class="top_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
                 </div>
             </div>
         </div>
