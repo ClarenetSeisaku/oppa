@@ -1,4 +1,6 @@
 @use "../import/mixin" as m;
+@use "sass:color";
+
 .change_height {
   #header {
   }
@@ -452,7 +454,7 @@
           }
         }
         &:hover {
-          background: lighten(m.$color-navy, 10%);
+          background: color.adjust(m.$color-navy, $lightness: 10%);
         }
       }
     }

@@ -129,17 +129,11 @@
       }
 
       &__wave-move {
-        display: flex;
         width: 200%;
         height: 100%;
-        animation: wave-moveLeft 10s linear infinite;
-      }
-
-      &__wave {
-        flex: 0 0 50%;
-        height: 100%;
-        fill: m.$color-white;
-        margin-right: -1px;
+        background: url("../img/common/white_wave@2x.png") repeat-x;
+        background-size: 50% 100%;
+        animation: wave-bg 10s linear infinite;
       }
     }
 

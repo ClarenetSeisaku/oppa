@@ -1,0 +1,286 @@
+@use "../import/mixin" as m; // mixin.scssを読み込み
+
+/* ========================================
+   フォーム全体のベース設定　お問い合わせと入会案内・申し込みフォーム共通
+======================================== */
+  .custom-contact-form {
+  }
+
+  .custom-contact-form .form-lead {
+    margin-bottom: 60px;
+    color: m.$main-color;
+  }
+
+  /* ========================================
+   グレー背景の入力エリア
+======================================== */
+  .custom-contact-form .form-container {
+    background-color: #f4f7f9; /* 薄いグレーの背景 */
+    padding: 60px 40px;
+    border-radius: 6px;
+  }
+
+  .custom-contact-form .form-row {
+    display: flex;
+    margin-bottom: 25px;
+  }
+
+  .custom-contact-form .form-row:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ラベル部分（左側） */
+  .custom-contact-form .form-label {
+    width: 320px; /* PC時の左カラムの幅 */
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between; /* ラベル名とバッジを両端揃え */
+    align-items: center;
+    padding-right: 40px;
+    box-sizing: border-box;
+    font-weight: 600;
+  }
+
+  /* テキストエリアのラベルは上揃えにする */
+  .custom-contact-form .form-label.align-top {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+
+  /* ========================================
+   バッジ（必須・任意）
+======================================== */
+  .custom-contact-form .badge {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 2px;
+    line-height: 1.5;
+    white-space: nowrap;
+    @include m.mq(sp) {
+            font-size: 12px;
+        }
+  }
+  .custom-contact-form .badge.bg-red {
+    background-color: m.$color-alert; /* 必須の赤色 */
+  }
+  .custom-contact-form .badge.bg-gray {
+    background-color: #4a4f53; /* 任意のダークグレー */
+  }
+
+  /* ========================================
+   入力フィールド部分（右側）
+======================================== */
+  .custom-contact-form .form-field {
+    flex-grow: 1;
+  }
+
+  .custom-contact-form .form-field input[type="text"],
+  .custom-contact-form .form-field input[type="email"],
+  .custom-contact-form .form-field input[type="tel"],
+  .custom-contact-form .form-field textarea,
+  .custom-contact-form .form-field select {
+    width: 100%;
+    padding: 7px 20px;
+    border: 1px solid m.$border-color;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+
+  /* プレースホルダー（入力ヒント）の色 */
+  .custom-contact-form .form-field input::placeholder,
+  .custom-contact-form .form-field textarea::placeholder {
+    color: #999999;
+  }
+
+  /* フォーカス時の枠線 */
+  .custom-contact-form .form-field input:focus,
+  .custom-contact-form .form-field textarea:focus {
+    outline: none;
+    border-color: #1e3a8a;
+  }
+
+  .custom-contact-form .form-field textarea {
+    height: 120px;
+    resize: vertical;
+  }
+
+  /* 半分幅の入力欄（氏名・電話番号など） */
+  .custom-contact-form .form-field.field-half {
+    max-width: 400px;
+  }
+
+  /* MW WP Formが出力するエラーメッセージの装飾 */
+  .custom-contact-form span.error {
+    color: m.$color-alert;
+    font-size: 13px;
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  /* ========================================
+   フッター（プライバシー・送信ボタン）
+======================================== */
+  .custom-contact-form .form-footer {
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  /* プライバシーポリシーチェックボックス周り */
+  .custom-contact-form .privacy-agreement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 60px;
+    @include m.mq(sp) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .custom-contact-form .privacy-checkbox-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-contact-form .privacy-checkbox-wrap label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+  }
+
+  .custom-contact-form .privacy-checkbox-wrap input[type="checkbox"] {
+    margin-right: 0;
+  }
+
+  .custom-contact-form .privacy-checkbox-wrap label::before {
+    content: "";
+    width: 22px;
+    height: 22px;
+    border: 1px solid m.$main-color;
+    border-radius: 0;
+    display: inline-block;
+  }
+
+  .custom-contact-form .privacy-checkbox-wrap label:has(input[type="checkbox"]:checked)::before {
+    background-color: m.$color-navy-hover;
+    border-color: m.$color-navy-hover;
+  }
+
+  /* チェックマーク */
+  .custom-contact-form .privacy-checkbox-wrap label:has(input[type="checkbox"]:checked)::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 0px;
+    width: 8px;
+    height: 16px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* MW WP Formが出力する「同意」のテキストを消し、HTMLのテキストを活かす */
+  .custom-contact-form .mwform-checkbox-field-text {
+    display: none;
+  }
+
+  .custom-contact-form .privacy-text {
+    margin-left: 10px;
+    font-weight: 600;
+  }
+  .custom-contact-form .privacy-text a {
+    color: m.$text-color;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .custom-contact-form .privacy-text a:hover {
+    text-decoration: none;
+  }
+
+  /* 送信ボタン（入力内容のご確認） */
+  .custom-contact-form .submit-action {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    .commonBtn {
+      max-width: 400px; /* ボタンの最大幅 */
+    }
+  }
+
+  .custom-contact-form .submit-action:hover .btn-submit {
+    color: #fff;
+  }
+
+  .mw_wp_form_confirm {
+    .privacy-agreement {
+      .privacy-text,
+      .badge {
+        display: none;
+      }
+    }
+  }
+
+  /* ========================================
+   レスポンシブ（スマートフォン対応）
+======================================== */
+  @media screen and (max-width: 768px) {
+    .custom-contact-form .form-container {
+      padding: 30px 20px;
+    }
+
+    .custom-contact-form .form-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .custom-contact-form .form-label {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 10px;
+    }
+
+    .custom-contact-form .form-label.align-top {
+      padding-top: 0;
+    }
+
+    .custom-contact-form .form-field {
+      width: 100%;
+    }
+
+    .custom-contact-form .form-field.field-half {
+      max-width: 100%; /* スマホでは全幅にする */
+    }
+
+    .custom-contact-form .privacy-agreement {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .custom-contact-form .privacy-checkbox-wrap {
+      align-items: flex-start;
+    }
+  }
+
+#contact {
+  .middle_mv {
+    background: url("../img/contact/contact_bg@2x.jpg") no-repeat center center/cover;
+  }
+  .middle_ttl_sec {
+    padding-bottom: 0;
+    .sec_inner {
+      max-width: 1200px;
+    }
+  }
+
+  
+}
