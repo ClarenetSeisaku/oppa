@@ -19,11 +19,21 @@
         </div>
     </div>
 </section>
+
 <!-- 右側追従ボタン（ページ全体で追従） -->
-<a href="#" class="fixed-btn">
-    <img src="<?php echo imdir(); ?>/common/boat_wh.svg" alt="船のアイコン">
-    <span>クルーズ船情報</span>
-</a>
+<?php if (is_singular("seminar")): ?>
+    <a href="#form" class="fixed-btn">
+        <img src="<?php echo imdir(); ?>/common/seminar_icon.svg" alt="セミナーのアイコン">
+        <span>申込みフォーム</span>
+    </a>
+<?php else: ?>
+    <a href="#" class="fixed-btn">
+        <img src="<?php echo imdir(); ?>/common/boat_wh.svg" alt="船のアイコン">
+        <span>クルーズ船情報</span>
+    </a>
+<?php endif; ?>
+
+
 <!-- トップへ戻るボタン -->
 <a href="#" class="page-top-btn pageTop" aria-label="トップへ戻る">
 </a>
