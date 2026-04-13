@@ -6281,6 +6281,9 @@ footer {
     margin-bottom: 40px;
   }
 }
+#news #news_single .news_main_ttl a {
+  text-decoration: underline;
+}
 #news #news_single .btn_inner {
   margin-top: 150px;
 }
@@ -7029,6 +7032,9 @@ footer {
   font-weight: 600;
   letter-spacing: 0.125em;
   margin-bottom: 20px;
+}
+#topics #topics_single .topics_main_ttl a {
+  text-decoration: underline;
 }
 #topics #topics_single .btn_inner {
   margin-top: 150px;

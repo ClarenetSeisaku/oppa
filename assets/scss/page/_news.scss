@@ -160,6 +160,9 @@
       @include m.mq(sp) {
         margin-bottom: 40px;
       }
+      a {
+        text-decoration: underline;
+      }
     }
     .btn_inner {
       margin-top: 150px;

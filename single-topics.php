@@ -33,7 +33,17 @@ get_header();
         }
         ?>
       </span>
-      <h2 class="topics_main_ttl"><?php the_title(); ?></h2>
+      <?php $link = get_field('topics_link'); ?>
+
+      <h2 class="topics_main_ttl">
+        <?php if ($link): ?>
+          <a href="<?php echo esc_url($link); ?>">
+            <?php the_title(); ?>
+          </a>
+        <?php else: ?>
+          <?php the_title(); ?>
+        <?php endif; ?>
+      </h2>
       <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
       <div class="single_inner">
         <?php the_content(); ?>

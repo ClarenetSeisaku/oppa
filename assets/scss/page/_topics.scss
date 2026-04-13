@@ -206,6 +206,9 @@
       font-weight: 600;
       letter-spacing: 0.125em;
       margin-bottom: 20px;
+      a {
+        text-decoration: underline;
+      }
     }
     .btn_inner {
       margin-top: 150px;
