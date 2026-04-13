@@ -701,6 +701,9 @@ footer {
     right: 4%;
   }
 }
+.commonBtn:hover {
+  border: 1px solid #081f36;
+}
 .commonBtn:hover::before {
   background-color: #ffffff;
   z-index: 3;
@@ -771,12 +774,8 @@ footer {
 /***********************
 　　　横スクロール
 *************************/
-.js-scrollable > * {
+.js-scrollable table {
   min-width: 1300px;
-}
-.js-scrollable img {
-  width: 100%;
-  height: auto;
 }
 
 .scroll_design {
@@ -1947,7 +1946,7 @@ footer {
   justify-content: space-between;
   width: calc(100% - 112px);
   gap: 0 min(1.5vw, 30px);
-  max-width: 1808px;
+  max-width: 1948px;
 }
 @media only screen and (max-width: 768px) {
   #header .header_inner {
@@ -2917,6 +2916,12 @@ footer {
   height: 100%;
   animation: wave-sway 4s ease-in-out infinite alternate;
 }
+@media only screen and (max-width: 768px) {
+  .middle .middle_mv__wave-sway {
+    bottom: 0;
+    height: 70%;
+  }
+}
 .middle .middle_mv__wave-move {
   width: 200%;
   height: 100%;
@@ -3582,6 +3587,12 @@ footer {
   height: 100%;
   animation: wave-sway 4s ease-in-out infinite alternate;
 }
+@media only screen and (max-width: 768px) {
+  #index main .top_mv__wave-sway {
+    bottom: 0;
+    height: 70%;
+  }
+}
 #index main .top_mv__wave-move {
   width: 200%;
   height: 100%;
@@ -3722,10 +3733,13 @@ footer {
   }
 }
 #index main .top_about__inner .commonBtn {
-  border: 1px solid #081f36;
+  border: 1px solid #244668;
 }
 #index main .top_about__inner .commonBtn span {
   color: #244668;
+}
+#index main .top_about__inner .commonBtn:hover span {
+  color: #ffffff;
 }
 #index main .top_about__text {
   font-size: 20px;
@@ -3850,12 +3864,11 @@ footer {
   color: #1c4c83;
   line-height: 1;
   letter-spacing: 0.05em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 @media only screen and (max-width: 768px) {
   #index main .top_news__title-en {
     font-size: 50px;
-    margin-bottom: 10px;
   }
 }
 #index main .top_news__title-ja {
@@ -3972,17 +3985,18 @@ footer {
   height: 100%;
   animation: wave-sway 4s ease-in-out infinite alternate;
 }
+@media only screen and (max-width: 768px) {
+  #index main .top_news__wave-sway {
+    bottom: 0;
+    height: 70%;
+  }
+}
 #index main .top_news__wave-move {
-  display: flex;
   width: 200%;
   height: 100%;
-  animation: wave-moveLeft 10s linear infinite;
-}
-#index main .top_news__wave {
-  flex: 0 0 50%;
-  height: 100%;
-  fill: #d3e5f2;
-  margin-right: -1px;
+  background: url("../img/top/top_blue_wave@2x.png") repeat-x;
+  background-size: 50% 100%;
+  animation: wave-bg 10s linear infinite;
 }
 #index main .top_news__boat {
   position: absolute;
@@ -4035,6 +4049,8 @@ footer {
     max-width: 330px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 0.9;
+    margin-bottom: 20px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -4380,7 +4396,7 @@ footer {
 }
 #index main .top_topics__title-en {
   line-height: 0.6;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 #index main .top_topics__title-en .font_big {
   letter-spacing: -10px;
@@ -6335,6 +6351,8 @@ footer {
 }
 @media only screen and (max-width: 768px) {
   #ship .light_blue_box .map_text {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
   }
 }
@@ -6367,6 +6385,7 @@ footer {
   text-align: center;
   font-weight: 500;
   vertical-align: middle;
+  border: 1px solid #fff;
 }
 #ship .ferry-table tr td {
   background: #f4f4f4;
@@ -6374,6 +6393,7 @@ footer {
   text-align: center;
   font-weight: 400;
   vertical-align: middle;
+  border: 1px solid #fff;
 }
 #ship .ferry-table tr td.blue_bg {
   font-weight: 500;
@@ -6593,6 +6613,7 @@ footer {
   overflow: hidden;
   border-radius: 6px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 @media only screen and (max-width: 768px) {
   #ship .ship_section02 .grid_box_list.ship_section02_box03 .youtube_box {
@@ -7212,6 +7233,9 @@ footer {
   background-color: #f4f7f9;
   border-radius: 6px;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 @media only screen and (max-width: 768px) {
   #press #press_single .grid_box_list .light_blue_box {
@@ -7286,8 +7310,8 @@ footer {
 #press #press_single .press_contents .light_blue_box .press_indent_box .commonBtn {
   max-width: 602px;
   font-size: 18px;
-  border: 1px solid #081f36;
-  color: #081f36;
+  border: 1px solid #244668;
+  color: #244668;
 }
 @media only screen and (max-width: 768px) {
   #press #press_single .press_contents .light_blue_box .press_indent_box .commonBtn {
@@ -7499,6 +7523,11 @@ footer {
   gap: 40px;
   justify-content: center;
 }
+@media only screen and (max-width: 768px) {
+  #join .join_section01 .join_box .btn_box .btn_container {
+    gap: 20px;
+  }
+}
 #join .join_section01 .join_box .commonBtn.tel {
   font-size: 14px;
 }
@@ -7582,6 +7611,13 @@ footer {
   font-weight: 600;
   font-size: 20px;
   text-align: center;
+}
+@media print, screen and (min-width: 769px) {
+  #join .join_section02 .gray_box h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 @media only screen and (max-width: 768px) {
   #join .join_section02 .gray_box h4 {
@@ -7969,6 +8005,321 @@ footer {
 #membership_form .custom-contact-form .unit-input-row input {
   max-width: 120px;
   margin-right: 15px;
+}
+
+#joho {
+  /* 一覧・カテゴリーページここから */
+}
+#joho .middle_mv {
+  background: url("../img/joho/joho_bg@2x.jpg") no-repeat center center/cover;
+}
+#joho #joho_all .sec_inner,
+#joho #joho_single .sec_inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 3%;
+}
+@media only screen and (max-width: 768px) {
+  #joho #joho_all .sec_inner,
+  #joho #joho_single .sec_inner {
+    flex-direction: column-reverse;
+    gap: 50px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  #joho .sidebar {
+    max-width: 296px;
+    width: 20%;
+    min-width: 200px;
+  }
+}
+#joho .sidebar {
+  box-sizing: border-box;
+  color: #333;
+}
+#joho .sidebar *,
+#joho .sidebar *::before,
+#joho .sidebar *::after {
+  box-sizing: inherit;
+}
+#joho .sidebar {
+  /* ========================================
+     見出し (追加した <h3> 用)
+  ======================================== */
+}
+#joho .sidebar h3 {
+  text-align: center;
+  color: #081f36;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+  letter-spacing: 0.1em;
+}
+#joho .sidebar {
+  /* ========================================
+     1. キーワード検索
+  ======================================== */
+}
+#joho .sidebar_search {
+  position: relative;
+  margin-bottom: 40px;
+}
+#joho .sidebar_search input[type=text] {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid #dce1e5;
+  border-radius: 4px;
+  background-color: #f6f6f6;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+#joho .sidebar_search input[type=text]:focus {
+  border-color: #081f36;
+}
+#joho .sidebar_search input[type=text]::placeholder {
+  color: #999999;
+}
+#joho .sidebar_search button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+#joho .sidebar_search button:hover {
+  opacity: 0.7;
+}
+#joho .sidebar {
+  /* ========================================
+     2. アコーディオンブロック（年度別・著者別）
+  ======================================== */
+}
+#joho .sidebar_block {
+  margin-bottom: 20px;
+}
+#joho .sidebar_block__head {
+  background-color: #081f36;
+  color: #ffffff;
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+}
+#joho .sidebar_block__head .icon {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: normal;
+  transition: transform 0.3s ease;
+}
+#joho .sidebar_block__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background-color: #f4f7f9;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, border-color 0.3s ease;
+}
+#joho .sidebar_block__body.author_list {
+  grid-template-columns: 1fr;
+}
+#joho .sidebar_block.is-open .sidebar_block__body {
+  border-color: #f4f7f9;
+  padding: 4px;
+}
+#joho .sidebar {
+  /* リンクタグ（年度・著者の各項目） */
+}
+#joho .sidebar_tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 10px;
+  background-color: #ffffff;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+}
+#joho .sidebar_tag:hover {
+  background-color: #eff5fd;
+  color: #081f36;
+  box-shadow: 0 0 0 1px #081f36;
+  position: relative;
+  z-index: 1;
+}
+#joho .sidebar {
+  /* ========================================
+     3. ボタン群
+  ======================================== */
+}
+#joho .sidebar_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+#joho .sidebar_btn {
+  color: #244668;
+  border: 1px solid #244668;
+}
+#joho .sidebar_btn:hover {
+  color: #ffffff;
+}
+#joho .sidebar_btn.link_btn {
+  height: 75px;
+  line-height: 1.5;
+}
+#joho .sidebar_btn.link_btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 28px;
+  width: 14px;
+  height: 14px;
+  background: transparent url("../img/common/link_btn.svg") no-repeat center center/contain;
+  transition: all 0.3s ease;
+}
+#joho .sidebar_btn.link_btn::after {
+  display: none;
+}
+#joho .sidebar_btn.link_btn:hover:before {
+  filter: brightness(0) invert(1);
+}
+#joho .joho_contents {
+  flex: 1;
+}
+#joho .joho_contents .joho_list {
+  gap: 50px;
+}
+@media print, screen and (min-width: 769px) {
+  #joho .joho_contents .joho_list {
+    gap: 60px 2%;
+  }
+}
+#joho .joho_contents .joho_list li a figure {
+  width: 100%;
+  margin-bottom: 20px;
+}
+@media only screen and (max-width: 768px) {
+  #joho .joho_contents .joho_list li a figure {
+    margin-bottom: 10px;
+  }
+}
+#joho .joho_contents .joho_list li a figure img {
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+}
+@media only screen and (max-width: 768px) {
+  #joho .joho_contents .joho_list li a figure img {
+    height: 300px;
+  }
+}
+#joho .joho_contents .joho_list li a .joho_ttl {
+  font-size: 20px;
+  font-weight: 600;
+  color: #244668;
+  text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  #joho .joho_contents .joho_list li a .joho_ttl {
+    font-size: 16px;
+  }
+}
+#joho .joho_contents {
+  /* 一覧・カテゴリーページここまで */
+}
+#joho {
+  /*  詳細ページここから */
+}
+#joho #joho_single {
+  margin-top: 120px;
+  padding-bottom: 300px;
+}
+@media only screen and (max-width: 768px) {
+  #joho #joho_single {
+    margin-top: 50px;
+    padding-bottom: 100px;
+  }
+}
+#joho #joho_single p {
+  color: #333;
+}
+#joho #joho_single .joho_main_ttl {
+  font-size: clamp(22px, 3.2vw, 38px);
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  margin-bottom: 20px;
+}
+#joho #joho_single .joho_category {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 100px;
+}
+@media only screen and (max-width: 768px) {
+  #joho #joho_single .joho_category {
+    margin-bottom: 50px;
+  }
+}
+#joho #joho_single .joho_category .cat-item {
+  background-color: #244668;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 10px;
+  min-width: 88px;
+  text-align: center;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+#joho #joho_single .grid_box_list {
+  margin-bottom: 30px;
+}
+@media print, screen and (min-width: 769px) {
+  #joho #joho_single .grid_box_list {
+    gap: 4%;
+    margin-bottom: 70px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  #joho #joho_single .grid_box_list figure img {
+    width: 100%;
+    height: auto;
+  }
+}
+#joho #joho_single .btn_inner {
+  margin-top: 150px;
+}
+@media only screen and (max-width: 768px) {
+  #joho #joho_single .btn_inner {
+    margin-top: 70px;
+  }
 }
 
 #seminar .pankuzu_wrap {

@@ -43,7 +43,7 @@
     justify-content: space-between;
     width: calc(100% - 112px);
     gap: 0 min(1.5vw, 30px);
-    max-width: 1808px;
+    max-width: 1948px;
     @include m.mq(sp) {
       width: calc(100% - 60px);
     }

@@ -64,7 +64,7 @@ function my_theme_enqueue_assets()
         );
     }
     // =========================
-    // shipページだけ読み込む
+    // joinページだけ読み込む
     // =========================
     if (is_page('join')) {
         // matchHeight
@@ -73,6 +73,25 @@ function my_theme_enqueue_assets()
             'https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js',
             array('jquery'),
             '0.7.2',
+            true
+        );
+        wp_enqueue_script(
+            'join-script',
+            get_template_directory_uri() . '/assets/js/join.js',
+            array('jquery'),
+            filemtime(get_template_directory() . '/assets/js/join.js'),
+            true
+        );
+    }
+    // =========================
+    // johoページだけ読み込む
+    // =========================
+    if (is_post_type_archive("joho") || is_singular("joho") || is_tax("joho-year") || is_tax("joho-author")) {
+        wp_enqueue_script(
+            'joho-script',
+            get_template_directory_uri() . '/assets/js/joho.js',
+            array('jquery'),
+            filemtime(get_template_directory() . '/assets/js/joho.js'),
             true
         );
     }

@@ -112,6 +112,8 @@ function body_id()
   global $post;
   if (is_home() || is_front_page()) {
     $body_id = "index";
+  } elseif (is_post_type_archive("joho") || is_singular("joho") || is_tax("joho-year") || is_tax("joho-author")) {
+    $body_id = "joho";
   } elseif (is_post_type_archive("topics") || is_singular("topics") || is_tax("topics-category")) {
     $body_id = "topics";
   } elseif (is_post_type_archive("press") || is_singular("press") || is_tax("press-category")) {

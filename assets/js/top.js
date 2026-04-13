@@ -62,6 +62,7 @@ function sliderToggle() {
           slidesToShow: 1,
           arrows: true,
           dots: false,
+          adaptiveHeight: true,
           prevArrow: $(".seminars__js-prev"),
           nextArrow: $(".seminars__js-next"),
         });

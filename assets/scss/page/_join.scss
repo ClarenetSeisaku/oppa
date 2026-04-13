@@ -61,7 +61,7 @@
       img {
         position: absolute;
         bottom: min(5vw, 100px);
-       left: 0;
+        left: 0;
         width: 56vw;
         height: min(33.438vw, 642px);
         @include m.mq(sp) {
@@ -120,6 +120,9 @@
           flex-wrap: wrap;
           gap: 40px;
           justify-content: center;
+          @include m.mq(sp) {
+            gap: 20px;
+          }
         }
       }
       .commonBtn.tel {
@@ -202,6 +205,11 @@
         font-weight: 600;
         font-size: 20px;
         text-align: center;
+        @include m.mq(tab_pc) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
         @include m.mq(sp) {
           font-size: 18px;
         }

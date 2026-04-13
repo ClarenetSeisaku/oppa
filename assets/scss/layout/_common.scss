@@ -300,6 +300,7 @@ a[href*="tel:"] {
     }
   }
   &:hover {
+    border: 1px solid m.$color-navy;
     &::before {
       background-color: m.$color-white;
       z-index: 3;
@@ -378,12 +379,8 @@ a[href*="tel:"] {
 *************************/
 
 .js-scrollable {
-  > * {
+  table {
     min-width: 1300px;
-  }
-  img {
-    width: 100%;
-    height: auto;
   }
 }
 

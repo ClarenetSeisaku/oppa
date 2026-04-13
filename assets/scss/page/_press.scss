@@ -182,6 +182,9 @@
         background-color: #f4f7f9;
         border-radius: 6px;
         padding: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         @include m.mq(sp) {
           padding: 20px;
         }
@@ -250,8 +253,8 @@
           .commonBtn {
             max-width: 602px;
             font-size: 18px;
-            border: 1px solid m.$color-navy;
-            color: m.$color-navy;
+            border: 1px solid m.$color-light-navy;
+            color: m.$color-light-navy;
             @include m.mq(sp) {
               font-size: 16px;
               width: 100%;
