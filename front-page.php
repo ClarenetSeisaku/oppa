@@ -142,16 +142,27 @@ get_header();
                             $topics->the_post();
                         ?>
                             <li class="top_news__item">
-                                <a href="<?php the_permalink(); ?>" class="top_news__link">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
-                                    <?php
-                                    $category = get_the_category();
-                                    if ($category) {
-                                        echo '<span class="top_news__category">' . esc_html($category[0]->name) . '</span>';
-                                    }
-                                    ?>
-                                    <p class="top_news__text"><?php the_title(); ?></p>
-                                </a>
+
+                                <time datetime="<?php echo get_the_date('c'); ?>" class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
+                                <?php
+                                $category = get_the_category();
+                                if ($category) {
+                                    $cat_link = get_category_link($category[0]->term_id);
+                                    echo '<a href="' . esc_url($cat_link) . '" class="top_news__category">'
+                                        . esc_html($category[0]->name) .
+                                        '</a>';
+                                }
+                                ?>
+                                <?php $link = get_field('news_link'); ?>
+                                <p class="top_news__text">
+                                    <?php if ($link): ?>
+                                        <a href="<?php echo esc_url($link); ?>" class="top_news__link">
+                                            <?php the_title(); ?>
+                                        </a>
+                                    <?php else: ?>
+                                        <?php the_title(); ?>
+                                    <?php endif; ?>
+                                </p>
                             </li>
                     <?php endwhile;
                     endif;
@@ -339,39 +350,51 @@ get_header();
                     ?>
 
                             <article class="top_topics__card <?php echo implode(' ', $term_classes); ?>">
-                                <a href="<?php the_permalink(); ?>" class="top_topics__card-link">
 
-                                    <div class="top_topics__card-img">
-                                        <?php if (has_post_thumbnail()) : ?>
-                                            <?php the_post_thumbnail('medium'); ?>
-                                        <?php else: ?>
-                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
-                                        <?php endif; ?>
-                                    </div>
 
-                                    <div class="top_topics__card-body">
-                                        <div class="top_topics__card-meta">
+                                <div class="top_topics__card-img">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    <?php else: ?>
+                                        <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                    <?php endif; ?>
+                                </div>
 
-                                            <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">
-                                                <?php echo get_the_date('Y.m.d'); ?>
-                                            </time>
+                                <div class="top_topics__card-body">
+                                    <div class="top_topics__card-meta">
 
-                                            <?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-                                                <?php foreach ($terms as $term) : ?>
-                                                    <span class="top_topics__card-badge cat-<?php echo esc_attr($term->slug); ?>">
+                                        <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">
+                                            <?php echo get_the_date('Y.m.d'); ?>
+                                        </time>
+
+                                        <?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+                                            <?php foreach ($terms as $term) : ?>
+                                                <?php
+                                                $term_link = get_term_link($term);
+                                                if (!is_wp_error($term_link)) :
+                                                ?>
+                                                    <a href="<?php echo esc_url($term_link); ?>"
+                                                        class="top_topics__card-badge cat-<?php echo esc_attr($term->slug); ?>">
                                                         <?php echo esc_html($term->name); ?>
-                                                    </span>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
 
-                                        </div>
-
-                                        <h3 class="top_topics__card-title">
-                                            <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
-                                        </h3>
                                     </div>
+                                    <?php $link = get_field('topics_link'); ?>
+                                    <h3 class="top_topics__card-title">
+                                        <?php if ($link): ?>
+                                            <a href="<?php echo esc_url($link); ?>" class="top_topics__card-link">
+                                                <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
+                                            </a>
+                                        <?php else: ?>
+                                            <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
+                                        <?php endif; ?>
+                                    </h3>
+                                </div>
 
-                                </a>
+
                             </article>
 
                     <?php

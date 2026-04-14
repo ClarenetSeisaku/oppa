@@ -57,56 +57,56 @@
   .news_list {
     li {
       border-bottom: 1px solid m.$border-color;
+      display: flex;
+      align-items: center;
+      padding: 26px 10px;
+      gap: 30px;
+      transition: background-color 0.3s;
+      @include m.mq(sp) {
+        flex-wrap: wrap;
+        gap: 12px 10px;
+        padding: 20px 0;
+      }
       &:first-child {
         border-top: 1px solid m.$border-color;
       }
-      a {
-        display: flex;
-        align-items: center;
-        padding: 26px 10px;
-        gap: 30px;
-        transition: background-color 0.3s;
+
+      time {
+        color: m.$color-date;
+        flex-shrink: 0;
+        font-size: 16px;
         @include m.mq(sp) {
-          flex-wrap: wrap;
-          gap: 12px 10px;
-          padding: 20px 0;
+          font-size: 14px;
+        }
+      }
+      .news_category {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        .cat-item {
+          background-color: m.$color-light-navy;
+          color: #ffffff;
+          font-size: 14px;
+          padding: 4px;
+          min-width: 80px;
+          text-align: center;
+          border-radius: 2px;
+          flex-shrink: 0;
+          display: block;
+        }
+      }
+      p {
+        flex-grow: 1;
+        line-height: 1.6;
+        transition: color 0.3s;
+        @include m.mq(sp) {
+          width: 100%;
+          margin-top: 4px;
         }
         &:hover {
-          .top_news__text {
+          a {
             color: m.$color-navy-hover;
-          }
-        }
-        time {
-          color: m.$color-date;
-          flex-shrink: 0;
-          font-size: 16px;
-          @include m.mq(sp) {
-            font-size: 14px;
-          }
-        }
-        .news_category {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 20px;
-          .cat-item {
-            background-color: m.$color-light-navy;
-            color: #ffffff;
-            font-size: 14px;
-            padding: 4px;
-            min-width: 80px;
-            text-align: center;
-            border-radius: 2px;
-            flex-shrink: 0;
-          }
-        }
-        p {
-          flex-grow: 1;
-          line-height: 1.6;
-          transition: color 0.3s;
-          @include m.mq(sp) {
-            width: 100%;
-            margin-top: 4px;
           }
         }
       }

@@ -34,7 +34,6 @@ get_header();
         ?>
       </span>
       <?php $link = get_field('topics_link'); ?>
-
       <h2 class="topics_main_ttl">
         <?php if ($link): ?>
           <a href="<?php echo esc_url($link); ?>">

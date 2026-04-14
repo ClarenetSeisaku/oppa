@@ -466,12 +466,6 @@
       }
 
       &__item {
-        &:not(:last-of-type) {
-          border-bottom: 1px solid m.$color-border;
-        }
-      }
-
-      &__link {
         display: flex;
         align-items: center;
         padding: 26px 0;
@@ -483,11 +477,11 @@
           gap: 12px 10px;
           padding: 20px 0;
         }
-        &:hover {
-          .top_news__text {
-            color: m.$color-navy-hover;
-          }
+        &:not(:last-of-type) {
+          border-bottom: 1px solid m.$color-border;
         }
+      }
+      &__link {
       }
 
       &__date {
@@ -518,6 +512,11 @@
         @include m.mq(sp) {
           width: 100%;
           margin-top: 4px;
+        }
+        &:hover {
+          a {
+            color: m.$color-navy-hover;
+          }
         }
       }
 
@@ -1072,17 +1071,7 @@
       // カード
       &__card {
         width: min(25.521vw, 490px);
-
-        &-link {
-          display: block;
-          transition: transform 0.3s ease;
-
-          &:hover {
-            .top_topics__card-title {
-              color: m.$color-navy-hover;
-            }
-          }
-        }
+        transition: transform 0.3s ease;
 
         &-img {
           aspect-ratio: 4 / 3;
@@ -1129,6 +1118,11 @@
           line-height: 1.6;
           color: m.$color-text;
           transition: color 0.3s;
+          &:hover {
+            a {
+              color: m.$color-navy-hover;
+            }
+          }
         }
       }
 

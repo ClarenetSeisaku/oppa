@@ -3913,10 +3913,7 @@ footer {
   position: relative;
   z-index: 10;
 }
-#index main .top_news__item:not(:last-of-type) {
-  border-bottom: 1px solid #afccda;
-}
-#index main .top_news__link {
+#index main .top_news__item {
   display: flex;
   align-items: center;
   padding: 26px 0;
@@ -3924,14 +3921,14 @@ footer {
   transition: background-color 0.3s;
 }
 @media only screen and (max-width: 768px) {
-  #index main .top_news__link {
+  #index main .top_news__item {
     flex-wrap: wrap;
     gap: 12px 10px;
     padding: 20px 0;
   }
 }
-#index main .top_news__link:hover .top_news__text {
-  color: #1c4c83;
+#index main .top_news__item:not(:last-of-type) {
+  border-bottom: 1px solid #afccda;
 }
 #index main .top_news__date {
   color: #5c738d;
@@ -3963,6 +3960,9 @@ footer {
     width: 100%;
     margin-top: 4px;
   }
+}
+#index main .top_news__text:hover a {
+  color: #1c4c83;
 }
 #index main .top_news__decoration {
   position: absolute;
@@ -4499,13 +4499,7 @@ footer {
 }
 #index main .top_topics__card {
   width: min(25.521vw, 490px);
-}
-#index main .top_topics__card-link {
-  display: block;
   transition: transform 0.3s ease;
-}
-#index main .top_topics__card-link:hover .top_topics__card-title {
-  color: #1c4c83;
 }
 #index main .top_topics__card-img {
   aspect-ratio: 4/3;
@@ -4550,6 +4544,9 @@ footer {
   line-height: 1.6;
   color: #000000;
   transition: color 0.3s;
+}
+#index main .top_topics__card-title:hover a {
+  color: #1c4c83;
 }
 #index main .top_topics__actions {
   grid-column: 4/5;
@@ -6168,11 +6165,6 @@ footer {
 }
 #news .news_list li {
   border-bottom: 1px solid #dce1e5;
-}
-#news .news_list li:first-child {
-  border-top: 1px solid #dce1e5;
-}
-#news .news_list li a {
   display: flex;
   align-items: center;
   padding: 26px 10px;
@@ -6180,32 +6172,32 @@ footer {
   transition: background-color 0.3s;
 }
 @media only screen and (max-width: 768px) {
-  #news .news_list li a {
+  #news .news_list li {
     flex-wrap: wrap;
     gap: 12px 10px;
     padding: 20px 0;
   }
 }
-#news .news_list li a:hover .top_news__text {
-  color: #1c4c83;
+#news .news_list li:first-child {
+  border-top: 1px solid #dce1e5;
 }
-#news .news_list li a time {
+#news .news_list li time {
   color: #5c738d;
   flex-shrink: 0;
   font-size: 16px;
 }
 @media only screen and (max-width: 768px) {
-  #news .news_list li a time {
+  #news .news_list li time {
     font-size: 14px;
   }
 }
-#news .news_list li a .news_category {
+#news .news_list li .news_category {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
 }
-#news .news_list li a .news_category .cat-item {
+#news .news_list li .news_category .cat-item {
   background-color: #244668;
   color: #ffffff;
   font-size: 14px;
@@ -6214,17 +6206,21 @@ footer {
   text-align: center;
   border-radius: 2px;
   flex-shrink: 0;
+  display: block;
 }
-#news .news_list li a p {
+#news .news_list li p {
   flex-grow: 1;
   line-height: 1.6;
   transition: color 0.3s;
 }
 @media only screen and (max-width: 768px) {
-  #news .news_list li a p {
+  #news .news_list li p {
     width: 100%;
     margin-top: 4px;
   }
+}
+#news .news_list li p:hover a {
+  color: #1c4c83;
 }
 #news {
   /* 一覧・カテゴリーページここまで */
@@ -6891,7 +6887,7 @@ footer {
   flex-direction: column;
   gap: 20px;
 }
-#topics .topics_list li a {
+#topics .topics_list li {
   display: flex;
   align-items: center;
   padding: 30px;
@@ -6900,31 +6896,34 @@ footer {
   border-radius: 6px;
 }
 @media only screen and (max-width: 768px) {
-  #topics .topics_list li a {
+  #topics .topics_list li {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
   }
 }
-#topics .topics_list li a figure {
+#topics .topics_list li a:hover {
+  opacity: 0.8;
+}
+#topics .topics_list li figure {
   width: 100%;
   max-width: 230px;
 }
-#topics .topics_list li a figure img {
+#topics .topics_list li figure img {
   width: 100%;
   height: 170px;
   object-fit: cover;
   border-radius: 6px;
 }
-#topics .topics_list li a .topics_contents {
+#topics .topics_list li .topics_contents {
   width: calc(100% - 260px);
 }
 @media only screen and (max-width: 768px) {
-  #topics .topics_list li a .topics_contents {
+  #topics .topics_list li .topics_contents {
     width: 100%;
   }
 }
-#topics .topics_list li a .topics_contents .topics_flex_box {
+#topics .topics_list li .topics_contents .topics_flex_box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -6932,23 +6931,23 @@ footer {
   gap: 20px;
   margin-bottom: 10px;
 }
-#topics .topics_list li a time {
+#topics .topics_list li time {
   color: #5c738d;
   flex-shrink: 0;
   font-size: 16px;
 }
 @media only screen and (max-width: 768px) {
-  #topics .topics_list li a time {
+  #topics .topics_list li time {
     font-size: 14px;
   }
 }
-#topics .topics_list li a .topics_category {
+#topics .topics_list li .topics_category {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
-#topics .topics_list li a .topics_category .cat-item {
+#topics .topics_list li .topics_category .cat-item {
   background-color: #244668;
   color: #ffffff;
   font-size: 14px;
@@ -6958,20 +6957,23 @@ footer {
   border-radius: 2px;
   flex-shrink: 0;
 }
-#topics .topics_list li a .topics_category .cat-item.cat-kyakusen {
+#topics .topics_list li .topics_category .cat-item.cat-kyakusen {
   background-color: #a7913a;
 }
-#topics .topics_list li a .topics_category .cat-item.cat-records {
+#topics .topics_list li .topics_category .cat-item.cat-records {
   background-color: #b55538;
 }
-#topics .topics_list li a .topics_category .cat-item.cat-newsletter {
+#topics .topics_list li .topics_category .cat-item.cat-newsletter {
   background-color: #468492;
 }
-#topics .topics_list li a .topics_ttl {
+#topics .topics_list li .topics_ttl {
   font-size: 20px;
   font-weight: 600;
   color: #244668;
   margin-bottom: 20px;
+}
+#topics .topics_list li .topics_ttl a {
+  color: #244668;
 }
 #topics {
   /* 一覧・カテゴリーページここまで */
@@ -7113,8 +7115,12 @@ footer {
 }
 #press .press_list li a figure {
   width: 100%;
-  max-width: 490px;
   margin-bottom: 20px;
+}
+@media print, screen and (min-width: 769px) {
+  #press .press_list li a figure {
+    max-width: 490px;
+  }
 }
 @media only screen and (max-width: 768px) {
   #press .press_list li a figure {
@@ -7124,7 +7130,7 @@ footer {
 #press .press_list li a figure img {
   width: 100%;
   height: 480px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 6px;
 }
 @media only screen and (max-width: 768px) {
@@ -7136,6 +7142,7 @@ footer {
   font-size: 20px;
   font-weight: 600;
   color: #244668;
+  text-align: center;
 }
 @media only screen and (max-width: 768px) {
   #press .press_list li a .press_ttl {
@@ -7317,7 +7324,6 @@ footer {
   max-width: 602px;
   font-size: 18px;
   border: 1px solid #244668;
-  color: #244668;
 }
 @media only screen and (max-width: 768px) {
   #press #press_single .press_contents .light_blue_box .press_indent_box .commonBtn {
@@ -7338,11 +7344,15 @@ footer {
   padding: 0 55px 0 25px;
   justify-content: flex-start;
   letter-spacing: 1px;
+  color: #244668;
 }
 @media only screen and (max-width: 768px) {
   #press #press_single .press_contents .light_blue_box .press_indent_box .commonBtn span {
     padding: 0 30px 0 15px;
   }
+}
+#press #press_single .press_contents .light_blue_box .press_indent_box .commonBtn:hover span {
+  color: #fff;
 }
 #press #press_single .press_contents .light_blue_box .press_indent_box .press_flex {
   display: flex;

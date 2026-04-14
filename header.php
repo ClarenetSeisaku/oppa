@@ -44,7 +44,7 @@
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon02.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon02_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon02_sp.svg" alt="" class="sp"></figure>
                             <span>情報誌「大阪港」</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon03.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon03_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon03_sp.svg" alt="" class="sp"></figure>
                             <span>ニュースレター</span>
                         </a></li>
@@ -52,7 +52,7 @@
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon04.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon04_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon04_sp.svg" alt="" class="sp"></figure>
                             <span>客船・<br class="pc">フェリー情報</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>topics-category/records">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon05.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon05_navy.svg" alt="" class="pc hover_block"><img src=" <?php echo imdir(); ?>/common/header_icon05_sp.svg" alt="" class="sp"></figure>
                             <span>大阪港の記録</span>
                         </a></li>
@@ -75,21 +75,21 @@
                                     <li><a href="<?= esc_url(home_url('/')) ?>about">大阪港振興協会とは</a></li>
                                     <li><a href="<?= esc_url(home_url('/')) ?>news">新着情報</a></li>
                                     <li class="pc"><a href="<?= esc_url(home_url('/')) ?>seminar">セミナー・イベント情報</a></li>
-                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>joho">情報誌「大阪港」・ニュースレター</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>joho">情報誌「大阪港」</a></li>
                                 </ul>
                             </div>
                             <div class="drawer__col">
                                 <ul>
                                     <li class="pc"><a href="<?= esc_url(home_url('/')) ?>ship">客船・フェリー情報</a></li>
-                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>">大阪港の記録</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>topics-category/records">大阪港の記録</a></li>
                                     <li class="pc"><a href="<?= esc_url(home_url('/')) ?>press">グッズ・刊行物</a></li>
-                                    <li><a href="<?= esc_url(home_url('/')) ?>">わくわく港探訪</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter">ニュースレター</a></li>
                                 </ul>
                             </div>
                             <div class="drawer__col">
                                 <ul>
                                     <li><a href="<?= esc_url(home_url('/')) ?>join">入会案内</a></li>
-                                    <li><a href="<?= esc_url(home_url('/')) ?>member">会員情報</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>member-list">会員情報</a></li>
                                     <li><a href="<?= esc_url(home_url('/')) ?>access">アクセス</a></li>
                                 </ul>
                             </div>

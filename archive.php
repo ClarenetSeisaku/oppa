@@ -73,22 +73,32 @@ get_header();
                         $topics->the_post();
                     ?>
                         <li>
-                            <a href="<?php the_permalink(); ?>" class="arrow">
-                                <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('Y.n.j'); ?></time>
-                                <span class="news_category">
-                                    <?php
-                                    $cats = get_the_category();
-                                    if ($cats) {
-                                        foreach ($cats as $cat) {
-                                            echo '<span class="cat-item cat-' . esc_attr($cat->slug) . '">';
-                                            echo esc_html($cat->name);
-                                            echo '</span>';
-                                        }
+
+                            <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('Y.n.j'); ?></time>
+                            <span class="news_category">
+                                <?php
+                                $cats = get_the_category();
+                                if ($cats) {
+                                    foreach ($cats as $cat) {
+                                        $cat_link = get_category_link($cat->term_id);
+
+                                        echo '<a href="' . esc_url($cat_link) . '" class="cat-item cat-' . esc_attr($cat->slug) . '">';
+                                        echo esc_html($cat->name);
+                                        echo '</a>';
                                     }
-                                    ?>
-                                </span>
-                                <p><?php the_title(); ?></p>
-                            </a>
+                                }
+                                ?>
+                            </span>
+                            <?php $link = get_field('news_link'); ?>
+                            <p>
+                                <?php if ($link): ?>
+                                    <a href="<?php echo esc_url($link); ?>">
+                                        <?php the_title(); ?>
+                                    </a>
+                                <?php else: ?>
+                                    <?php the_title(); ?>
+                                <?php endif; ?>
+                            </p>
                         </li>
                 <?php endwhile;
                 endif;

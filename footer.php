@@ -31,6 +31,11 @@
         <img src="<?php echo imdir(); ?>/common/seminar_icon.svg" alt="セミナーのアイコン">
         <span>申込みフォーム</span>
     </a>
+<?php elseif (is_page("join")): ?>
+    <a href="<?= esc_url(home_url('/')) ?>membership_form" class="fixed-btn">
+        <img src="<?php echo imdir(); ?>/common/seminar_icon.svg" alt="セミナーのアイコン">
+        <span>申込みフォーム</span>
+    </a>
 <?php elseif (is_front_page()): ?>
     <a href="#" class="fixed-btn">
         <img src="<?php echo imdir(); ?>/common/boat_wh.svg" alt="船のアイコン">
@@ -79,17 +84,17 @@
                     <a href="<?= esc_url(home_url('/')) ?>about" class="footer__nav-link">大阪港振興協会とは</a>
                     <a href="<?= esc_url(home_url('/')) ?>news" class="footer__nav-link">新着情報</a>
                     <a href="<?= esc_url(home_url('/')) ?>seminar" class="footer__nav-link">セミナー・イベント情報</a>
-                    <a href="<?= esc_url(home_url('/')) ?>joho" class="footer__nav-link">情報誌「大阪港」・ニュースレター</a>
+                    <a href="<?= esc_url(home_url('/')) ?>joho" class="footer__nav-link">情報誌「大阪港」</a>
                 </div>
                 <div class="footer__nav-col">
                     <a href="<?= esc_url(home_url('/')) ?>ship" class="footer__nav-link">客船・フェリー情報</a>
-                    <a href="#" class="footer__nav-link">大阪港の記録</a>
+                    <a href="<?= esc_url(home_url('/')) ?>topics-category/records" class="footer__nav-link">大阪港の記録</a>
                     <a href="<?= esc_url(home_url('/')) ?>press" class="footer__nav-link">グッズ・刊行物</a>
-                    <a href="#" class="footer__nav-link">わくわく港探訪</a>
+                    <a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter" class="footer__nav-link">ニュースレター</a>
                 </div>
                 <div class="footer__nav-col">
                     <a href="<?= esc_url(home_url('/')) ?>join" class="footer__nav-link">入会案内</a>
-                    <a href="<?= esc_url(home_url('/')) ?>member" class="footer__nav-link">会員情報</a>
+                    <a href="<?= esc_url(home_url('/')) ?>member-list" class="footer__nav-link">会員情報</a>
                     <a href="<?= esc_url(home_url('/')) ?>access" class="footer__nav-link">アクセス</a>
                 </div>
             </nav>
