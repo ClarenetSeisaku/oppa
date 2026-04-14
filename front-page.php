@@ -160,7 +160,9 @@ get_header();
                                             <?php the_title(); ?>
                                         </a>
                                     <?php else: ?>
-                                        <?php the_title(); ?>
+                                        <a href="<?php the_permalink(); ?>" class="top_news__link">
+                                            <?php the_title(); ?>
+                                        </a>
                                     <?php endif; ?>
                                 </p>
                             </li>
@@ -389,7 +391,7 @@ get_header();
                                                 <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
                                             </a>
                                         <?php else: ?>
-                                            <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
+                                            <a href="<?php the_permalink(); ?>" class="top_topics__card-link"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></a>
                                         <?php endif; ?>
                                     </h3>
                                 </div>

@@ -77,7 +77,7 @@ get_header();
                                             <?php the_title(); ?>
                                         </a>
                                     <?php else: ?>
-                                        <?php the_title(); ?>
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                     <?php endif; ?>
                                 </p>
                                 <p>
