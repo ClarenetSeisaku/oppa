@@ -373,14 +373,15 @@
             }
 
             .profile-image {
-                background-color: #e0e0e0; /* 画像が入るまでのプレースホルダー */
-                border-radius: 6px;
                 width: 100%;
-                height: 300px;
                 @include m.mq(tab_pc) {
                     width: 56%;
-                    height: 490px;
                     margin-top: 20px;
+                }
+                img {
+                    border-radius: 6px;
+                    width: 100%;
+                    height: auto;
                 }
             }
         }
@@ -428,6 +429,11 @@
             .about_indent {
                 text-indent: -3.5em;
                 margin-left: 3.5em;
+            }
+        }
+        .commonBtn {
+            @include m.mq(sp) {
+                margin: 0 auto;
             }
         }
     }
@@ -509,6 +515,10 @@
                         @include m.mq(sp) {
                             margin-bottom: 10px;
                         }
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
                     }
                 }
             }
@@ -531,6 +541,13 @@
                 @include m.mq(sp) {
                     width: 90.256vw;
                     height: auto;
+                }
+            }
+        }
+        .about_btn_box {
+            .commonBtn {
+                @include m.mq(sp) {
+                    margin: 0 auto;
                 }
             }
         }

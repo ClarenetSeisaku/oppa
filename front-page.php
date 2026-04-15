@@ -530,13 +530,9 @@ get_header();
 
         <div class="top_goods__inner sec_inner">
             <div class="top_goods_img01 img_con wave_img"><img src="<?php echo imdir(); ?>/top/top_goods_img01.svg" alt="船"></div>
-            <!-- 左：画像エリア -->
             <div class="top_goods__image">
-                <!-- グレーのダミー画像を配置 -->
-                <img src="https://placehold.jp/dddddd/dddddd/600x600.png" alt="グッズ・刊行物のイメージ">
+                <img src="<?php echo imdir(); ?>/top/top_goods_image@2x.jpg" alt="グッズ・刊行物のイメージ画像">
             </div>
-
-            <!-- 右：コンテンツエリア -->
             <div class="top_goods__content">
                 <h2 class="top_goods__title-en main_ttl"><span class="font_big">G</span>oods &<br><span class="font_big">P</span>ublications</h2>
                 <p class="top_goods__title-ja main_ttl_ja">グッズ・刊行物</p>

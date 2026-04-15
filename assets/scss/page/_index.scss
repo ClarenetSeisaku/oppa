@@ -1448,9 +1448,10 @@
         img {
           width: 100%;
           height: auto;
-          aspect-ratio: 1 / 1; // 綺麗な正方形を維持
-          object-fit: cover;
-          background-color: #dcdcdc;
+          border-radius: 6px;
+          @include m.mq(sp) {
+            border-radius: 0;
+          }
         }
       }
 

@@ -4867,9 +4867,12 @@ footer {
 #index main .top_goods__image img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  background-color: #dcdcdc;
+  border-radius: 6px;
+}
+@media only screen and (max-width: 768px) {
+  #index main .top_goods__image img {
+    border-radius: 0;
+  }
 }
 #index main .top_goods__content {
   width: 40%;
@@ -5369,17 +5372,18 @@ footer {
   margin: 0;
 }
 #about .about_section04 .profile-wrap .profile-image {
-  background-color: #e0e0e0; /* 画像が入るまでのプレースホルダー */
-  border-radius: 6px;
   width: 100%;
-  height: 300px;
 }
 @media print, screen and (min-width: 769px) {
   #about .about_section04 .profile-wrap .profile-image {
     width: 56%;
-    height: 490px;
     margin-top: 20px;
   }
+}
+#about .about_section04 .profile-wrap .profile-image img {
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
 }
 #about .about_section05 {
   position: relative;
@@ -5432,6 +5436,11 @@ footer {
 #about .about_section05 .text_box .about_indent {
   text-indent: -3.5em;
   margin-left: 3.5em;
+}
+@media only screen and (max-width: 768px) {
+  #about .about_section05 .commonBtn {
+    margin: 0 auto;
+  }
 }
 #about .about_section06 {
   position: relative;
@@ -5525,6 +5534,10 @@ footer {
     margin-bottom: 10px;
   }
 }
+#about .about_section06 .about_contents_box .grid_box_list .box figure img {
+  width: 100%;
+  height: auto;
+}
 #about .about_section07 {
   position: relative;
   padding-bottom: min(15vw, 300px);
@@ -5546,6 +5559,11 @@ footer {
   #about .about_section07_img01 img {
     width: 90.256vw;
     height: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #about .about_section07 .about_btn_box .commonBtn {
+    margin: 0 auto;
   }
 }
 #about .about_section08 {

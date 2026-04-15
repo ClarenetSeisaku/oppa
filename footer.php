@@ -28,8 +28,8 @@
     </a>
 <?php elseif (is_singular("press")): ?>
     <a href="#purchase" class="fixed-btn">
-        <img src="<?php echo imdir(); ?>/common/seminar_icon.svg" alt="セミナーのアイコン">
-        <span>申込みフォーム</span>
+        <img src="<?php echo imdir(); ?>/press/crown.svg" alt="王冠のアイコン">
+        <span>ご購入について</span>
     </a>
 <?php elseif (is_page("join")): ?>
     <a href="<?= esc_url(home_url('/')) ?>membership_form" class="fixed-btn">
