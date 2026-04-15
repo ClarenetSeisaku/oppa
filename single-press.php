@@ -40,17 +40,28 @@ get_header();
               <?php endif; ?>
             </div>
           </div>
-          <div class="light_blue_box">
-            <p class="mb20"><?php the_field('press_explanation'); ?></p>
-            <?php if (have_rows('asterisk_repeat')): ?>
-              <?php while (have_rows('asterisk_repeat')): the_row(); ?>
-                <?php
-                $asterisk = get_sub_field('asterisk_text');
-                ?>
-                <p class="asterisk"><?= esc_html($asterisk); ?></p>
-              <?php endwhile; ?>
-            <?php endif; ?>
-          </div>
+          <?php
+          $press_explanation = get_field('press_explanation');
+          $asterisk_rows = get_field('asterisk_repeat');
+
+          if ($press_explanation || $asterisk_rows):
+          ?>
+            <div class="light_blue_box">
+              <?php if ($press_explanation): ?>
+                <p><?php echo nl2br(esc_html($press_explanation)); ?></p>
+              <?php endif; ?>
+
+              <?php if ($asterisk_rows): ?>
+                <ul class="mt20">
+                  <?php foreach ($asterisk_rows as $row): ?>
+                    <li class="asterisk">
+                      <?php echo esc_html($row['asterisk_text']); ?>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
+            </div>
+          <?php endif; ?>
         </div>
         <div class="box img_box"><?php if (has_post_thumbnail()) : ?>
             <?php the_post_thumbnail('medium'); ?>
@@ -59,7 +70,7 @@ get_header();
           <?php endif; ?>
         </div>
       </div>
-      <div class="press_contents">
+      <div class="press_contents" id="purchase">
         <div class="light_blue_box">
           <h3 class="sec_ttl03">ご購入について</h3>
           <h4 class="sec_ttl05 border_bottom">購入場所</h4>
@@ -67,7 +78,7 @@ get_header();
             〒552-0021 大阪府大阪市港区築港2-1-2　第一大阪港ビル７階</p>
           <h4 class="sec_ttl05 border_bottom">郵送をご希望の方</h4>
           <p class="press_num_list mb20"><span class="num">1</span><span class="text">
-              下記連絡先のいずれかのよりお客様のお名前（フリガナ）、郵便番号、ご住所、連絡先電話番号、ご希望の商品名、数量をご連絡ください。
+              下記連絡先のいずれかよりお客様のお名前（フリガナ）、郵便番号、ご住所、連絡先電話番号、ご希望の商品名、数量をご連絡ください。
               商品代金に加え、別途送料が必要となりますのでご連絡いただきましたら送料をおしらせいたします。
             </span></p>
           <div class="press_indent_box">

@@ -77,14 +77,14 @@ get_header();
             <div class="top_about_img03 img_con wave_img"><img src="<?php echo imdir(); ?>/common/top_about_img03.svg" alt="船"></div>
             <div class="top_about__inner">
 
-                <p class="top_about__text">
+                <p class="top_about__text animate">
                     大阪港振興協会とは、<br>
                     大阪港の振興と発展を目的として<br class="sp">活動する公益法人です。<br>
                     港湾に関わる企業や<br class="sp">関係機関と連携しながら、<br>
                     情報発信や交流事業、<br class="sp">その他活動を通じて、<br>
                     大阪港の魅力を広く伝えています
                 </p>
-                <a href="#" class="commonBtn center">
+                <a href="<?= esc_url(home_url('/')) ?>about" class="commonBtn center">
                     <span>大阪港振興協会とは</span>
                 </a>
             </div>
@@ -142,16 +142,29 @@ get_header();
                             $topics->the_post();
                         ?>
                             <li class="top_news__item">
-                                <a href="<?php the_permalink(); ?>" class="top_news__link">
-                                    <time datetime="<?php echo get_the_date('c'); ?>" class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
-                                    <?php
-                                    $category = get_the_category();
-                                    if ($category) {
-                                        echo '<span class="top_news__category">' . esc_html($category[0]->name) . '</span>';
-                                    }
-                                    ?>
-                                    <p class="top_news__text"><?php the_title(); ?></p>
-                                </a>
+
+                                <time datetime="<?php echo get_the_date('c'); ?>" class="top_news__date"><?php echo get_the_date('Y.n.j'); ?></time>
+                                <?php
+                                $category = get_the_category();
+                                if ($category) {
+                                    $cat_link = get_category_link($category[0]->term_id);
+                                    echo '<a href="' . esc_url($cat_link) . '" class="top_news__category">'
+                                        . esc_html($category[0]->name) .
+                                        '</a>';
+                                }
+                                ?>
+                                <?php $link = get_field('news_link'); ?>
+                                <p class="top_news__text">
+                                    <?php if ($link): ?>
+                                        <a href="<?php echo esc_url($link); ?>" class="top_news__link">
+                                            <?php the_title(); ?>
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="<?php the_permalink(); ?>" class="top_news__link">
+                                            <?php the_title(); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </p>
                             </li>
                     <?php endwhile;
                     endif;
@@ -169,12 +182,6 @@ get_header();
             <!-- 波 -->
             <div class="top_news__wave-sway">
                 <div class="top_news__wave-move">
-                    <svg class="top_news__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
-                    <svg class="top_news__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
                 </div>
             </div>
 
@@ -283,7 +290,7 @@ get_header();
 
             <!-- 一覧へボタン -->
             <div class="top_seminars__more">
-                <a href="#" class="top_seminars__more-btn commonBtn center">
+                <a href="<?php echo get_post_type_archive_link('seminar'); ?>" class="top_seminars__more-btn commonBtn center">
                     <span>セミナー・イベント一覧へ</span>
                 </a>
             </div>
@@ -345,39 +352,51 @@ get_header();
                     ?>
 
                             <article class="top_topics__card <?php echo implode(' ', $term_classes); ?>">
-                                <a href="<?php the_permalink(); ?>" class="top_topics__card-link">
 
-                                    <div class="top_topics__card-img">
-                                        <?php if (has_post_thumbnail()) : ?>
-                                            <?php the_post_thumbnail('medium'); ?>
-                                        <?php else: ?>
-                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
-                                        <?php endif; ?>
-                                    </div>
 
-                                    <div class="top_topics__card-body">
-                                        <div class="top_topics__card-meta">
+                                <div class="top_topics__card-img">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    <?php else: ?>
+                                        <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                    <?php endif; ?>
+                                </div>
 
-                                            <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">
-                                                <?php echo get_the_date('Y.m.d'); ?>
-                                            </time>
+                                <div class="top_topics__card-body">
+                                    <div class="top_topics__card-meta">
 
-                                            <?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-                                                <?php foreach ($terms as $term) : ?>
-                                                    <span class="top_topics__card-badge cat-<?php echo esc_attr($term->slug); ?>">
+                                        <time datetime="<?php echo get_the_date('c'); ?>" class="top_topics__card-date">
+                                            <?php echo get_the_date('Y.m.d'); ?>
+                                        </time>
+
+                                        <?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+                                            <?php foreach ($terms as $term) : ?>
+                                                <?php
+                                                $term_link = get_term_link($term);
+                                                if (!is_wp_error($term_link)) :
+                                                ?>
+                                                    <a href="<?php echo esc_url($term_link); ?>"
+                                                        class="top_topics__card-badge cat-<?php echo esc_attr($term->slug); ?>">
                                                         <?php echo esc_html($term->name); ?>
-                                                    </span>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
 
-                                        </div>
-
-                                        <h3 class="top_topics__card-title">
-                                            <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
-                                        </h3>
                                     </div>
+                                    <?php $link = get_field('topics_link'); ?>
+                                    <h3 class="top_topics__card-title">
+                                        <?php if ($link): ?>
+                                            <a href="<?php echo esc_url($link); ?>" class="top_topics__card-link">
+                                                <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?php the_permalink(); ?>" class="top_topics__card-link"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></a>
+                                        <?php endif; ?>
+                                    </h3>
+                                </div>
 
-                                </a>
+
                             </article>
 
                     <?php
@@ -433,40 +452,74 @@ get_header();
                 <h2 class="top_magazine__title-en main_ttl"><span class="font_big">M</span>agazine</h2>
                 <p class="top_magazine__title-ja main_ttl_ja">情報誌「大阪港」</p>
             </div>
+            <?php
+            $joho = new WP_Query(array(
+                'post_type' => 'joho',
+                'posts_per_page' => 1,
+            ));
 
-            <!-- 2カラムコンテンツ -->
-            <div class="top_magazine__content">
+            if ($joho->have_posts()) :
+                while ($joho->have_posts()) : $joho->the_post();
+            ?>
+                    <!-- 2カラムコンテンツ -->
+                    <div class="top_magazine__content">
 
-                <!-- 左：表紙画像 -->
-                <div class="top_magazine__image">
-                    <img src="<?php echo imdir(); ?>/top/magazine.jpg" alt="情報誌 大阪港 2026年1月号 表紙">
-                </div>
+                        <!-- 左：表紙画像 -->
+                        <div class="top_magazine__image">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('medium'); ?>
+                            <?php else: ?>
+                                <img src="<?php echo imdir(); ?>/joho/joho_dummy.png" alt="">
+                            <?php endif; ?>
+                        </div>
 
-                <!-- 右：リスト -->
-                <div class="top_magazine__info">
-                    <h3 class="top_magazine__issue">2026年1月号　77巻第1号</h3>
-                    <ul class="top_magazine__list">
-                        <li>2026年世界と日本を読み解く</li>
-                        <li>釜山新港完全自動化コンテナターミナル視察</li>
-                        <li>「実は職のインフラを支えている」</li>
-                        <li>〜イシダの取組〜（第1回）</li>
-                        <li>クルーズの時代（３）現代クルーズの成長と伝統的クルーズの再生</li>
-                        <li>港と人、そして帆船〜連続エッセイ②〜</li>
-                        <li>古代の難波でおこなわれた国際貿易（第2回）</li>
-                        <li>安治川の開発と大阪の発展（第2回）</li>
-                        <li>海運界・造船界の偉人・川村貞次郎の功績（第3回）</li>
-                        <li>大阪市上海事務所だより</li>
-                        <li>「世界のコンテナ港とターミナルオペレーターの現状」「内航海運・フェリーの現状と課題」発行</li>
-                        <li>大阪港のクルーズ客船入港予定表(2026年1〜3月)</li>
-                        <li>大阪港の主な初入港船(2025年9〜11月)</li>
-                    </ul>
-                </div>
+                        <!-- 右：リスト -->
+                        <div class="top_magazine__info">
+                            <h3 class="top_magazine__issue"><?php the_title(); ?></h3>
+                            <?php
+                            $type = get_field('description_type');
 
-            </div>
+                            // デフォルトを text に
+                            if (!$type) {
+                                $type = 'text';
+                            }
+
+                            if ($type === 'list' && have_rows('description_list')) :
+
+                                echo '<ul class="top_magazine__list disc_list">';
+                                while (have_rows('description_list')) {
+                                    the_row();
+                                    $item = get_sub_field('item');
+                                    if ($item) {
+                                        echo '<li>' . esc_html($item) . '</li>';
+                                    }
+                                }
+                                echo '</ul>';
+
+                            else :
+
+                                // text（デフォルト含む）
+                                $text = get_field('description_text');
+                                if ($text) {
+                                    echo '<div class="description_text">';
+                                    echo wp_kses_post($text);
+                                    echo '</div>';
+                                }
+
+                            endif;
+                            ?>
+                        </div>
+
+                    </div>
+            <?php
+                endwhile;
+            endif;
+            wp_reset_postdata();
+            ?>
 
             <!-- ボタン -->
             <div class="top_magazine__more">
-                <a href="#" class="top_magazine__more-btn commonBtn center">
+                <a href="<?php echo get_post_type_archive_link('joho'); ?>" class="top_magazine__more-btn commonBtn center">
                     <span>情報誌「大阪港」一覧へ</span>
                 </a>
             </div>
@@ -477,13 +530,9 @@ get_header();
 
         <div class="top_goods__inner sec_inner">
             <div class="top_goods_img01 img_con wave_img"><img src="<?php echo imdir(); ?>/top/top_goods_img01.svg" alt="船"></div>
-            <!-- 左：画像エリア -->
             <div class="top_goods__image">
-                <!-- グレーのダミー画像を配置 -->
-                <img src="https://placehold.jp/dddddd/dddddd/600x600.png" alt="グッズ・刊行物のイメージ">
+                <img src="<?php echo imdir(); ?>/top/top_goods_image@2x.jpg" alt="グッズ・刊行物のイメージ画像">
             </div>
-
-            <!-- 右：コンテンツエリア -->
             <div class="top_goods__content">
                 <h2 class="top_goods__title-en main_ttl"><span class="font_big">G</span>oods &<br><span class="font_big">P</span>ublications</h2>
                 <p class="top_goods__title-ja main_ttl_ja">グッズ・刊行物</p>
@@ -494,7 +543,7 @@ get_header();
                 </p>
 
                 <!-- 一覧へボタン -->
-                <a href="#" class="top_goods__btn commonBtn">
+                <a href="<?php echo get_post_type_archive_link('press'); ?>" class="top_goods__btn commonBtn">
                     <span>グッズ・刊行物一覧へ</span>
                 </a>
             </div>

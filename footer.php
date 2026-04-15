@@ -26,7 +26,17 @@
         <img src="<?php echo imdir(); ?>/common/seminar_icon.svg" alt="セミナーのアイコン">
         <span>申込みフォーム</span>
     </a>
-<?php else: ?>
+<?php elseif (is_singular("press")): ?>
+    <a href="#purchase" class="fixed-btn">
+        <img src="<?php echo imdir(); ?>/press/crown.svg" alt="王冠のアイコン">
+        <span>ご購入について</span>
+    </a>
+<?php elseif (is_page("join")): ?>
+    <a href="<?= esc_url(home_url('/')) ?>membership_form" class="fixed-btn">
+        <img src="<?php echo imdir(); ?>/common/seminar_icon.svg" alt="セミナーのアイコン">
+        <span>申込みフォーム</span>
+    </a>
+<?php elseif (is_front_page()): ?>
     <a href="#" class="fixed-btn">
         <img src="<?php echo imdir(); ?>/common/boat_wh.svg" alt="船のアイコン">
         <span>クルーズ船情報</span>
@@ -71,21 +81,21 @@
                     <a href="#" class="footer__nav-link">TOP</a>
                 </div>
                 <div class="footer__nav-col">
-                    <a href="#" class="footer__nav-link">大阪港振興協会とは</a>
-                    <a href="#" class="footer__nav-link">新着情報</a>
-                    <a href="#" class="footer__nav-link">セミナー・イベント情報</a>
-                    <a href="#" class="footer__nav-link">情報誌「大阪港」・ニュースレター</a>
+                    <a href="<?= esc_url(home_url('/')) ?>about" class="footer__nav-link">大阪港振興協会とは</a>
+                    <a href="<?= esc_url(home_url('/')) ?>news" class="footer__nav-link">新着情報</a>
+                    <a href="<?= esc_url(home_url('/')) ?>seminar" class="footer__nav-link">セミナー・イベント情報</a>
+                    <a href="<?= esc_url(home_url('/')) ?>joho" class="footer__nav-link">情報誌「大阪港」</a>
                 </div>
                 <div class="footer__nav-col">
-                    <a href="#" class="footer__nav-link">客船・フェリー情報</a>
-                    <a href="#" class="footer__nav-link">大阪港の記録</a>
-                    <a href="#" class="footer__nav-link">グッズ・刊行物</a>
-                    <a href="#" class="footer__nav-link">わくわく港探訪</a>
+                    <a href="<?= esc_url(home_url('/')) ?>ship" class="footer__nav-link">客船・フェリー情報</a>
+                    <a href="<?= esc_url(home_url('/')) ?>topics-category/records" class="footer__nav-link">大阪港の記録</a>
+                    <a href="<?= esc_url(home_url('/')) ?>press" class="footer__nav-link">グッズ・刊行物</a>
+                    <a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter" class="footer__nav-link">ニュースレター</a>
                 </div>
                 <div class="footer__nav-col">
-                    <a href="#" class="footer__nav-link">入会案内</a>
-                    <a href="#" class="footer__nav-link">会員情報</a>
-                    <a href="#" class="footer__nav-link">アクセス</a>
+                    <a href="<?= esc_url(home_url('/')) ?>join" class="footer__nav-link">入会案内</a>
+                    <a href="<?= esc_url(home_url('/')) ?>member-list" class="footer__nav-link">会員情報</a>
+                    <a href="<?= esc_url(home_url('/')) ?>access" class="footer__nav-link">アクセス</a>
                 </div>
             </nav>
 
@@ -100,7 +110,7 @@
                     </svg>
                 </a>
 
-                <a href="#" class="footer__btn footer__btn--fill">
+                <a href="<?= esc_url(home_url('/')) ?>contact" class="footer__btn footer__btn--fill">
                     <!-- メールアイコン -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="icon-left">
                         <path d="M22.6 5H1.40002V19H22.6V5Z" stroke="white" stroke-linejoin="round" />
@@ -129,7 +139,7 @@
         <!-- ーー 下部 ーー -->
         <div class="footer__bottom">
             <p class="footer__copy">&copy;公益社団法人 大阪港振興協会</p>
-            <a href="#" class="footer__privacy">プライバシーポリシー</a>
+            <a href="<?= esc_url(home_url('/')) ?>privacy" class="footer__privacy">プライバシーポリシー</a>
         </div>
 
 

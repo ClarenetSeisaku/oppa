@@ -61,7 +61,7 @@
       img {
         position: absolute;
         bottom: min(5vw, 100px);
-       left: 0;
+        left: 0;
         width: 56vw;
         height: min(33.438vw, 642px);
         @include m.mq(sp) {
@@ -75,6 +75,9 @@
       bottom: max(-5vw, -100px);
       left: max(-5vw, -100px);
       width: min(11vw, 220px);
+      @media only screen and (max-width: 1500px) {
+        bottom: 0;
+      }
       @include m.mq(sp) {
         width: 21.026vw;
         bottom: -20vw;
@@ -120,6 +123,9 @@
           flex-wrap: wrap;
           gap: 40px;
           justify-content: center;
+          @include m.mq(sp) {
+            gap: 20px;
+          }
         }
       }
       .commonBtn.tel {
@@ -202,6 +208,11 @@
         font-weight: 600;
         font-size: 20px;
         text-align: center;
+        @include m.mq(tab_pc) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
         @include m.mq(sp) {
           font-size: 18px;
         }

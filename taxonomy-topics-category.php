@@ -16,12 +16,6 @@ get_header();
             <!-- 波 -->
             <div class="middle_mv__wave-sway">
                 <div class="middle_mv__wave-move">
-                    <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
-                    <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
                 </div>
             </div>
         </div>
@@ -47,41 +41,54 @@ get_header();
                 <?php if (have_posts()) : ?>
                     <?php while (have_posts()) : the_post(); ?>
                         <li>
-                            <a href="<?php the_permalink(); ?>" class="arrow">
-                                <figure>
-                                    <?php if (has_post_thumbnail()) : ?>
-                                        <?php the_post_thumbnail('medium'); ?>
-                                    <?php else: ?>
-                                        <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="ダミー画像">
-                                    <?php endif; ?>
-                                </figure>
-                                <div class="topics_contents">
-                                    <div class="topics_flex_box">
-                                        <span class="topics_category">
-                                            <?php
-                                            $terms = get_the_terms(get_the_ID(), 'topics-category');
 
-                                            if (!empty($terms) && !is_wp_error($terms)) {
-                                                foreach ($terms as $term) {
-                                                    echo '<span class="cat-item cat-' . esc_attr($term->slug) . '">';
+                            <figure>
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('medium'); ?>
+                                <?php else: ?>
+                                    <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="ダミー画像">
+                                <?php endif; ?>
+                            </figure>
+                            <div class="topics_contents">
+                                <div class="topics_flex_box">
+                                    <span class="topics_category">
+                                        <?php
+                                        $terms = get_the_terms(get_the_ID(), 'topics-category');
+
+                                        if (!empty($terms) && !is_wp_error($terms)) {
+                                            foreach ($terms as $term) {
+                                                $term_link = get_term_link($term);
+
+                                                if (!is_wp_error($term_link)) {
+                                                    echo '<a href="' . esc_url($term_link) . '" class="cat-item cat-' . esc_attr($term->slug) . '">';
                                                     echo esc_html($term->name);
-                                                    echo '</span>';
+                                                    echo '</a>';
                                                 }
                                             }
-                                            ?>
-                                        </span>
-                                        <time><?php echo get_the_date('Y.n.j'); ?></time>
-                                    </div>
-                                    <p class="topics_ttl"><?php the_title(); ?></p>
-                                    <p>
-                                        <?php
-                                        $text = get_the_content();
-                                        $text = wp_strip_all_tags($text);
-                                        echo mb_substr($text, 0, 200) . '...';
+                                        }
                                         ?>
-                                    </p>
+                                    </span>
+                                    <time><?php echo get_the_date('Y.n.j'); ?></time>
                                 </div>
-                            </a>
+                                <?php $link = get_field('topics_link'); ?>
+                                <p class="topics_ttl">
+                                    <?php if ($link): ?>
+                                        <a href="<?php echo esc_url($link); ?>">
+                                            <?php the_title(); ?>
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <?php endif; ?>
+                                </p>
+                                <p>
+                                    <?php
+                                    $text = get_the_content();
+                                    $text = wp_strip_all_tags($text);
+                                    echo mb_substr($text, 0, 200) . '...';
+                                    ?>
+                                </p>
+                            </div>
+
                         </li>
                     <?php endwhile; ?>
                 <?php else: ?>

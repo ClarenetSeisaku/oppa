@@ -35,7 +35,16 @@ get_header();
           ?>
         </span>
       </span>
-      <h2 class="news_main_ttl"><?php the_title(); ?></h2>
+      <?php $link = get_field('news_link'); ?>
+      <h2 class="news_main_ttl">
+        <?php if ($link): ?>
+          <a href="<?php echo esc_url($link); ?>">
+            <?php the_title(); ?>
+          </a>
+        <?php else: ?>
+          <?php the_title(); ?>
+        <?php endif; ?>
+      </h2>
       <div class="single_inner">
         <?php the_content(); ?>
       </div>

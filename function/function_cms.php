@@ -60,7 +60,7 @@ function new_post_type()
     )
   );
   register_post_type(
-    'magazine',
+    'joho',
     array(
       'label' => '情報誌「大阪港」',
       'public' => true,
@@ -76,8 +76,8 @@ function new_post_type()
     )
   );
   register_taxonomy(
-    'year', // カスタム分類名
-    'magazine', // カスタム分類を使用する投稿タイプ名
+    'joho-year', // カスタム分類名
+    'joho', // カスタム分類を使用する投稿タイプ名
     array(
       'hierarchical' => true,
       'label' => '年度別',
@@ -88,8 +88,8 @@ function new_post_type()
     )
   );
   register_taxonomy(
-    'authorindex', // カスタム分類名
-    'magazine', // カスタム分類を使用する投稿タイプ名
+    'joho-author', // カスタム分類名
+    'joho', // カスタム分類を使用する投稿タイプ名
     array(
       'hierarchical' => true,
       'label' => '著者別索引',
@@ -102,19 +102,22 @@ function new_post_type()
 }
 
 // ===========================
-// グッズ・刊行物は12件表示
+// グッズ・刊行物と情報誌「大阪港」は12件表示
 // ===========================
 
-function change_press_posts_per_page($query)
+function change_posts_per_page($query)
 {
-  if (!is_admin() && $query->is_main_query()) {
+  if (is_admin()) return;
+  if (!$query->is_main_query()) return;
 
-    if (is_post_type_archive('press') || is_tax('press-category')) {
-      $query->set('posts_per_page', 12);
-    }
+  if (
+    $query->is_post_type_archive(['press', 'joho']) ||
+    $query->is_tax(['press-category', 'joho-year', 'joho-author'])
+  ) {
+    $query->set('posts_per_page', 12);
   }
 }
-add_action('pre_get_posts', 'change_press_posts_per_page');
+add_action('pre_get_posts', 'change_posts_per_page');
 
 // ===========================
 // 情報誌「大阪港」の検索
@@ -126,35 +129,8 @@ function custom_search_filter($query)
     return;
   }
 
-  // 検索 or アーカイブページ
-  if ($query->is_search() || is_post_type_archive('magazine')) {
-
-    // 投稿タイプ固定
-    $query->set('post_type', 'magazine');
-
-    $tax_query = [];
-
-    // 年度
-    if (!empty($_GET['year'])) {
-      $tax_query[] = [
-        'taxonomy' => 'year',
-        'field' => 'slug',
-        'terms' => sanitize_text_field($_GET['year']),
-      ];
-    }
-
-    // 著者
-    if (!empty($_GET['authorindex'])) {
-      $tax_query[] = [
-        'taxonomy' => 'authorindex',
-        'field' => 'slug',
-        'terms' => sanitize_text_field($_GET['authorindex']),
-      ];
-    }
-
-    if (!empty($tax_query)) {
-      $query->set('tax_query', $tax_query);
-    }
+  if ($query->is_search()) {
+    $query->set('post_type', 'joho');
   }
 }
 add_action('pre_get_posts', 'custom_search_filter');
