@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /**
  * トップページ
@@ -198,76 +198,173 @@ get_header();
             </div>
 
             <!-- カードリスト -->
+            <?php
+            $seminars = new WP_Query([
+                'post_type' => 'seminar',
+                'post_status' => 'publish',
+                'posts_per_page' => 3,
+            ]);
+            $badge_modifiers = ['top_seminars__card-badge--gold', 'top_seminars__card-badge--green', 'top_seminars__card-badge--brown'];
+            $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $time_end_raw) {
+                $date_raw = trim((string) $date_raw);
+                $time_start_raw = trim((string) $time_start_raw);
+                $time_end_raw = trim((string) $time_end_raw);
+                if ($date_raw === '') {
+                    return '';
+                }
+
+                $timezone = function_exists('wp_timezone') ? wp_timezone() : new DateTimeZone('Asia/Tokyo');
+                $date = null;
+                $date_formats = ['Ymd', 'Y-m-d', 'Y/m/d', 'Y.n.j', 'Y年n月j日'];
+                foreach ($date_formats as $date_format) {
+                    $try_date = DateTimeImmutable::createFromFormat($date_format, $date_raw, $timezone);
+                    if ($try_date instanceof DateTimeImmutable) {
+                        $date = $try_date;
+                        break;
+                    }
+                }
+                if (!$date) {
+                    $timestamp = strtotime($date_raw);
+                    if ($timestamp) {
+                        $date = (new DateTimeImmutable('@' . $timestamp))->setTimezone($timezone);
+                    }
+                }
+                if (!$date) {
+                    return '';
+                }
+
+                $year = (int) $date->format('Y');
+                $era_name = '令和';
+                $era_year = $year - 2018;
+                if ($year < 2019) {
+                    $era_name = '平成';
+                    $era_year = $year - 1988;
+                }
+                if ($era_year < 1) {
+                    $era_year = 1;
+                }
+
+                $week_map = ['日', '月', '火', '水', '木', '金', '土'];
+                $week = $week_map[(int) $date->format('w')];
+                $date_part = sprintf('%s%d年%d月%d日(%s)', $era_name, $era_year, (int) $date->format('n'), (int) $date->format('j'), $week);
+
+                $normalize_time = static function ($time_raw) {
+                    $time_raw = trim((string) $time_raw);
+                    if ($time_raw === '') {
+                        return '';
+                    }
+                    $time_formats = ['H:i', 'H:i:s', 'G:i', 'G:i:s'];
+                    foreach ($time_formats as $time_format) {
+                        $time = DateTimeImmutable::createFromFormat($time_format, $time_raw);
+                        if ($time instanceof DateTimeImmutable) {
+                            return $time->format('H:i');
+                        }
+                    }
+                    return $time_raw;
+                };
+
+                $time_start = $normalize_time($time_start_raw);
+                $time_end = $normalize_time($time_end_raw);
+                if ($time_start !== '' && $time_end !== '') {
+                    return $date_part . ' ' . $time_start . '〜' . $time_end;
+                }
+                if ($time_start !== '') {
+                    return $date_part . ' ' . $time_start;
+                }
+                return $date_part;
+            };
+            ?>
             <div class="top_seminars__cards">
-                <article class="top_seminars__card">
-                    <a href="#" class="top_seminars__card-link">
-                        <div class="top_seminars__card-img"><img src="<?php echo imdir(); ?>/top/img01.jpg" alt=""></div>
-                        <div class="top_seminars__card-body">
-                            <span class="top_seminars__card-badge top_seminars__card-badge--gold">カテゴリー</span>
-                            <h3 class="top_seminars__card-title">世界のコンテナ港湾について〜14年間の国際港湾協会活動で学んだこと〜</h3>
-                            <dl class="top_seminars__card-info">
-                                <div class="top_seminars__card-info-group">
-                                    <dt>日時</dt>
-                                    <dd><span class="seminars-year">令和8年</span> <span class="seminars-date">2月25日(水) 15:30〜17:00</span></dd>
-                                </div>
-                                <div class="top_seminars__card-info-group">
-                                    <dt>場所</dt>
-                                    <dd>第一大阪港ビル 8階会議室（大阪市港区築港2−1−2）</dd>
-                                </div>
-                            </dl>
-                            <div class="top_seminars__card-btn-wrap">
-                                <span class="top_seminars__card-btn commonBtn center"><span>詳細・申し込みはこちら</span></span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+                <?php if ($seminars->have_posts()) : ?>
+                    <?php $card_index = 0; ?>
+                    <?php while ($seminars->have_posts()) : $seminars->the_post(); ?>
+                        <?php
+                        $post_terms = get_the_terms(get_the_ID(), 'seminar_category');
+                        $primary_term = (!is_wp_error($post_terms) && !empty($post_terms)) ? $post_terms[0] : null;
 
-                <article class="top_seminars__card">
-                    <a href="#" class="top_seminars__card-link">
-                        <div class="top_seminars__card-img"><img src="<?php echo imdir(); ?>/top/img02.jpg" alt=""></div>
-                        <div class="top_seminars__card-body">
-                            <span class="top_seminars__card-badge top_seminars__card-badge--green">カテゴリー</span>
-                            <h3 class="top_seminars__card-title">海運論基礎講座（全5回）</h3>
-                            <dl class="top_seminars__card-info">
-                                <div class="top_seminars__card-info-group">
-                                    <dt>日時</dt>
-                                    <dd><span class="seminars-year">令和8年</span> <span class="seminars-date">1月21日(水)、28日(水)、2月4日(水)、18日(水)、2/25(水) 15:30〜17:00</span></dd>
-                                </div>
-                                <div class="top_seminars__card-info-group">
-                                    <dt>場所</dt>
-                                    <dd>第一大阪港ビル 8階会議室（大阪市港区築港2−1−2）</dd>
-                                </div>
-                            </dl>
-                            <div class="top_seminars__card-btn-wrap">
-                                <span class="top_seminars__card-btn commonBtn center"><span>詳細・申し込みはこちら</span></span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+                        $term_color_raw = ($primary_term && function_exists('get_field')) ? get_field('color', $primary_term) : '';
+                        $term_color = is_string($term_color_raw) ? sanitize_hex_color($term_color_raw) : '';
+                        if (!$term_color) {
+                            $term_color = '#5a7696';
+                        }
 
-                <article class="top_seminars__card">
-                    <a href="#" class="top_seminars__card-link">
-                        <div class="top_seminars__card-img"><img src="<?php echo imdir(); ?>/top/img03.jpg" alt=""></div>
-                        <div class="top_seminars__card-body">
-                            <span class="top_seminars__card-badge top_seminars__card-badge--brown">カテゴリー</span>
-                            <h3 class="top_seminars__card-title">内航海運・フェリー業界の現状と課題発行記念講演会2025開催</h3>
-                            <div class="top_seminars__card-status">本セミナーは終了しました</div>
-                            <dl class="top_seminars__card-info">
-                                <div class="top_seminars__card-info-group">
-                                    <dt>日時</dt>
-                                    <dd><span class="seminars-year">令和7年</span> <span class="seminars-date">12月5日(金) 15:30〜17:00</span></dd>
+                        $event = function_exists('get_field') ? get_field('event') : null;
+                        $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
+                        if (!is_array($event_rows)) {
+                            $event_rows = [];
+                        }
+                        $event_row = !empty($event_rows) && is_array($event_rows[0]) ? $event_rows[0] : [];
+
+                        $event_datetime_legacy = (string) ($event_row['event_datetime'] ?? '');
+                        $event_datetime = $format_japanese_event_datetime(
+                            (string) ($event_row['event_date'] ?? ''),
+                            (string) ($event_row['event_time_s'] ?? ''),
+                            (string) ($event_row['event_time_e'] ?? '')
+                        );
+                        if ($event_datetime === '') {
+                            $event_datetime = $event_datetime_legacy;
+                        }
+
+                        $seminars_year = '';
+                        $seminars_date = $event_datetime;
+                        if (preg_match('/^((?:令和|平成)\d+年)\s*(.+)$/u', $event_datetime, $datetime_parts)) {
+                            $seminars_year = trim($datetime_parts[1]);
+                            $seminars_date = trim($datetime_parts[2]);
+                        }
+
+                        $event_location = (string) ($event_row['event_location'] ?? '');
+                        $is_closed = !empty($event['close']);
+
+                        $badge_modifier = $badge_modifiers[$card_index % count($badge_modifiers)];
+                        $card_index++;
+                        ?>
+                        <article class="top_seminars__card">
+                            <a href="<?php the_permalink(); ?>" class="top_seminars__card-link">
+                                <div class="top_seminars__card-img">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <?php the_post_thumbnail('large'); ?>
+                                    <?php else : ?>
+                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/no-image.jpg'); ?>" alt="">
+                                    <?php endif; ?>
                                 </div>
-                                <div class="top_seminars__card-info-group">
-                                    <dt>場所</dt>
-                                    <dd>第一大阪港ビル 8階会議室（大阪市港区築港2−1−2）</dd>
+                                <div class="top_seminars__card-body">
+                                    <?php if ($primary_term instanceof WP_Term) : ?>
+                                        <span class="top_seminars__card-badge <?= esc_attr($badge_modifier); ?>" style="<?= esc_attr('background-color:' . $term_color . ';'); ?>">
+                                            <?= esc_html($primary_term->name); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                    <h3 class="top_seminars__card-title"><?php the_title(); ?></h3>
+                                    <?php if ($is_closed) : ?>
+                                        <div class="top_seminars__card-status">本セミナーは終了しました</div>
+                                    <?php endif; ?>
+                                    <dl class="top_seminars__card-info">
+                                        <?php if ($event_datetime !== '') : ?>
+                                            <div class="top_seminars__card-info-group">
+                                                <dt>日時</dt>
+                                                <dd>
+                                                    <?php if ($seminars_year !== '') : ?>
+                                                        <span class="seminars-year"><?= esc_html($seminars_year); ?></span>
+                                                    <?php endif; ?>
+                                                    <span class="seminars-date"><?= esc_html($seminars_date); ?></span>
+                                                </dd>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($event_location !== '') : ?>
+                                            <div class="top_seminars__card-info-group">
+                                                <dt>場所</dt>
+                                                <dd><?= wp_kses_post($event_location); ?></dd>
+                                            </div>
+                                        <?php endif; ?>
+                                    </dl>
+                                    <div class="top_seminars__card-btn-wrap">
+                                        <span class="top_seminars__card-btn commonBtn center"><span>詳細・申し込みはこちら</span></span>
+                                    </div>
                                 </div>
-                            </dl>
-                            <div class="top_seminars__card-btn-wrap">
-                                <span class="top_seminars__card-btn commonBtn center"><span>詳細・申し込みはこちら</span></span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+                            </a>
+                        </article>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                <?php endif; ?>
             </div>
             <!-- 下部 ボタン群 -->
             <div class="top_seminars__actions sp">
