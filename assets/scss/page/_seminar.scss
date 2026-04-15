@@ -15,6 +15,10 @@
         section:last-of-type {
             margin-bottom: 0;
         }
+
+        .middle_mv__decoration {
+            position: relative;
+        }
     }
 }
 
@@ -666,7 +670,7 @@
             letter-spacing: 0.06em;
             transition: opacity 0.2s ease;
 
-            & + .seminar-wrap__summary-link {
+            &+.seminar-wrap__summary-link {
                 margin-top: 10px;
             }
 
