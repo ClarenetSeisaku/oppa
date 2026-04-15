@@ -139,7 +139,7 @@
         <!-- ーー 下部 ーー -->
         <div class="footer__bottom">
             <p class="footer__copy">&copy;公益社団法人 大阪港振興協会</p>
-            <a href="#" class="footer__privacy">プライバシーポリシー</a>
+            <a href="<?= esc_url(home_url('/')) ?>privacy" class="footer__privacy">プライバシーポリシー</a>
         </div>
 
 

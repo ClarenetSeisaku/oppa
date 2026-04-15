@@ -58,11 +58,13 @@
       &__inner {
         width: 90%;
         max-width: 1536px;
-        margin: auto auto 0;
         z-index: 10;
-
+        position: absolute;
+        bottom: 170px;
+        @include m.prefix_l;
         @include m.mq(sp) {
           padding-top: 0;
+          bottom: 170px;
         }
         /* ビデオボタンの挙動 */
         .video-stop-btn {

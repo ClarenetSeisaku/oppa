@@ -75,6 +75,9 @@
       bottom: max(-5vw, -100px);
       left: max(-5vw, -100px);
       width: min(11vw, 220px);
+      @media only screen and (max-width: 1500px) {
+        bottom: 0;
+      }
       @include m.mq(sp) {
         width: 21.026vw;
         bottom: -20vw;
