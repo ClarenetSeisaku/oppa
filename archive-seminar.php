@@ -13,7 +13,7 @@ $paged = max(1, get_query_var('paged'), get_query_var('page'));
 $query_args = [
     'post_type' => 'seminar',
     'post_status' => 'publish',
-    'posts_per_page' => 2,
+    'posts_per_page' => 9,
     'paged' => $paged,
 ];
 if ($selected_term_slug !== '') {
@@ -114,12 +114,6 @@ $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $
             <!-- 波 -->
             <div class="middle_mv__wave-sway">
                 <div class="middle_mv__wave-move">
-                    <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
-                    <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                        <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                    </svg>
                 </div>
             </div>
         </div>
