@@ -58,11 +58,13 @@
       &__inner {
         width: 90%;
         max-width: 1536px;
-        margin: auto auto 0;
         z-index: 10;
-
+        position: absolute;
+        bottom: 170px;
+        @include m.prefix_l;
         @include m.mq(sp) {
           padding-top: 0;
+          bottom: 170px;
         }
         /* ビデオボタンの挙動 */
         .video-stop-btn {
@@ -126,20 +128,18 @@
         width: 100%;
         height: 100%;
         animation: wave-sway 4s ease-in-out infinite alternate;
+        @include m.mq(sp) {
+          bottom: 0;
+          height: 70%;
+        }
       }
 
       &__wave-move {
-        display: flex;
         width: 200%;
         height: 100%;
-        animation: wave-moveLeft 10s linear infinite;
-      }
-
-      &__wave {
-        flex: 0 0 50%;
-        height: 100%;
-        fill: m.$color-white;
-        margin-right: -1px;
+        background: url("../img/common/white_wave@2x.png") repeat-x;
+        background-size: 50% 100%;
+        animation: wave-bg 10s linear infinite;
       }
     }
 
@@ -272,9 +272,14 @@
           width: 100%;
         }
         .commonBtn {
-          border: 1px solid m.$color-navy;
+          border: 1px solid m.$color-light-navy;
           span {
             color: m.$color-light-navy;
+          }
+          &:hover {
+            span {
+              color: m.$color-white;
+            }
           }
         }
       }
@@ -338,11 +343,6 @@
         display: flex;
         width: fit-content;
         animation: flow-left 40s linear infinite; // 秒数を変えると速度が変わります
-
-        // マウスホバーで一時停止
-        &:hover {
-          animation-play-state: paused;
-        }
         img {
           height: 350px; // PCでの高さ
           width: auto;
@@ -403,7 +403,6 @@
       &__header {
         width: 200px;
         flex-shrink: 0;
-
         @include m.mq(sp) {
           width: 100%;
         }
@@ -414,10 +413,9 @@
         color: m.$color-navy-hover;
         line-height: 1;
         letter-spacing: 0.05em;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         @include m.mq(sp) {
           font-size: 50px;
-          margin-bottom: 10px;
         }
       }
 
@@ -470,12 +468,6 @@
       }
 
       &__item {
-        &:not(:last-of-type) {
-          border-bottom: 1px solid m.$color-border;
-        }
-      }
-
-      &__link {
         display: flex;
         align-items: center;
         padding: 26px 0;
@@ -487,11 +479,11 @@
           gap: 12px 10px;
           padding: 20px 0;
         }
-        &:hover {
-          .top_news__text {
-            color: m.$color-navy-hover;
-          }
+        &:not(:last-of-type) {
+          border-bottom: 1px solid m.$color-border;
         }
+      }
+      &__link {
       }
 
       &__date {
@@ -523,6 +515,11 @@
           width: 100%;
           margin-top: 4px;
         }
+        &:hover {
+          a {
+            color: m.$color-navy-hover;
+          }
+        }
       }
 
       // ーー 波とボートのアニメーション ーー
@@ -545,20 +542,18 @@
         width: 100%;
         height: 100%;
         animation: wave-sway 4s ease-in-out infinite alternate;
+        @include m.mq(sp) {
+          bottom: 0;
+          height: 70%;
+        }
       }
 
       &__wave-move {
-        display: flex;
         width: 200%;
         height: 100%;
-        animation: wave-moveLeft 10s linear infinite;
-      }
-
-      &__wave {
-        flex: 0 0 50%;
-        height: 100%;
-        fill: m.$color-wave;
-        margin-right: -1px;
+        background: url("../img/top/top_blue_wave@2x.png") repeat-x;
+        background-size: 50% 100%;
+        animation: wave-bg 10s linear infinite;
       }
 
       &__boat {
@@ -611,6 +606,8 @@
           max-width: 330px;
           margin-left: auto;
           margin-right: auto;
+          line-height: 0.9;
+          margin-bottom: 20px;
         }
         .sp_text_left {
           @include m.mq(sp) {
@@ -964,7 +961,7 @@
 
       &__title-en {
         line-height: 0.6;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
         .font_big {
           letter-spacing: -10px;
         }
@@ -1075,18 +1072,8 @@
 
       // カード
       &__card {
-        width: 490px;
-
-        &-link {
-          display: block;
-          transition: transform 0.3s ease;
-
-          &:hover {
-            .top_topics__card-title {
-              color: m.$color-navy-hover;
-            }
-          }
-        }
+        width: min(25.521vw, 490px);
+        transition: transform 0.3s ease;
 
         &-img {
           aspect-ratio: 4 / 3;
@@ -1116,6 +1103,16 @@
           color: m.$color-white;
           padding: 0px 13px;
           border-radius: 2px;
+          background-color: m.$color-light-navy;
+          &.cat-kyakusen {
+            background-color: m.$color-gold;
+          }
+          &.cat-records {
+            background-color: m.$color-badge-brown;
+          }
+          &.cat-newsletter {
+            background-color: m.$color-badge-green;
+          }
         }
         &-title {
           font-size: 18px;
@@ -1123,6 +1120,11 @@
           line-height: 1.6;
           color: m.$color-text;
           transition: color 0.3s;
+          &:hover {
+            a {
+              color: m.$color-navy-hover;
+            }
+          }
         }
       }
 
@@ -1448,9 +1450,10 @@
         img {
           width: 100%;
           height: auto;
-          aspect-ratio: 1 / 1; // 綺麗な正方形を維持
-          object-fit: cover;
-          background-color: #dcdcdc;
+          border-radius: 6px;
+          @include m.mq(sp) {
+            border-radius: 0;
+          }
         }
       }
 

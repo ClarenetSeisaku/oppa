@@ -150,10 +150,7 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                         $event_rows = [];
                     }
 
-                    $pdf_rows = function_exists('get_field') ? get_field('pdf-repeat') : [];
-                    if (!is_array($pdf_rows)) {
-                        $pdf_rows = [];
-                    }
+                    $pdf_rows = get_field('pdf-repeat') ?? [];
 
                     $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
                     if (!is_array($event_rows)) {
@@ -329,13 +326,13 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
         </div>
 
         <div class="middle_mv__wave-sway" style="position: relative;">
-            <div class="middle_mv__decoration">
-
-                <!-- 波 -->
-                <div class="middle_mv__wave-sway">
-                    <div class="middle_mv__wave-move">
-                    </div>
-                </div>
+            <div class="middle_mv__wave-move">
+                <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
+                    <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
+                </svg>
+                <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
+                    <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
+                </svg>
             </div>
         </div>
 

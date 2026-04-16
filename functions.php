@@ -112,11 +112,13 @@ function body_id()
   global $post;
   if (is_home() || is_front_page()) {
     $body_id = "index";
-  }
-  /*  elseif (is_post_type_archive("experience") || is_singular("experience") || is_tax("experience-cat"))
-   {
-   $body_id = "experience";
-   } */ elseif (is_singular("seminar")) {
+  } elseif (is_post_type_archive("joho") || is_singular("joho") || is_tax("joho-year") || is_tax("joho-author")) {
+    $body_id = "joho";
+  } elseif (is_post_type_archive("topics") || is_singular("topics") || is_tax("topics-category")) {
+    $body_id = "topics";
+  } elseif (is_post_type_archive("press") || is_singular("press") || is_tax("press-category")) {
+    $body_id = "press";
+  } elseif (is_singular("seminar")) {
     $body_id = "seminar";
   } elseif (is_post_type_archive("seminar") || is_tax("seminar-cat")) {
     $body_id = "archive-seminar";

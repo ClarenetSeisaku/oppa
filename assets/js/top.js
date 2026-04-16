@@ -62,6 +62,7 @@ function sliderToggle() {
           slidesToShow: 1,
           arrows: true,
           dots: false,
+          adaptiveHeight: true,
           prevArrow: $(".seminars__js-prev"),
           nextArrow: $(".seminars__js-next"),
         });
@@ -82,4 +83,21 @@ $(window).on("resize", function () {
 /* matchHeightで高さ調整 */
 $(function () {
   $(".top_seminars__card-title").matchHeight();
+});
+
+// -----------------------------
+// topics タブ切り替え
+// -----------------------------
+document.querySelectorAll(".top_topics__tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const slug = tab.dataset.slug;
+
+    document.querySelectorAll(".top_topics__card").forEach((card) => {
+      if (slug === "all" || card.classList.contains("cat-" + slug)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
 });

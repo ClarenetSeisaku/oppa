@@ -193,6 +193,11 @@ footer {
   font-weight: 600;
   letter-spacing: 0.125em;
   margin-bottom: 10px;
+  &.border_bottom {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
   @include m.mq(sp) {
   }
 }
@@ -238,10 +243,10 @@ a[href*="tel:"] {
   letter-spacing: 0.1em;
   overflow: hidden;
   @include m.mq(sp) {
-    // width: 84vw;
+    width: 84vw;
     height: 50px;
   }
-  span {
+  > span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -295,6 +300,7 @@ a[href*="tel:"] {
     }
   }
   &:hover {
+    border: 1px solid m.$color-navy;
     &::before {
       background-color: m.$color-white;
       z-index: 3;
@@ -303,7 +309,7 @@ a[href*="tel:"] {
       border-color: transparent transparent transparent m.$color-white;
       z-index: 2;
     }
-    span {
+    > span {
       color: m.$color-white;
       &:before {
         width: 100%;
@@ -337,18 +343,44 @@ a[href*="tel:"] {
       }
     }
   }
+  &.blue_btn {
+    background: m.$color-navy;
+    border: 1px solid m.$color-navy;
+    color: #fff;
+    > span {
+      color: #fff;
+      &:before {
+        background: #fff;
+      }
+    }
+    &::before {
+      background-color: #fff; /* 直線の色 */
+      transition: all 0.3s ease;
+    }
+    &::after {
+      border-color: transparent transparent transparent #fff; /* 左側だけ色をつけて右向き三角に */
+    }
+    &:hover {
+      &::before {
+        background-color: m.$color-navy;
+      }
+      &::after {
+        border-color: transparent transparent transparent m.$color-navy;
+        z-index: 2;
+      }
+      > span {
+        color: m.$color-navy;
+      }
+    }
+  }
 }
 /***********************
 　　　横スクロール
 *************************/
 
 .js-scrollable {
-  > * {
+  table {
     min-width: 1300px;
-  }
-  img {
-    width: 100%;
-    height: auto;
   }
 }
 

@@ -37,26 +37,26 @@
             </h1>
             <nav id="globalnav" class="globalnav" aria-label="メインメニュー">
                 <ul class="gnav">
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>seminar">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon01.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon01_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon01_sp.svg" alt="" class="sp"></figure><span>セミナー・<br class="pc">イベント</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>joho">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon02.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon02_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon02_sp.svg" alt="" class="sp"></figure>
                             <span>情報誌「大阪港」</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon03.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon03_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon03_sp.svg" alt="" class="sp"></figure>
                             <span>ニュースレター</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>ship">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon04.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon04_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon04_sp.svg" alt="" class="sp"></figure>
                             <span>客船・<br class="pc">フェリー情報</span>
                         </a></li>
-                    <li><a href="<?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>topics-category/records">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon05.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon05_navy.svg" alt="" class="pc hover_block"><img src=" <?php echo imdir(); ?>/common/header_icon05_sp.svg" alt="" class="sp"></figure>
                             <span>大阪港の記録</span>
                         </a></li>
-                    <li><a href=" <?= esc_url(home_url('/')) ?>">
+                    <li><a href="<?= esc_url(home_url('/')) ?>press">
                             <figure><img src="<?php echo imdir(); ?>/common/header_icon06.svg" alt="" class="pc hover_none"><img src="<?php echo imdir(); ?>/common/header_icon06_navy.svg" alt="" class="pc hover_block"><img src="<?php echo imdir(); ?>/common/header_icon06_sp.svg" alt="" class="sp"></figure>
                             <span>グッズ・刊行物</span>
                         </a></li>
@@ -67,30 +67,30 @@
                         <div class="drawer__links">
                             <div class="drawer__col drawer__col--top">
                                 <ul>
-                                    <li><a href="#">TOP</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>">TOP</a></li>
                                 </ul>
                             </div>
                             <div class="drawer__col">
                                 <ul>
-                                    <li><a href="#">大阪港振興協会とは</a></li>
-                                    <li><a href="#">新着情報</a></li>
-                                    <li class="pc"><a href="#">セミナー・イベント情報</a></li>
-                                    <li class="pc"><a href="#">情報誌「大阪港」・ニュースレター</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>about">大阪港振興協会とは</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>news">新着情報</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>seminar">セミナー・イベント情報</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>joho">情報誌「大阪港」</a></li>
                                 </ul>
                             </div>
                             <div class="drawer__col">
                                 <ul>
-                                    <li class="pc"><a href="#">客船・フェリー情報</a></li>
-                                    <li class="pc"><a href="#">大阪港の記録</a></li>
-                                    <li class="pc"><a href="#">グッズ・刊行物</a></li>
-                                    <li><a href="#">わくわく港探訪</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>ship">客船・フェリー情報</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>topics-category/records">大阪港の記録</a></li>
+                                    <li class="pc"><a href="<?= esc_url(home_url('/')) ?>press">グッズ・刊行物</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter">ニュースレター</a></li>
                                 </ul>
                             </div>
                             <div class="drawer__col">
                                 <ul>
-                                    <li><a href="#">入会案内</a></li>
-                                    <li><a href="#">会員情報</a></li>
-                                    <li><a href="#">アクセス</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>join">入会案内</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>member-list">会員情報</a></li>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>access">アクセス</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                 </svg>
                             </a>
                             <!-- 共通：お問い合わせボタン -->
-                            <a href="#" class="drawer__btn drawer__btn--navy">
+                            <a href="<?= esc_url(home_url('/')) ?>contact" class="drawer__btn drawer__btn--navy">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M22.6 5H1.40002V19H22.6V5Z" stroke="white" stroke-linejoin="round" />
                                     <path d="M1.40002 5L12 12.228L22.6 5" stroke="white" stroke-linejoin="round" />
