@@ -84,12 +84,12 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
 
                 <?php $has_detail_section = (trim((string) get_the_content()) !== ''); ?>
                 <?php if ($has_detail_section) : ?>
-                <section class="seminar-wrap__card seminar-wrap__card--detail">
-                    <h2 class="seminar-wrap__heading">セミナー・イベント詳細</h2>
-                    <div class="seminar-wrap__content">
+                    <section class="seminar-wrap__card seminar-wrap__card--detail">
+                        <h2 class="seminar-wrap__heading">セミナー・イベント詳細</h2>
+                        <div class="seminar-wrap__content">
                             <?php the_content(); ?>
-                    </div>
-                </section>
+                        </div>
+                    </section>
                 <?php endif; ?>
 
                 <?php
@@ -122,27 +122,27 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                 );
                 ?>
                 <?php if ($has_speaker_section) : ?>
-                <section class="seminar-wrap__card seminar-wrap__card--speaker">
-                    <div class="seminar-wrap__speaker-main">
-                        <h2 class="seminar-wrap__heading">講師</h2>
-                        <?php if (!empty($speaker_role)) : ?>
-                            <p class="seminar-wrap__speaker-role"><?php echo esc_html($speaker_role); ?></p>
-                        <?php endif; ?>
-                        <?php if (!empty($speaker_name)) : ?>
-                            <h3 class="seminar-wrap__speaker-name"><?php echo esc_html($speaker_name); ?></h3>
-                        <?php endif; ?>
-                        <?php if (!empty($speaker_bio)) : ?>
-                            <div class="seminar-wrap__speaker-bio"><?php echo wp_kses_post($speaker_bio); ?></div>
-                        <?php endif; ?>
-                    </div>
-                    <?php if (!empty($speaker_image_url)) : ?>
-                        <div class="seminar-wrap__speaker-image">
-                            <img src="<?php echo esc_url($speaker_image_url); ?>" alt="<?php echo esc_attr($speaker_image_alt); ?>">
+                    <section class="seminar-wrap__card seminar-wrap__card--speaker">
+                        <div class="seminar-wrap__speaker-main">
+                            <h2 class="seminar-wrap__heading">講師</h2>
+                            <?php if (!empty($speaker_role)) : ?>
+                                <p class="seminar-wrap__speaker-role"><?php echo esc_html($speaker_role); ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($speaker_name)) : ?>
+                                <h3 class="seminar-wrap__speaker-name"><?php echo esc_html($speaker_name); ?></h3>
+                            <?php endif; ?>
+                            <?php if (!empty($speaker_bio)) : ?>
+                                <div class="seminar-wrap__speaker-bio"><?php echo wp_kses_post($speaker_bio); ?></div>
+                            <?php endif; ?>
                         </div>
-                    <?php else : ?>
-                        <div class="seminar-wrap__speaker-image" aria-hidden="true"></div>
-                    <?php endif; ?>
-                </section>
+                        <?php if (!empty($speaker_image_url)) : ?>
+                            <div class="seminar-wrap__speaker-image">
+                                <img src="<?php echo esc_url($speaker_image_url); ?>" alt="<?php echo esc_attr($speaker_image_alt); ?>">
+                            </div>
+                        <?php else : ?>
+                            <div class="seminar-wrap__speaker-image" aria-hidden="true"></div>
+                        <?php endif; ?>
+                    </section>
                 <?php endif; ?>
                 <?php
                 $event = function_exists('get_field') ? get_field('event') : null;
@@ -273,13 +273,13 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                             <table class="seminar-wrap__summary-table">
                                 <?php if ($event_datetime !== '') : ?>
                                     <tr>
-                                        <td>開催日時</td>
+                                        <th>開催日時</th>
                                         <td><?php echo esc_html($event_datetime); ?></td>
                                     </tr>
                                 <?php endif; ?>
                                 <?php if ($event_location !== '') : ?>
                                     <tr>
-                                        <td>開催場所</td>
+                                        <th>開催場所</th>
                                         <td><?php echo wp_kses_post($event_location); ?></td>
                                     </tr>
                                 <?php endif; ?>
@@ -290,7 +290,7 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                                     ?>
                                     <?php if ($optional_field_title !== '' || $optional_field_content !== '') : ?>
                                         <tr>
-                                            <td><?php echo esc_html($optional_field_title); ?></td>
+                                            <th><?php echo esc_html($optional_field_title); ?></th>
                                             <td><?php echo wp_kses_post($optional_field_content); ?></td>
                                         </tr>
                                     <?php endif; ?>
@@ -301,7 +301,7 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                         <?php foreach ($pdf_rows as $pdf_row) : ?>
                             <?php if (is_array($pdf_row) && !empty($pdf_row['pdf'])) : ?>
                                 <a href="<?php echo esc_url($pdf_row['pdf']); ?>" class="seminar-wrap__summary-link">
-                                    <span>タイトルが入りますダミーですタイトルが入りますダミーです</span>
+                                    <span><?php echo esc_html($pdf_row['pdf_name']); ?></span>
                                 </a>
                             <?php endif; ?>
                         <?php endforeach; ?>
