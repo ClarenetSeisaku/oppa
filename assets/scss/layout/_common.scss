@@ -41,7 +41,7 @@ main {
   position: relative;
   /* overflow-x: hidden; */
   padding-top: 112px;
-  @include m.mq(sp) {
+  @include m.mq(tab_sp) {
     padding-top: 60px;
   }
 }

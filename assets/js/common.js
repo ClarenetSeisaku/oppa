@@ -62,7 +62,7 @@ $(function () {
       $(this).attr("aria-expanded", true).attr("aria-label", "メニューを閉じる");
       $gnav.attr("aria-hidden", false);
 
-      if ($(window).width() < 769) {
+      if ($(window).width() < 1025) {
         $gnav.slideDown();
       }
 
@@ -71,7 +71,7 @@ $(function () {
       $(this).attr("aria-expanded", false).attr("aria-label", "メニューを開く");
       $gnav.attr("aria-hidden", true);
 
-      if ($(window).width() < 769) {
+      if ($(window).width() < 1025) {
         $gnav.slideUp();
       }
 

@@ -17,12 +17,12 @@
   transition: 0.4s ease-in-out;
   gap: 0 min(1.5vw, 30px);
   background: m.$color-white;
-  @include m.mq(sp) {
+  @include m.mq(tab_sp) {
     padding: 0 0 0 min(5vw, 20px);
   }
   &.open {
     .globalnav {
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         display: block !important;
       }
     }
@@ -33,7 +33,7 @@
       opacity: 1;
       z-index: -1;
       display: block;
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         display: none;
       }
     }
@@ -44,19 +44,20 @@
     width: calc(100% - 112px);
     gap: 0 min(1.5vw, 30px);
     max-width: 1948px;
-    @include m.mq(sp) {
+    @include m.mq(tab_sp) {
       width: calc(100% - 60px);
     }
   }
   .h_logoarea {
-    height: 60px;
     display: flex;
     align-items: center;
-
-    @include m.mq(tab_pc) {
+    @include m.mq(pc) {
       width: 20%;
       padding: 15.5px 0;
       height: 112px;
+    }
+    @include m.mq(tab_sp) {
+      height: 60px;
     }
     a {
       display: flex;
@@ -64,14 +65,14 @@
       gap: 0 26px;
       position: relative;
       z-index: 5;
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         gap: 0 10px;
       }
     }
     img {
       &.logo {
         width: min(20vw, 374px);
-        @include m.mq(sp) {
+        @include m.mq(tab_sp) {
           width: 150px;
         }
       }
@@ -80,11 +81,8 @@
 
   .hamburger {
     border: none;
-    width: 60px;
-    height: 60px;
     background: none;
     cursor: pointer;
-    min-width: 60px;
     z-index: 20;
     display: flex;
     align-items: center;
@@ -92,9 +90,12 @@
     position: relative;
     background: m.$color-navy;
     aspect-ratio: 1 / 1;
-    @include m.mq(tab_pc) {
-      width: 112px;
-      height: 112px;
+    width: 112px;
+    height: 112px;
+    min-width: 60px;
+    @include m.mq(tab_sp) {
+      width: 60px;
+      height: 60px;
     }
     .hamburger__line {
       position: relative;
@@ -102,7 +103,7 @@
       height: 1px;
       background: m.$color-white;
       display: block;
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         width: 30px;
       }
       &::before,
@@ -117,13 +118,13 @@
       }
       &::before {
         top: -15px;
-        @include m.mq(sp) {
+        @include m.mq(tab_sp) {
           top: -8px;
         }
       }
       &::after {
         bottom: -15px;
-        @include m.mq(sp) {
+        @include m.mq(tab_sp) {
           bottom: -8px;
         }
       }
@@ -148,8 +149,10 @@
   .globalnav {
     width: 70%;
     display: block !important;
-    max-width: 967px;
-    @include m.mq(sp) {
+    @include m.mq(pc) {
+      max-width: 967px;
+    }
+    @include m.mq(tab_sp) {
       display: none !important;
       width: 100vw;
       position: absolute;
@@ -166,20 +169,22 @@
       display: flex;
       justify-content: center;
       gap: 0;
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         flex-direction: column;
         justify-content: center;
         gap: 0;
       }
       > li {
         position: relative;
-        @include m.mq(tab_pc) {
-          padding: 16px 0;
-          width: calc(100% / 6);
+        padding: 16px 0;
+        width: calc(100% / 6);
+        @include m.mq(tab_sp) {
+          width: 100%;
+          padding: 0;
         }
         a {
           display: grid;
-          @include m.mq(tab_pc) {
+          @include m.mq(pc) {
             text-align: center;
             font-size: min(1.5vw, 14px);
             font-weight: 500;
@@ -190,7 +195,7 @@
             padding: 0 5px;
             height: 79px;
           }
-          @include m.mq(sp) {
+          @include m.mq(tab_sp) {
             font-size: 16px;
             font-weight: 500;
             text-align: left;
@@ -200,19 +205,38 @@
             align-items: center;
             border-top: 1px solid #ddddcd;
           }
+          img {
+            &.pc {
+              @include m.mq(tab_sp) {
+                display: none !important;
+              }
+            }
+            &.sp {
+              @include m.mq(tab_sp) {
+                display: block !important;
+              }
+            }
+          }
+          span {
+            br.pc {
+              @include m.mq(tab_sp) {
+                display: none !important;
+              }
+            }
+          }
           &:hover {
             span {
-              @include m.mq(tab_pc) {
+              @include m.mq(pc) {
                 color: m.$color-navy-hover;
               }
             }
             .hover_none {
-              @include m.mq(tab_pc) {
+              @include m.mq(pc) {
                 display: none !important;
               }
             }
             .hover_block {
-              @include m.mq(tab_pc) {
+              @include m.mq(pc) {
                 display: block !important;
               }
             }
@@ -221,7 +245,7 @@
             position: relative;
             &::before,
             &::after {
-              @include m.mq(sp) {
+              @include m.mq(tab_sp) {
                 position: absolute;
                 content: "";
                 background: #fff;
@@ -249,11 +273,11 @@
             img {
               width: 40px;
               height: 40px;
-              @include m.mq(tab_pc) {
+              @include m.mq(pc) {
                 margin: 0 auto;
               }
               &.hover_block {
-                @include m.mq(tab_pc) {
+                @include m.mq(pc) {
                   display: none !important;
                 }
               }
@@ -264,20 +288,13 @@
             display: flex;
             align-items: center;
           }
-
-          &:hover {
-            @include m.mq(tab_pc) {
-              span {
-              }
-            }
-          }
         }
         &:last-of-type {
           a {
-            @include m.mq(tab_pc) {
+            @include m.mq(pc) {
               border-right: 1px solid m.$border-color;
             }
-            @include m.mq(sp) {
+            @include m.mq(tab_sp) {
               border-bottom: 1px solid #ddddcd;
             }
           }
@@ -285,7 +302,7 @@
         > ul {
           display: none;
           padding: 0 0 15px;
-          @include m.mq(tab_pc) {
+          @include m.mq(pc) {
             position: absolute;
             @include m.prefix_l;
             /*width: calc(100% + 80px);*/
@@ -306,7 +323,7 @@
               &::after {
                 display: none;
               }
-              @include m.mq(sp) {
+              @include m.mq(tab_sp) {
                 font-size: 16px;
                 color: #e2e2e2;
               }
@@ -331,7 +348,7 @@
     z-index: 1001;
 
     // --- SPのレイアウト（SPは親のpanelが開閉するため、ここは常に表示） ---
-    @include m.mq(sp) {
+    @include m.mq(tab_sp) {
       position: static;
       box-shadow: none;
     }
@@ -344,7 +361,7 @@
       justify-content: space-between;
       gap: 40px;
 
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         flex-direction: column;
         padding: 0 0 60px 0;
         gap: 0;
@@ -373,7 +390,7 @@
         }
       }
 
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         flex-direction: column;
         gap: 0;
         padding: 40px 0;
@@ -398,7 +415,7 @@
       width: 187px;
       flex-shrink: 0;
 
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         width: 100%;
         padding: 0;
         align-items: center;
@@ -419,14 +436,14 @@
       transition: all 0.3s;
       border-radius: 4px;
       position: relative;
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         padding: 14px;
         text-align: center;
       }
       svg {
         width: 24px;
         height: 24px;
-        @include m.mq(sp) {
+        @include m.mq(tab_sp) {
           position: absolute;
           display: block;
           @include m.prefix_t;
@@ -437,7 +454,7 @@
         background: #fff;
         border: 1px solid m.$color-border;
         svg {
-          @include m.mq(sp) {
+          @include m.mq(tab_sp) {
             right: 24px;
             width: 14px;
             height: 14px;
@@ -449,7 +466,7 @@
         border: 1px solid m.$color-navy;
         color: #fff;
         svg {
-          @include m.mq(sp) {
+          @include m.mq(tab_sp) {
             left: 24px;
           }
         }
@@ -473,7 +490,7 @@
         }
       }
 
-      @include m.mq(sp) {
+      @include m.mq(tab_sp) {
         justify-content: center;
         margin-top: 10px;
       }

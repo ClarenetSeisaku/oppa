@@ -76,10 +76,23 @@ get_header();
                         <li>
 
                             <figure>
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <?php the_post_thumbnail('medium'); ?>
+                                <?php $link = get_field('topics_link'); ?>
+                                <?php if ($link): ?>
+                                    <a href="<?php echo esc_url($link); ?>">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        <?php else: ?>
+                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                        <?php endif; ?>
+                                    </a>
                                 <?php else: ?>
-                                    <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="ダミー画像">
+                                    <a href="<?php the_permalink(); ?>">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        <?php else: ?>
+                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                        <?php endif; ?>
+                                    </a>
                                 <?php endif; ?>
                             </figure>
                             <div class="topics_contents">

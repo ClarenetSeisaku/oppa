@@ -452,10 +452,23 @@ get_header();
 
 
                                 <div class="top_topics__card-img">
-                                    <?php if (has_post_thumbnail()) : ?>
-                                        <?php the_post_thumbnail('medium'); ?>
+                                    <?php $link = get_field('topics_link'); ?>
+                                    <?php if ($link): ?>
+                                        <a href="<?php echo esc_url($link); ?>">
+                                            <?php if (has_post_thumbnail()) : ?>
+                                                <?php the_post_thumbnail('medium'); ?>
+                                            <?php else: ?>
+                                                <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                            <?php endif; ?>
+                                        </a>
                                     <?php else: ?>
-                                        <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php if (has_post_thumbnail()) : ?>
+                                                <?php the_post_thumbnail('medium'); ?>
+                                            <?php else: ?>
+                                                <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                            <?php endif; ?>
+                                        </a>
                                     <?php endif; ?>
                                 </div>
 
@@ -573,38 +586,7 @@ get_header();
                         <!-- 右：リスト -->
                         <div class="top_magazine__info">
                             <h3 class="top_magazine__issue"><?php the_title(); ?></h3>
-                            <?php
-                            $type = get_field('description_type');
-
-                            // デフォルトを text に
-                            if (!$type) {
-                                $type = 'text';
-                            }
-
-                            if ($type === 'list' && have_rows('description_list')) :
-
-                                echo '<ul class="top_magazine__list disc_list">';
-                                while (have_rows('description_list')) {
-                                    the_row();
-                                    $item = get_sub_field('item');
-                                    if ($item) {
-                                        echo '<li>' . esc_html($item) . '</li>';
-                                    }
-                                }
-                                echo '</ul>';
-
-                            else :
-
-                                // text（デフォルト含む）
-                                $text = get_field('description_text');
-                                if ($text) {
-                                    echo '<div class="description_text">';
-                                    echo wp_kses_post($text);
-                                    echo '</div>';
-                                }
-
-                            endif;
-                            ?>
+                            <?php the_field('description_text'); ?>
                         </div>
 
                     </div>
