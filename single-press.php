@@ -82,7 +82,7 @@ get_header();
               商品代金に加え、別途送料が必要となりますのでご連絡いただきましたら送料をおしらせいたします。
             </span></p>
           <div class="press_indent_box">
-            <a href="" class="commonBtn pdf mb20">
+            <a href="<?php echo imdir(); ?>/press/pdf/gotyumonmousikomisyo.pdf" class="commonBtn pdf mb20" target="_blank">
               <span>ご注文 申込書PDF（メールまたはFAXにて受付します。）</span>
             </a>
             <div class="press_flex mb20">
@@ -90,7 +90,9 @@ get_header();
               <div class="press_price_box">
                 <dl>
                   <dt>E-mail</dt>
-                  <dd>goods@oppa.or.jp</dd>
+                  <dd>
+                    <a href="m&#97;i&#108;t&#111;:&#103;&#111;o&#100;s&#64;&#111;p&#112;&#97;&#46;o&#114;&#46;&#106;p">&#103;&#111;o&#100;s&#64;&#111;p&#112;&#97;&#46;o&#114;&#46;&#106;p</a>
+                  </dd>
                 </dl>
                 <dl>
                   <dt>FAX番号</dt>
@@ -118,7 +120,7 @@ get_header();
               <p class="press_ttl02">振込先</p>
               <p class="mb10">三井住友銀行　港支店　普通預金<br>
                 口座番号　1113098<br>
-                口座名義　公益社団法人　大阪港振興協会（オオサカコウシンコウキョウカイ）</p>
+                口座名義　公益社団法人　大阪港振興協会</p>
             </div>
           </div>
         </div>

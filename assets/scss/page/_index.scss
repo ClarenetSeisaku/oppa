@@ -1340,6 +1340,24 @@
         @include m.mq(tab_pc) {
           width: 50%;
         }
+        ul {
+          li {
+            position: relative;
+            padding-left: 1.2em;
+            line-height: 1.8;
+            color: m.$main-color;
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0.8em;
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background-color: m.$color-bullet;
+            }
+          }
+        }
       }
 
       &__issue {

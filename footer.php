@@ -37,7 +37,7 @@
         <span>申込みフォーム</span>
     </a>
 <?php elseif (is_front_page()): ?>
-    <a href="#" class="fixed-btn">
+    <a href="<?= esc_url(home_url('/')) ?>ship" class="fixed-btn">
         <img src="<?php echo imdir(); ?>/common/boat_wh.svg" alt="船のアイコン">
         <span>クルーズ船情報</span>
     </a>
