@@ -82,17 +82,15 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                 <?php endif; ?>
                 <h1 class="seminar-wrap__title"><?php the_title(); ?></h1>
 
+                <?php $has_detail_section = (trim((string) get_the_content()) !== ''); ?>
+                <?php if ($has_detail_section) : ?>
                 <section class="seminar-wrap__card seminar-wrap__card--detail">
                     <h2 class="seminar-wrap__heading">セミナー・イベント詳細</h2>
                     <div class="seminar-wrap__content">
-                        <?php if (trim((string) get_the_content()) !== '') : ?>
                             <?php the_content(); ?>
-                        <?php else : ?>
-                            <p>公益社団法人大阪港振興協会と大阪港埠頭株式会社は、国際港湾協会(IAPH)の活動に 14 年間の長きにわたり携わり、同協会副会長を務められた篠原正治氏をお招きし、「世界のコンテナ港湾について～14 年間の国際港湾協会活動で学んだこと ～」と題した講演会を開催いたします。同氏は長年港湾行政の第一線で活躍されるとともに、世界の港湾事情に精通され、豊富な実務経験と高い学識を兼ね備えた港湾分野の第一人者です。<br>
-                                本講演では、IAPH の活動概要とその中で得られた教訓をはじめ、世界の自動化ターミナルの最新動向、ロサンゼルス港・ロングビーチ港（LA・LB）などに見られる近接港湾における協調と競争の関係、さらに、篠原氏が提唱された「Total Yard Move」という考え方に基づく、コンテナターミナルの生産性・効率性評価などについて、具体的な事例を交えながらお話しいただきます。</p>
-                        <?php endif; ?>
                     </div>
                 </section>
+                <?php endif; ?>
 
                 <?php
                 $speaker = function_exists('get_field') ? get_field('speaker') : null;
@@ -116,7 +114,14 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                 if ($speaker_image_alt === '' && $speaker_name !== '') {
                     $speaker_image_alt = $speaker_name;
                 }
+                $has_speaker_section = (
+                    $speaker_role !== '' ||
+                    $speaker_name !== '' ||
+                    $speaker_bio !== '' ||
+                    $speaker_image_url !== ''
+                );
                 ?>
+                <?php if ($has_speaker_section) : ?>
                 <section class="seminar-wrap__card seminar-wrap__card--speaker">
                     <div class="seminar-wrap__speaker-main">
                         <h2 class="seminar-wrap__heading">講師</h2>
@@ -138,205 +143,185 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                         <div class="seminar-wrap__speaker-image" aria-hidden="true"></div>
                     <?php endif; ?>
                 </section>
+                <?php endif; ?>
+                <?php
+                $event = function_exists('get_field') ? get_field('event') : null;
 
-                <section class="seminar-wrap__card seminar-wrap__card--summary">
-                    <h2 class="seminar-wrap__heading">概要</h2>
+                $event_group = is_array($event) ? ($event['event-group'] ?? $event['event_group'] ?? []) : [];
+                if (!is_array($event_group)) {
+                    $event_group = function_exists('get_field') ? (get_field('event-group') ?? get_field('event_group') ?? []) : [];
+                }
+                if (!is_array($event_group)) {
+                    $event_group = [];
+                }
 
-                    <?php
-                    $event = function_exists('get_field') ? get_field('event') : null;
+                $pdf_rows = function_exists('get_field') ? get_field('pdf-repeat') : [];
+                if (!is_array($pdf_rows)) {
+                    $pdf_rows = [];
+                }
 
-                    $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
-                    if (!is_array($event_rows)) {
-                        $event_rows = [];
+                $close = is_array($event) ? ($event['close'] ?? false) : false;
+
+                $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $time_end_raw) {
+                    $date_raw = trim((string) $date_raw);
+                    $time_start_raw = trim((string) $time_start_raw);
+                    $time_end_raw = trim((string) $time_end_raw);
+
+                    if ($date_raw === '') {
+                        return '';
                     }
 
-                    $pdf_rows = get_field('pdf-repeat') ?? [];
-
-                    $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
-                    if (!is_array($event_rows)) {
-                        $event_rows = [];
+                    $timezone = function_exists('wp_timezone') ? wp_timezone() : new DateTimeZone('Asia/Tokyo');
+                    $date = null;
+                    $date_formats = ['Ymd', 'Y-m-d', 'Y/m/d', 'Y.n.j', 'd/m/Y', 'd-m-Y', 'd.m.Y', 'Y年n月j日'];
+                    foreach ($date_formats as $date_format) {
+                        $try_date = DateTimeImmutable::createFromFormat($date_format, $date_raw, $timezone);
+                        if ($try_date instanceof DateTimeImmutable) {
+                            $date = $try_date;
+                            break;
+                        }
+                    }
+                    if (!$date) {
+                        $timestamp = strtotime($date_raw);
+                        if ($timestamp) {
+                            $date = (new DateTimeImmutable('@' . $timestamp))->setTimezone($timezone);
+                        }
+                    }
+                    if (!$date) {
+                        return '';
                     }
 
-                    $close = $event['close'] ?? false;
+                    $year = (int) $date->format('Y');
+                    $era_name = '令和';
+                    $era_year = $year - 2018;
+                    if ($year < 2019) {
+                        $era_name = '平成';
+                        $era_year = $year - 1988;
+                    }
+                    if ($era_year < 1) {
+                        $era_year = 1;
+                    }
 
-                    $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $time_end_raw) {
-                        $date_raw = trim((string) $date_raw);
-                        $time_start_raw = trim((string) $time_start_raw);
-                        $time_end_raw = trim((string) $time_end_raw);
+                    $week_map = ['日', '月', '火', '水', '木', '金', '土'];
+                    $week = $week_map[(int) $date->format('w')];
+                    $date_part = sprintf(
+                        '%s%d年%d月%d日 (%s)',
+                        $era_name,
+                        $era_year,
+                        (int) $date->format('n'),
+                        (int) $date->format('j'),
+                        $week
+                    );
 
-                        if ($date_raw === '') {
+                    $normalize_time = static function ($time_raw) {
+                        $time_raw = trim((string) $time_raw);
+                        if ($time_raw === '') {
                             return '';
                         }
-
-                        $timezone = function_exists('wp_timezone') ? wp_timezone() : new DateTimeZone('Asia/Tokyo');
-                        $date = null;
-                        $date_formats = ['Ymd', 'Y-m-d', 'Y/m/d', 'Y.n.j', 'Y年n月j日'];
-                        foreach ($date_formats as $date_format) {
-                            $try_date = DateTimeImmutable::createFromFormat($date_format, $date_raw, $timezone);
-                            if ($try_date instanceof DateTimeImmutable) {
-                                $date = $try_date;
-                                break;
+                        $time_formats = ['H:i', 'H:i:s', 'G:i', 'G:i:s'];
+                        foreach ($time_formats as $time_format) {
+                            $time = DateTimeImmutable::createFromFormat($time_format, $time_raw);
+                            if ($time instanceof DateTimeImmutable) {
+                                return $time->format('H:i');
                             }
                         }
-                        if (!$date) {
-                            $timestamp = strtotime($date_raw);
-                            if ($timestamp) {
-                                $date = (new DateTimeImmutable('@' . $timestamp))->setTimezone($timezone);
-                            }
-                        }
-                        if (!$date) {
-                            return '';
-                        }
-
-                        $year = (int) $date->format('Y');
-                        $era_name = '令和';
-                        $era_year = $year - 2018;
-                        if ($year < 2019) {
-                            $era_name = '平成';
-                            $era_year = $year - 1988;
-                        }
-                        if ($era_year < 1) {
-                            $era_year = 1;
-                        }
-
-                        $week_map = ['日', '月', '火', '水', '木', '金', '土'];
-                        $week = $week_map[(int) $date->format('w')];
-                        $date_part = sprintf(
-                            '%s%d年%d月 %d 日 (%s)',
-                            $era_name,
-                            $era_year,
-                            (int) $date->format('n'),
-                            (int) $date->format('j'),
-                            $week
-                        );
-
-                        $normalize_time = static function ($time_raw) {
-                            $time_raw = trim((string) $time_raw);
-                            if ($time_raw === '') {
-                                return '';
-                            }
-                            $time_formats = ['H:i', 'H:i:s', 'G:i', 'G:i:s'];
-                            foreach ($time_formats as $time_format) {
-                                $time = DateTimeImmutable::createFromFormat($time_format, $time_raw);
-                                if ($time instanceof DateTimeImmutable) {
-                                    return $time->format('H:i');
-                                }
-                            }
-                            return $time_raw;
-                        };
-
-                        $time_start = $normalize_time($time_start_raw);
-                        $time_end = $normalize_time($time_end_raw);
-                        if ($time_start !== '' && $time_end !== '') {
-                            return $date_part . ' ' . $time_start . '～' . $time_end;
-                        }
-                        if ($time_start !== '') {
-                            return $date_part . ' ' . $time_start;
-                        }
-
-                        return $date_part;
+                        return $time_raw;
                     };
-                    ?>
 
-                    <?php if ($close): ?>
-                        <p class="seminar-wrap__summary-status">本セミナーは終了しました</p>
-                    <?php endif; ?>
+                    $time_start = $normalize_time($time_start_raw);
+                    $time_end = $normalize_time($time_end_raw);
+                    if ($time_start !== '' && $time_end !== '') {
+                        return $date_part . ' ' . $time_start . '〜' . $time_end;
+                    }
+                    if ($time_start !== '') {
+                        return $date_part . ' ' . $time_start;
+                    }
 
+                    return $date_part;
+                };
 
-                    <?php foreach ($event_rows as $event_row) : ?>
-                        <?php
-                        $event_datetime_legacy = (string) ($event_row['event_datetime'] ?? '');
-                        $event_datetime = $format_japanese_event_datetime(
-                            (string) ($event_row['event_date'] ?? ''),
-                            (string) ($event_row['event_time_s'] ?? ''),
-                            (string) ($event_row['event_time_e'] ?? '')
-                        );
-                        if ($event_datetime === '') {
-                            $event_datetime = $event_datetime_legacy;
-                        }
-                        $event_location = (string) ($event_row['event_location'] ?? '');
-                        $event_capacity = (string) ($event_row['event_capacity'] ?? '');
-                        $event_fee = (string) ($event_row['event_fee'] ?? '');
-                        $event_application_method = (string) ($event_row['event_application_method'] ?? '');
-                        $event_application_url = (string) ($event_row['event_application_url'] ?? '');
-                        $event_deadline = (string) ($event_row['event_deadline'] ?? '');
-                        $event_office = (string) ($event_row['event_office'] ?? '');
-                        $event_organizer = (string) ($event_row['event_organizer'] ?? '');
-                        ?>
+                $event_datetime = $format_japanese_event_datetime(
+                    (string) ($event_group['event_date'] ?? ''),
+                    (string) ($event_group['event_time_s'] ?? ''),
+                    (string) ($event_group['event_time_e'] ?? '')
+                );
+                $event_location = (string) ($event_group['event_location'] ?? '');
+                $optional_field_rows = $event_group['optional_field_repeat'] ?? [];
+                if (!is_array($optional_field_rows)) {
+                    $optional_field_rows = [];
+                }
 
-                        <table class="seminar-wrap__summary-table">
-                            <?php if ($event_datetime !== '') : ?>
-                                <tr>
-                                    <td>開催日時</td>
-                                    <td><?php echo esc_html($event_datetime); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_location !== '') : ?>
-                                <tr>
-                                    <td>開催場所</td>
-                                    <td><?php echo wp_kses_post($event_location); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_capacity !== '') : ?>
-                                <tr>
-                                    <td>応募人数</td>
-                                    <td><?php echo esc_html($event_capacity); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_fee !== '') : ?>
-                                <tr>
-                                    <td>参加費</td>
-                                    <td><?php echo wp_kses_post($event_fee); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_application_method !== '') : ?>
-                                <tr>
-                                    <td>申込方法</td>
-                                    <td><?php echo wp_kses_post($event_application_method); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_deadline !== '') : ?>
-                                <tr>
-                                    <td>申込締切</td>
-                                    <td><?php echo esc_html($event_deadline); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_office !== '') : ?>
-                                <tr>
-                                    <td>事務局</td>
-                                    <td><?php echo wp_kses_post($event_office); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                            <?php if ($event_organizer !== '') : ?>
-                                <tr>
-                                    <td>主催</td>
-                                    <td><?php echo wp_kses_post($event_organizer); ?></td>
-                                </tr>
-                            <?php endif; ?>
-                        </table>
-                    <?php endforeach; ?>
+                $has_summary_table = ($event_datetime !== '' || $event_location !== '' || !empty($optional_field_rows));
+                $has_pdf_links = false;
+                foreach ($pdf_rows as $pdf_row) {
+                    if (is_array($pdf_row) && !empty($pdf_row['pdf'])) {
+                        $has_pdf_links = true;
+                        break;
+                    }
+                }
+                $has_summary_section = ($close || $has_summary_table || $has_pdf_links);
+                ?>
+                <?php if ($has_summary_section) : ?>
+                    <section class="seminar-wrap__card seminar-wrap__card--summary">
+                        <h2 class="seminar-wrap__heading">概要</h2>
 
-                    <?php foreach ($pdf_rows as $pdf_row) : ?>
-                        <a href="<?php echo esc_url($pdf_row['pdf']); ?>" class="seminar-wrap__summary-link">
-                            <span>タイトルが入りますダミーですタイトルが入りますダミーです</span>
-                        </a>
-                    <?php endforeach; ?>
-                </section>
+                        <?php if ($close): ?>
+                            <p class="seminar-wrap__summary-status">本セミナーは終了しました</p>
+                        <?php endif; ?>
+
+                        <?php if ($has_summary_table) : ?>
+                            <table class="seminar-wrap__summary-table">
+                                <?php if ($event_datetime !== '') : ?>
+                                    <tr>
+                                        <td>開催日時</td>
+                                        <td><?php echo esc_html($event_datetime); ?></td>
+                                    </tr>
+                                <?php endif; ?>
+                                <?php if ($event_location !== '') : ?>
+                                    <tr>
+                                        <td>開催場所</td>
+                                        <td><?php echo wp_kses_post($event_location); ?></td>
+                                    </tr>
+                                <?php endif; ?>
+                                <?php foreach ($optional_field_rows as $optional_field_row) : ?>
+                                    <?php
+                                    $optional_field_title = (string) ($optional_field_row['optional_field_title'] ?? '');
+                                    $optional_field_content = (string) ($optional_field_row['optional_field_content'] ?? '');
+                                    ?>
+                                    <?php if ($optional_field_title !== '' || $optional_field_content !== '') : ?>
+                                        <tr>
+                                            <td><?php echo esc_html($optional_field_title); ?></td>
+                                            <td><?php echo wp_kses_post($optional_field_content); ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </table>
+                        <?php endif; ?>
+
+                        <?php foreach ($pdf_rows as $pdf_row) : ?>
+                            <?php if (is_array($pdf_row) && !empty($pdf_row['pdf'])) : ?>
+                                <a href="<?php echo esc_url($pdf_row['pdf']); ?>" class="seminar-wrap__summary-link">
+                                    <span>タイトルが入りますダミーですタイトルが入りますダミーです</span>
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </section>
+                <?php endif; ?>
             </div>
         </div>
 
         <div class="middle_mv__wave-sway" style="position: relative;">
-            <div class="middle_mv__wave-move">
-                <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                    <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                </svg>
-                <svg class="middle_mv__wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
-                    <path d="M 0,60 Q 360,100 720,60 T 1440,60 L 1440,150 L 0,150 Z"></path>
-                </svg>
+            <div class="middle_mv__decoration">
+
+                <!-- 波 -->
+                <div class="middle_mv__wave-sway">
+                    <div class="middle_mv__wave-move">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <section class="seminar-entry">
+        <section id="seminar-entry" class="seminar-entry">
             <h2 class="seminar-entry__title"><?php the_title(); ?></h2>
             <h3 class="seminar-entry__subtitle">お申込みフォーム</h3>
             <div id="form" class="seminar-entry__form">
