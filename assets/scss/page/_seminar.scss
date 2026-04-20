@@ -668,7 +668,8 @@
             font-size: clamp(14px, 3vw, 16px);
             line-height: 1.6;
             letter-spacing: 0.06em;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.4s ease;
+
 
             &+.seminar-wrap__summary-link {
                 margin-top: 10px;
@@ -683,7 +684,11 @@
             }
 
             &:hover {
-                opacity: 0.75;
+                background-color: #bdd2e4;
+
+                &::after {
+                    filter: grayscale(1) brightness(1.4);
+                }
             }
 
             @include m.mq(sp) {
