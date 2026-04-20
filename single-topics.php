@@ -33,10 +33,13 @@ get_header();
         }
         ?>
       </span>
-      <?php $link = get_field('topics_link'); ?>
+      <?php
+      $link = get_field('topics_link');
+      $blank = get_field('topics_link_blank');
+      ?>
       <h2 class="topics_main_ttl">
         <?php if ($link): ?>
-          <a href="<?php echo esc_url($link); ?>">
+          <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>>
             <?php the_title(); ?>
           </a>
         <?php else: ?>

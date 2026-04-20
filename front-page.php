@@ -153,14 +153,18 @@ get_header();
                                         '</a>';
                                 }
                                 ?>
-                                <?php $link = get_field('news_link'); ?>
+                                <?php
+                                $link = get_field('news_link');
+                                $blank = get_field('news_link_blank');
+                                ?>
+
                                 <p class="top_news__text">
                                     <?php if ($link): ?>
-                                        <a href="<?php echo esc_url($link); ?>" class="top_news__link">
+                                        <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>>
                                             <?php the_title(); ?>
                                         </a>
                                     <?php else: ?>
-                                        <a href="<?php the_permalink(); ?>" class="top_news__link">
+                                        <a href="<?php the_permalink(); ?>">
                                             <?php the_title(); ?>
                                         </a>
                                     <?php endif; ?>
@@ -452,9 +456,12 @@ get_header();
 
 
                                 <div class="top_topics__card-img">
-                                    <?php $link = get_field('topics_link'); ?>
+                                    <?php
+                                    $link = get_field('topics_link');
+                                    $blank = get_field('topics_link_blank');
+                                    ?>
                                     <?php if ($link): ?>
-                                        <a href="<?php echo esc_url($link); ?>">
+                                        <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>>
                                             <?php if (has_post_thumbnail()) : ?>
                                                 <?php the_post_thumbnail('medium'); ?>
                                             <?php else: ?>
@@ -494,14 +501,21 @@ get_header();
                                         <?php endif; ?>
 
                                     </div>
-                                    <?php $link = get_field('topics_link'); ?>
+
+                                    <?php
+                                    $link = get_field('topics_link');
+                                    $blank = get_field('topics_link_blank');
+                                    ?>
+
                                     <h3 class="top_topics__card-title">
                                         <?php if ($link): ?>
-                                            <a href="<?php echo esc_url($link); ?>" class="top_topics__card-link">
+                                            <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?> class="top_topics__card-link">
                                                 <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
                                             </a>
                                         <?php else: ?>
-                                            <a href="<?php the_permalink(); ?>" class="top_topics__card-link"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></a>
+                                            <a href="<?php the_permalink(); ?>" class="top_topics__card-link">
+                                                <?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?>
+                                            </a>
                                         <?php endif; ?>
                                     </h3>
                                 </div>
