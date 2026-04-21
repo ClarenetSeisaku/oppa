@@ -328,7 +328,7 @@ get_header();
                                     <?php if (has_post_thumbnail()) : ?>
                                         <?php the_post_thumbnail('large'); ?>
                                     <?php else : ?>
-                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/no-image.jpg'); ?>" alt="">
+                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/oppa_topics_dummy.png'); ?>" alt="">
                                     <?php endif; ?>
                                 </div>
                                 <div class="top_seminars__card-body">

@@ -139,8 +139,6 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                             <div class="seminar-wrap__speaker-image">
                                 <img src="<?php echo esc_url($speaker_image_url); ?>" alt="<?php echo esc_attr($speaker_image_alt); ?>">
                             </div>
-                        <?php else : ?>
-                            <div class="seminar-wrap__speaker-image" aria-hidden="true"></div>
                         <?php endif; ?>
                     </section>
                 <?php endif; ?>

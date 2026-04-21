@@ -236,7 +236,6 @@
             letter-spacing: 0.03em;
             margin-top: 5px;
 
-
             a {
                 color: #1f3555;
                 text-decoration: none;
@@ -445,6 +444,14 @@
             @include m.mq(sp) {
                 //font-size: clamp(22px, 3vw, 28px);
                 margin-bottom: 32px;
+            }
+
+            &+section {
+                margin-top: 88px !important;
+
+                @include m.mq(sp) {
+                    margin-top: 40px !important;
+                }
             }
         }
 
