@@ -111,6 +111,14 @@ function change_posts_per_page($query)
   if (!$query->is_main_query()) return;
 
   if (
+    $query->is_post_type_archive('seminar') ||
+    $query->is_tax('seminar_category')
+  ) {
+    $query->set('posts_per_page', 9);
+    return;
+  }
+
+  if (
     $query->is_post_type_archive(['press', 'joho']) ||
     $query->is_tax(['press-category', 'joho-year', 'joho-author'])
   ) {

@@ -13,7 +13,7 @@ $paged = max(1, get_query_var('paged'), get_query_var('page'));
 $query_args = [
     'post_type' => 'seminar',
     'post_status' => 'publish',
-    'posts_per_page' => 2,
+    'posts_per_page' => 9,
     'paged' => $paged,
 ];
 if ($selected_term_slug !== '') {

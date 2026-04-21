@@ -76,10 +76,26 @@ get_header();
                         <li>
 
                             <figure>
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <?php the_post_thumbnail('medium'); ?>
+                                <?php
+                                $link = get_field('topics_link');
+                                $blank = get_field('topics_link_blank');
+                                ?>
+                                <?php if ($link): ?>
+                                    <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>>
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        <?php else: ?>
+                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                        <?php endif; ?>
+                                    </a>
                                 <?php else: ?>
-                                    <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="ダミー画像">
+                                    <a href="<?php the_permalink(); ?>">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        <?php else: ?>
+                                            <img src="<?php echo imdir(); ?>/common/oppa_topics_dummy.png" alt="">
+                                        <?php endif; ?>
+                                    </a>
                                 <?php endif; ?>
                             </figure>
                             <div class="topics_contents">
@@ -103,14 +119,20 @@ get_header();
                                     </span>
                                     <time><?php echo get_the_date('Y.n.j'); ?></time>
                                 </div>
-                                <?php $link = get_field('topics_link'); ?>
+                                <?php
+                                $link = get_field('topics_link');
+                                $blank = get_field('topics_link_blank');
+                                ?>
+
                                 <p class="topics_ttl">
                                     <?php if ($link): ?>
-                                        <a href="<?php echo esc_url($link); ?>">
+                                        <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>>
                                             <?php the_title(); ?>
                                         </a>
                                     <?php else: ?>
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_title(); ?>
+                                        </a>
                                     <?php endif; ?>
                                 </p>
                                 <p>

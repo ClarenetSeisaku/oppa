@@ -56,39 +56,8 @@ get_header();
                 <?php endif; ?>
               </figure>
             </div>
-            <div class="box">
-              <?php
-              $type = get_field('description_type');
-
-              // デフォルトを text に
-              if (!$type) {
-                $type = 'text';
-              }
-
-              if ($type === 'list' && have_rows('description_list')) :
-
-                echo '<ul class="description_list disc_list">';
-                while (have_rows('description_list')) {
-                  the_row();
-                  $item = get_sub_field('item');
-                  if ($item) {
-                    echo '<li>' . esc_html($item) . '</li>';
-                  }
-                }
-                echo '</ul>';
-
-              else :
-
-                // text（デフォルト含む）
-                $text = get_field('description_text');
-                if ($text) {
-                  echo '<div class="description_text">';
-                  echo wp_kses_post($text);
-                  echo '</div>';
-                }
-
-              endif;
-              ?>
+            <div class="box text_box">
+              <?php the_field('description_text'); ?>
             </div>
           </div>
           <?php the_content(); ?>

@@ -35,10 +35,13 @@ get_header();
           ?>
         </span>
       </span>
-      <?php $link = get_field('news_link'); ?>
+      <?php
+      $link = get_field('news_link');
+      $blank = get_field('news_link_blank');
+      ?>
       <h2 class="news_main_ttl">
         <?php if ($link): ?>
-          <a href="<?php echo esc_url($link); ?>">
+          <a href="<?php echo esc_url($link); ?>" <?php if ($blank): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>>
             <?php the_title(); ?>
           </a>
         <?php else: ?>
