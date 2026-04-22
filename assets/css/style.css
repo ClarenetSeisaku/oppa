@@ -2837,40 +2837,6 @@ footer {
 .page-top-btn:hover {
   background-color: #f0f4f8;
 }
-.page-top-btn::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-  right: calc(50% - 24px); /* 直線の右端の位置（三角形の幅に合わせてピッタリくっつける） */
-  width: 24px; /* 直線の長さ */
-  height: 1px; /* 直線の太さ */
-  background-color: #244668; /* 直線の色 */
-  transition: all 0.3s ease;
-}
-@media only screen and (max-width: 768px) {
-  .page-top-btn::before {
-    width: 20px; /* 直線の長さ */
-    right: calc(50% - 20px);
-  }
-}
-.page-top-btn::after {
-  content: "";
-  position: absolute;
-  top: 13px;
-  transform: translateX(-50%) rotate(-90deg);
-  right: calc(50% - 6px); /* ボタン右端からの位置 */
-  /* CSSのborder機能を使って三角形を作るテクニック */
-  border-style: solid;
-  border-width: 4px 0 4px 6px; /* 上4px、右0、下4px、左5px */
-  border-color: transparent transparent transparent #244668; /* 左側だけ色をつけて右向き三角に */
-  transition: all 0.3s ease;
-}
-@media only screen and (max-width: 768px) {
-  .page-top-btn::after {
-    top: 10px;
-  }
-}
 
 .fixed-btn {
   position: fixed;

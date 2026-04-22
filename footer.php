@@ -46,7 +46,10 @@
 
 <!-- トップへ戻るボタン -->
 <a href="#" class="page-top-btn pageTop" aria-label="トップへ戻る">
-    <img src="<?php echo imdir(); ?>/common/pagetop.svg" alt="トップへ戻るボタン">
+    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="28" viewBox="0 0 8 28" fill="none">
+        <path d="M4 28L4 8" stroke="#244668" />
+        <path d="M4 1.74845e-07L1.22392e-06 8L8 8L4 1.74845e-07Z" fill="#244668" />
+    </svg>
 </a>
 <footer class="footer">
     <div class="footer_img01 img_con">
