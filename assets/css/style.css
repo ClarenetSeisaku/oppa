@@ -2448,7 +2448,7 @@ footer {
   color: #afccda;
   transition: color 0.3s;
 }
-@media only screen and (max-width: 1660px) {
+@media only screen and (max-width: 1680px) {
   #header .header_btn a {
     gap: 3px;
     padding: 10px 5px;
