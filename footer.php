@@ -46,6 +46,7 @@
 
 <!-- トップへ戻るボタン -->
 <a href="#" class="page-top-btn pageTop" aria-label="トップへ戻る">
+    <img src="<?php echo imdir(); ?>/common/pagetop.svg" alt="トップへ戻るボタン">
 </a>
 <footer class="footer">
     <div class="footer_img01 img_con">

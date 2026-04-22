@@ -609,7 +609,7 @@ get_header();
                         <!-- 右：リスト -->
                         <div class="top_magazine__info">
                             <h3 class="top_magazine__issue"><?php the_title(); ?></h3>
-                            <?php the_field('description_text'); ?>
+                            <?php the_content(); ?>
                         </div>
 
                     </div>
