@@ -43,6 +43,15 @@ get_header();
               echo '</span>';
             }
           }
+          // 情報誌「大阪港」カテゴリー
+          $johocategory = get_the_terms(get_the_ID(), 'joho-category');
+          if (!empty($johocategory) && !is_wp_error($johocategory)) {
+            foreach ($johocategory as $term) {
+              echo '<span class="cat-item category-' . esc_attr($term->slug) . '">';
+              echo esc_html($term->name);
+              echo '</span>';
+            }
+          }
           ?>
         </span>
         <div class="single_inner">
@@ -57,10 +66,9 @@ get_header();
               </figure>
             </div>
             <div class="box text_box">
-              <?php the_field('description_text'); ?>
+              <?php the_content(); ?>
             </div>
           </div>
-          <?php the_content(); ?>
         </div>
         <div class="btn_inner">
           <!-- 一覧へボタン -->
@@ -131,9 +139,9 @@ get_header();
 
         <!-- ボタン -->
         <div class="sidebar_buttons">
-          <a href="#" class="sidebar_btn commonBtn"><span>要旨</span></a>
-          <a href="#" class="sidebar_btn commonBtn link_btn"><span>Take of contents<br>"Osaka Port"</span></a>
-          <a href="#" class="sidebar_btn commonBtn"><span>大阪港を読む</span></a>
+          <a href="<?= esc_url(home_url('/')) ?>joho-category/yousi" class="sidebar_btn commonBtn"><span>要旨</span></a>
+          <a href="https://osakaportmagazine.blogspot.com/" class="sidebar_btn commonBtn link_btn" target="_blank"><span>Take of contents<br>"Osaka Port"</span></a>
+          <a href="<?= esc_url(home_url('/')) ?>joho-category/readosakaport" class="sidebar_btn commonBtn"><span>大阪港を読む</span></a>
         </div>
 
       </aside>

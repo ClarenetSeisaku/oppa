@@ -99,6 +99,18 @@ function new_post_type()
       'show_in_rest' => true,
     )
   );
+  register_taxonomy(
+    'joho-category', // カスタム分類名
+    'joho', // カスタム分類を使用する投稿タイプ名
+    array(
+      'hierarchical' => true,
+      'label' => '情報誌「大阪港」カテゴリー',
+      'singular_label' => '情報誌「大阪港」カテゴリー',
+      'public' => true,
+      'show_ui' => true,
+      'show_in_rest' => true,
+    )
+  );
 }
 
 // ===========================
@@ -131,17 +143,48 @@ add_action('pre_get_posts', 'change_posts_per_page');
 // 情報誌「大阪港」の検索
 // ===========================
 
-function custom_search_filter($query)
+function disable_csv_search_for_joho($query)
 {
-  if (is_admin() || !$query->is_main_query()) {
-    return;
-  }
+  if (
+    !is_admin() &&
+    $query->is_main_query() &&
+    $query->is_search() &&
+    $query->get('post_type') === 'joho'
+  ) {
+    $keyword = $query->get('s');
 
-  if ($query->is_search()) {
-    $query->set('post_type', 'joho');
+    $query->set('s', '');
+
+    $query->set('s', $keyword);
   }
 }
-add_action('pre_get_posts', 'custom_search_filter');
+add_action('pre_get_posts', 'disable_csv_search_for_joho', 1);
+
+function fix_search_query_for_joho($search, $wp_query)
+{
+  global $wpdb;
+
+  if (
+    $wp_query->is_search() &&
+    !is_admin() &&
+    $wp_query->is_main_query() &&
+    $wp_query->get('post_type') === 'joho'
+  ) {
+    $keyword = esc_sql(get_search_query());
+
+    if (!empty($keyword)) {
+      $search .= " AND (
+        {$wpdb->posts}.post_title LIKE '%{$keyword}%'
+        OR {$wpdb->posts}.post_content LIKE '%{$keyword}%'
+      ) ";
+    }
+  }
+
+  return $search;
+}
+add_filter('posts_search', 'fix_search_query_for_joho', 20, 2);
+
+
 
 
 // ===========================

@@ -88,6 +88,7 @@
                             </div>
                             <div class="drawer__col">
                                 <ul>
+                                    <li><a href="<?= esc_url(home_url('/')) ?>seminar/?seminar_category=kyokai">協会事業報告</a></li>
                                     <li><a href="<?= esc_url(home_url('/')) ?>join">入会案内</a></li>
                                     <li><a href="<?= esc_url(home_url('/')) ?>member-list">会員情報</a></li>
                                     <li><a href="<?= esc_url(home_url('/')) ?>access">アクセス</a></li>

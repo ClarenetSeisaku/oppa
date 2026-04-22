@@ -124,9 +124,9 @@ get_header();
 
                 <!-- ボタン -->
                 <div class="sidebar_buttons">
-                    <a href="#" class="sidebar_btn commonBtn"><span>要旨</span></a>
-                    <a href="#" class="sidebar_btn commonBtn link_btn"><span>Take of contents<br>"Osaka Port"</span></a>
-                    <a href="#" class="sidebar_btn commonBtn"><span>大阪港を読む</span></a>
+                    <a href="<?= esc_url(home_url('/')) ?>joho-category/yousi" class="sidebar_btn commonBtn"><span>要旨</span></a>
+                    <a href="https://osakaportmagazine.blogspot.com/" class="sidebar_btn commonBtn link_btn" target="_blank"><span>Take of contents<br>"Osaka Port"</span></a>
+                    <a href="<?= esc_url(home_url('/')) ?>joho-category/readosakaport" class="sidebar_btn commonBtn"><span>大阪港を読む</span></a>
                 </div>
 
             </aside>

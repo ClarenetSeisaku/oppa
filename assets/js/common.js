@@ -101,3 +101,40 @@ $(document).ready(function () {
     }
   });
 });
+
+//追従ボタンフッター前でとめる
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.matchMedia("(min-width: 769px)").matches) return;
+
+  const btn = document.querySelector(".fixed-btn");
+  const footer = document.getElementById("footer");
+  if (!btn || !footer) return;
+
+  let isStopped = false; // 状態管理
+
+  window.addEventListener("scroll", function () {
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    // フッターに到達 → 止める
+    if (footerTop < windowHeight && !isStopped) {
+      isStopped = true;
+
+      btn.style.position = "absolute";
+      btn.style.bottom = (windowHeight - footerTop + 20) + "px";
+      btn.style.top = "auto";
+      btn.style.transform = "none";
+    }
+
+    // フッターから離れた → 追従に戻す
+    if (footerTop >= windowHeight && isStopped) {
+      isStopped = false;
+
+      btn.style.position = "fixed";
+      btn.style.top = "50%";
+      btn.style.bottom = "auto";
+      btn.style.transform = "translateY(-50%)";
+    }
+  });
+});

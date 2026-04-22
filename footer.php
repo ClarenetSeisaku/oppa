@@ -58,7 +58,7 @@
         <div class="footer_img03 img_con"><img src="<?php echo imdir(); ?>/common/footer_img03.svg" alt="船"></div>
 
         <!-- ーー 上部 ーー -->
-        <div class="footer__top">
+        <div class="footer__top" id="footer__top">
 
             <!-- 左カラム：協会情報 -->
             <div class="footer__info">
@@ -66,10 +66,13 @@
                     <img src="<?php echo imdir(); ?>/common/logo_f.svg" alt="ロゴ" class="logo">
                 </div>
                 <p class="footer__name">公益社団法人 大阪港振興協会</p>
-                <p class="footer__address">
-                    〒552-0021<br>
-                    大阪府大阪市港区築港2-1-2　<br class="sp">第一大阪港ビル7階<br>
-                </p>
+                <div class="footer__address">
+                    <div>
+                        〒552-0021<br>
+                        大阪府大阪市港区築港2-1-2&emsp;
+                    </div>
+                    <div>第一大阪港ビル7階</div>
+                </div>
                 <p class="footer__tell">
                     <a href="tel:0665759575">TEL: 06-6575-9575</a>
                 </p>
@@ -93,6 +96,7 @@
                     <a href="<?= esc_url(home_url('/')) ?>topics-category/newsletter" class="footer__nav-link">ニュースレター</a>
                 </div>
                 <div class="footer__nav-col">
+                    <a href="<?= esc_url(home_url('/')) ?>seminar/?seminar_category=kyokai" class="footer__nav-link">協会事業報告</a>
                     <a href="<?= esc_url(home_url('/')) ?>join" class="footer__nav-link">入会案内</a>
                     <a href="<?= esc_url(home_url('/')) ?>member-list" class="footer__nav-link">会員情報</a>
                     <a href="<?= esc_url(home_url('/')) ?>access" class="footer__nav-link">アクセス</a>
