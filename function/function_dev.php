@@ -106,6 +106,13 @@ function my_theme_enqueue_assets()
             null,
             true
         );
+        wp_enqueue_script(
+            'membership_form-script',
+            get_template_directory_uri() . '/assets/js/membership_form.js',
+            array('jquery'),
+            filemtime(get_template_directory() . '/assets/js/membership_form.js'),
+            true
+        );
     }
     // 1. CSS（SCSSからコンパイルされたやつ）の読み込み
     wp_enqueue_style(
