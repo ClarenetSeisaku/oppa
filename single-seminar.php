@@ -139,8 +139,6 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
                             <div class="seminar-wrap__speaker-image">
                                 <img src="<?php echo esc_url($speaker_image_url); ?>" alt="<?php echo esc_attr($speaker_image_alt); ?>">
                             </div>
-                        <?php else : ?>
-                            <div class="seminar-wrap__speaker-image" aria-hidden="true"></div>
                         <?php endif; ?>
                     </section>
                 <?php endif; ?>
@@ -300,7 +298,7 @@ $breadcrumb_term = (!is_wp_error($breadcrumb_terms) && !empty($breadcrumb_terms)
 
                         <?php foreach ($pdf_rows as $pdf_row) : ?>
                             <?php if (is_array($pdf_row) && !empty($pdf_row['pdf'])) : ?>
-                                <a href="<?php echo esc_url($pdf_row['pdf']); ?>" class="seminar-wrap__summary-link">
+                                <a href="<?php echo esc_url($pdf_row['pdf']); ?>" class="seminar-wrap__summary-link" target="_blank">
                                     <span><?php echo esc_html($pdf_row['pdf_name']); ?></span>
                                 </a>
                             <?php endif; ?>

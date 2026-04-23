@@ -173,18 +173,27 @@ $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $
                         }
 
                         $event = function_exists('get_field') ? get_field('event') : null;
+                        $event_group = is_array($event) ? ($event['event-group'] ?? $event['event_group'] ?? []) : [];
+                        if (!is_array($event_group)) {
+                            $event_group = function_exists('get_field') ? (get_field('event-group') ?? get_field('event_group') ?? []) : [];
+                        }
+                        if (!is_array($event_group)) {
+                            $event_group = [];
+                        }
+
+                        // Backward-compat: support legacy repeater-based event values.
                         $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
                         if (!is_array($event_rows)) {
                             $event_rows = [];
                         }
                         $event_row = !empty($event_rows) && is_array($event_rows[0]) ? $event_rows[0] : [];
 
-                        $event_datetime_legacy = (string) ($event_row['event_datetime'] ?? '');
-                        $event_date_raw = (string) ($event_row['event_date'] ?? '');
+                        $event_datetime_legacy = (string) ($event_group['event_datetime'] ?? $event_row['event_datetime'] ?? '');
+                        $event_date_raw = (string) ($event_group['event_date'] ?? $event_row['event_date'] ?? '');
                         $event_datetime = $format_japanese_event_datetime(
                             $event_date_raw,
-                            (string) ($event_row['event_time_s'] ?? ''),
-                            (string) ($event_row['event_time_e'] ?? '')
+                            (string) ($event_group['event_time_s'] ?? $event_row['event_time_s'] ?? ''),
+                            (string) ($event_group['event_time_e'] ?? $event_row['event_time_e'] ?? '')
                         );
                         if ($event_datetime === '') {
                             $event_datetime = $event_datetime_legacy;
@@ -195,7 +204,7 @@ $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $
                         } elseif ($event_datetime !== '') {
                             $event_datetime_html = '<span class="is-strong">' . esc_html($event_datetime) . '</span>';
                         }
-                        $event_location = (string) ($event_row['event_location'] ?? '');
+                        $event_location = (string) ($event_group['event_location'] ?? $event_row['event_location'] ?? '');
                         $is_closed = !empty($event['close']);
                         ?>
                         <li class="seminar-archive__item">
@@ -205,7 +214,7 @@ $format_japanese_event_datetime = static function ($date_raw, $time_start_raw, $
                                         <?php if (has_post_thumbnail()) : ?>
                                             <?php the_post_thumbnail('large'); ?>
                                         <?php else : ?>
-                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/no-image.jpg'); ?>" alt="">
+                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/oppa_topics_dummy.png'); ?>" alt="">
                                         <?php endif; ?>
                                     </figure>
                                 </a>

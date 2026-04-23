@@ -101,3 +101,60 @@ $(document).ready(function () {
     }
   });
 });
+
+//追従ボタンフッター前でとめる
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.matchMedia("(min-width: 769px)").matches) return;
+
+  const footer = document.getElementById("footer__top");
+  if (!footer) return;
+
+  const targets = document.querySelectorAll(".page-top-btn");
+  if (!targets.length) return;
+
+  window.addEventListener("scroll", function () {
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    let offset = 20;
+
+    if (footerTop < windowHeight) {
+      offset = windowHeight - footerTop + 20;
+    }
+
+    targets.forEach(btn => {
+      btn.style.bottom = offset + "px";
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.matchMedia("(min-width: 769px)").matches) return;
+
+  const btn = document.querySelector(".fixed-btn");
+  const footer = document.getElementById("footer__top");
+  if (!btn || !footer) return;
+
+  const margin = 100; // ← フッターからの余白
+
+  window.addEventListener("scroll", function () {
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    const btnHeight = btn.offsetHeight;
+
+    // 通常：中央
+    let top = windowHeight / 2;
+
+    // フッターに近づいたら制御
+    if (footerTop < windowHeight) {
+      // フッターの100px上で止める位置
+      const stopTop = footerTop - btnHeight / 2 - margin;
+
+      // 中央位置と比較して小さい方を採用（上に逃げる）
+      top = Math.min(top, stopTop);
+    }
+
+    btn.style.top = top + "px";
+  });
+});

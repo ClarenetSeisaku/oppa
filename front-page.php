@@ -293,17 +293,26 @@ get_header();
                         }
 
                         $event = function_exists('get_field') ? get_field('event') : null;
+                        $event_group = is_array($event) ? ($event['event-group'] ?? $event['event_group'] ?? []) : [];
+                        if (!is_array($event_group)) {
+                            $event_group = function_exists('get_field') ? (get_field('event-group') ?? get_field('event_group') ?? []) : [];
+                        }
+                        if (!is_array($event_group)) {
+                            $event_group = [];
+                        }
+
+                        // Backward-compat: support legacy repeater-based event values.
                         $event_rows = is_array($event) ? ($event['event-repeat'] ?? $event['event_repeat'] ?? []) : [];
                         if (!is_array($event_rows)) {
                             $event_rows = [];
                         }
                         $event_row = !empty($event_rows) && is_array($event_rows[0]) ? $event_rows[0] : [];
 
-                        $event_datetime_legacy = (string) ($event_row['event_datetime'] ?? '');
+                        $event_datetime_legacy = (string) ($event_group['event_datetime'] ?? $event_row['event_datetime'] ?? '');
                         $event_datetime = $format_japanese_event_datetime(
-                            (string) ($event_row['event_date'] ?? ''),
-                            (string) ($event_row['event_time_s'] ?? ''),
-                            (string) ($event_row['event_time_e'] ?? '')
+                            (string) ($event_group['event_date'] ?? $event_row['event_date'] ?? ''),
+                            (string) ($event_group['event_time_s'] ?? $event_row['event_time_s'] ?? ''),
+                            (string) ($event_group['event_time_e'] ?? $event_row['event_time_e'] ?? '')
                         );
                         if ($event_datetime === '') {
                             $event_datetime = $event_datetime_legacy;
@@ -316,7 +325,7 @@ get_header();
                             $seminars_date = trim($datetime_parts[2]);
                         }
 
-                        $event_location = (string) ($event_row['event_location'] ?? '');
+                        $event_location = (string) ($event_group['event_location'] ?? $event_row['event_location'] ?? '');
                         $is_closed = !empty($event['close']);
 
                         $badge_modifier = $badge_modifiers[$card_index % count($badge_modifiers)];
@@ -328,7 +337,7 @@ get_header();
                                     <?php if (has_post_thumbnail()) : ?>
                                         <?php the_post_thumbnail('large'); ?>
                                     <?php else : ?>
-                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/no-image.jpg'); ?>" alt="">
+                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/common/oppa_topics_dummy.png'); ?>" alt="">
                                     <?php endif; ?>
                                 </div>
                                 <div class="top_seminars__card-body">
@@ -600,7 +609,7 @@ get_header();
                         <!-- 右：リスト -->
                         <div class="top_magazine__info">
                             <h3 class="top_magazine__issue"><?php the_title(); ?></h3>
-                            <?php the_field('description_text'); ?>
+                            <?php the_content(); ?>
                         </div>
 
                     </div>
