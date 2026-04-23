@@ -95,21 +95,33 @@ function my_theme_enqueue_assets()
             true
         );
     }
+    // =========================
+    // membership_formページだけ読み込む
+    // =========================
+    if (is_page('membership_form')) {
+        wp_enqueue_script(
+            'ajaxzip3',
+            'https://ajaxzip3.github.io/ajaxzip3.js',
+            array(),
+            null,
+            true
+        );
+    }
     // 1. CSS（SCSSからコンパイルされたやつ）の読み込み
     wp_enqueue_style(
-        'my-main-style',                                // 識別名（ハンドル名）
-        get_template_directory_uri() . '/assets/css/style.css', // ファイルのパス
-        array(),                                        // 依存関係（あれば）
-        filemtime(get_template_directory() . '/assets/css/style.css') // バージョン（更新時間でキャッシュ対策）
+        'my-main-style',
+        get_template_directory_uri() . '/assets/css/style.css',
+        array(),
+        filemtime(get_template_directory() . '/assets/css/style.css')
     );
 
     // 2. JavaScriptの読み込み
     wp_enqueue_script(
-        'my-main-script',                               // 識別名
-        get_template_directory_uri() . '/assets/js/common.js',    // ファイルのパス
-        array('jquery'),                                // jQueryが必要ならここに記述
-        '1.0.0',                                        // バージョン番号
-        true                                            // </body>の直前で読み込む設定（これ大事！）
+        'my-main-script',
+        get_template_directory_uri() . '/assets/js/common.js',
+        array('jquery'),
+        '1.0.0',
+        true
     );
 }
 // WordPressの実行タイミングに登録
