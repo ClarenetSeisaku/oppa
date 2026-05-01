@@ -44,6 +44,7 @@ function new_post_type()
         'thumbnail',
         'revisions',
         'custom-fields',
+        'page-attributes',
       ),
     )
   );
@@ -72,6 +73,7 @@ function new_post_type()
         'editor',
         'thumbnail',
         'revisions',
+        'page-attributes',
       ),
     )
   );
@@ -135,6 +137,8 @@ function change_posts_per_page($query)
     $query->is_tax(['press-category', 'joho-year', 'joho-author'])
   ) {
     $query->set('posts_per_page', 12);
+    $query->set('orderby', 'menu_order');
+    $query->set('order', 'ASC');
   }
 }
 add_action('pre_get_posts', 'change_posts_per_page');
