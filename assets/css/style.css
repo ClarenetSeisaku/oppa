@@ -8539,19 +8539,15 @@ footer {
   font-size: clamp(22px, 3.2vw, 38px);
   font-weight: 600;
   letter-spacing: 0.125em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: #000;
 }
 #joho #joho_single .joho_category {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin-bottom: 100px;
-}
-@media only screen and (max-width: 768px) {
-  #joho #joho_single .joho_category {
-    margin-bottom: 50px;
-  }
+  margin-bottom: 30px;
 }
 #joho #joho_single .joho_category .cat-item {
   background-color: #244668;
@@ -8587,6 +8583,7 @@ footer {
   padding-left: 1.2em;
   line-height: 1.8;
   color: #333;
+  margin: 0.2em 0;
 }
 #joho #joho_single .grid_box_list .text_box ul li::before {
   content: "";
