@@ -306,13 +306,13 @@
         }
       }
       .text_box {
+        margin: 2em 0;
         ul {
           li {
             position: relative;
             padding-left: 1.2em;
             line-height: 1.8;
             color: m.$main-color;
-            margin: 0.2em 0;
             &::before {
               content: "";
               position: absolute;

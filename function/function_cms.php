@@ -134,11 +134,19 @@ function change_posts_per_page($query)
 
   if (
     $query->is_post_type_archive(['press', 'joho']) ||
-    $query->is_tax(['press-category', 'joho-year', 'joho-author'])
+    $query->is_tax([
+      'press-category',
+      'joho-year',
+      'joho-author',
+      'joho-category'
+    ])
   ) {
     $query->set('posts_per_page', 12);
-    $query->set('orderby', 'menu_order');
-    $query->set('order', 'ASC');
+
+    $query->set('orderby', array(
+      'menu_order' => 'ASC',
+      'date' => 'DESC'
+    ));
   }
 }
 add_action('pre_get_posts', 'change_posts_per_page');
